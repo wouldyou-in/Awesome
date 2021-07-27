@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="116" id="KGk-i7-Jjw" customClass="HomeTVC" customModule="Awesome" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="425" height="116"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="425" height="116"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MIu-yc-c7P">
+                        <rect key="frame" x="15" y="20" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kuH-Ex-fFc">
+                        <rect key="frame" x="15" y="51" width="395" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendar" translatesAutoresizingMaskIntoConstraints="NO" id="cw3-bK-QNK">
+                        <rect key="frame" x="386" y="15" width="24" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="JSx-HA-hCn"/>
+                            <constraint firstAttribute="width" constant="24" id="hwz-mE-AgT"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fqX-o3-U67">
+                        <rect key="frame" x="368" y="86" width="42" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="CLt-Mg-WvS"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="cw3-bK-QNK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="AF2-ZQ-c5E"/>
+                    <constraint firstItem="kuH-Ex-fFc" firstAttribute="top" secondItem="MIu-yc-c7P" secondAttribute="bottom" constant="10" id="BBa-Xb-617"/>
+                    <constraint firstAttribute="trailing" secondItem="cw3-bK-QNK" secondAttribute="trailing" constant="15" id="M6o-dR-cg5"/>
+                    <constraint firstAttribute="trailing" secondItem="kuH-Ex-fFc" secondAttribute="trailing" constant="15" id="Mhw-Dj-MCn"/>
+                    <constraint firstAttribute="trailing" secondItem="fqX-o3-U67" secondAttribute="trailing" constant="15" id="NWH-Yd-QFl"/>
+                    <constraint firstItem="kuH-Ex-fFc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="NfH-oB-deB"/>
+                    <constraint firstItem="MIu-yc-c7P" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="dbK-LQ-lcn"/>
+                    <constraint firstItem="MIu-yc-c7P" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="hDJ-xm-zvJ"/>
+                    <constraint firstAttribute="bottom" secondItem="fqX-o3-U67" secondAttribute="bottom" constant="10" id="tu6-uf-kol"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="agoLabel" destination="fqX-o3-U67" id="e1U-Bz-6IP"/>
+                <outlet property="dateLabel" destination="MIu-yc-c7P" id="hJi-zS-iza"/>
+                <outlet property="infoLabel" destination="kuH-Ex-fFc" id="yrW-nR-dBK"/>
+            </connections>
+            <point key="canvasLocation" x="213.768115942029" y="158.70535714285714"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="calendar" width="24" height="24"/>
+    </resources>
+</document>
