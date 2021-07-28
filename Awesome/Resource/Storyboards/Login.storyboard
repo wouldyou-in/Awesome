@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ilO-dB-OMO">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--LoginVC-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="LoginVC" id="Y6W-OH-hqX" customClass="LoginVC" customModule="Awesome" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginBackground" translatesAutoresizingMaskIntoConstraints="NO" id="anJ-Cy-bva">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s4c-z6-u3x">
+                                <rect key="frame" x="37.5" y="597" width="300" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="s4c-z6-u3x" secondAttribute="height" multiplier="6:1" id="HG5-Np-WeJ"/>
+                                    <constraint firstAttribute="height" constant="50" id="LOf-h2-LJ2"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="appleLoginButton"/>
+                                <connections>
+                                    <action selector="appleLoginButtonClicked:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="13i-6P-jVE"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hkC-Zb-YLS">
+                                <rect key="frame" x="37.5" y="527" width="300" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="hkC-Zb-YLS" secondAttribute="height" multiplier="6:1" id="T6f-Qy-Q9X"/>
+                                    <constraint firstAttribute="height" constant="50" id="o3p-Yf-ThJ"/>
+                                </constraints>
+                                <state key="normal" image="kakaoTalkLoginButton"/>
+                                <connections>
+                                    <action selector="kakaoLoginButtonClicked:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="2KC-di-GrZ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="s4c-z6-u3x" firstAttribute="top" secondItem="hkC-Zb-YLS" secondAttribute="bottom" constant="20" id="8Sp-Oq-rzm"/>
+                            <constraint firstAttribute="bottom" secondItem="anJ-Cy-bva" secondAttribute="bottom" id="Cs0-5K-alG"/>
+                            <constraint firstItem="hkC-Zb-YLS" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="NQU-Xv-OZF"/>
+                            <constraint firstAttribute="trailing" secondItem="anJ-Cy-bva" secondAttribute="trailing" id="OCR-OR-2gg"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="s4c-z6-u3x" secondAttribute="bottom" constant="20" id="RW6-Ju-We2"/>
+                            <constraint firstItem="s4c-z6-u3x" firstAttribute="centerX" secondItem="vDu-zF-Fre" secondAttribute="centerX" id="WM1-Bl-myS"/>
+                            <constraint firstItem="anJ-Cy-bva" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="XYw-HC-7NF"/>
+                            <constraint firstItem="anJ-Cy-bva" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="fFU-mW-Vqz"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="pXh-5o-qBt"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="973.60000000000002" y="97.601199400299862"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="kae-z2-2pY">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="ilO-dB-OMO" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wyA-6C-dEC">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="7yo-zw-AfW"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6b5-JV-xyt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="34.399999999999999" y="97.601199400299862"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="appleLoginButton" width="299.5" height="50"/>
+        <image name="kakaoTalkLoginButton" width="299.5" height="50"/>
+        <image name="loginBackground" width="375" height="812"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
