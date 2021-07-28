@@ -26,6 +26,8 @@
 		36FB7FA726B07B5C001F2C39 /* HomeDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FB7FA626B07B5C001F2C39 /* HomeDataModel.swift */; };
 		36FB7FA926B07B7E001F2C39 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FB7FA826B07B7E001F2C39 /* NetworkResult.swift */; };
 		36FB7FAB26B07B98001F2C39 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FB7FAA26B07B98001F2C39 /* Constants.swift */; };
+		36FB7FAD26B11D0C001F2C39 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36FB7FAC26B11D0C001F2C39 /* Setting.storyboard */; };
+		36FB7FAF26B11D57001F2C39 /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FB7FAE26B11D57001F2C39 /* SettingVC.swift */; };
 		C7E8A063BCEED6FD6ACFDBDD /* Pods_Awesome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAC5206CBDA6D5C6D241848D /* Pods_Awesome.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +53,8 @@
 		36FB7FA626B07B5C001F2C39 /* HomeDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDataModel.swift; sourceTree = "<group>"; };
 		36FB7FA826B07B7E001F2C39 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
 		36FB7FAA26B07B98001F2C39 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		36FB7FAC26B11D0C001F2C39 /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
+		36FB7FAE26B11D57001F2C39 /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
 		CE663D472C4C0707FA6F5F24 /* Pods-Awesome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Awesome.debug.xcconfig"; path = "Target Support Files/Pods-Awesome/Pods-Awesome.debug.xcconfig"; sourceTree = "<group>"; };
 		F76C9BB4939BF52024F4A6B0 /* Pods-Awesome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Awesome.release.xcconfig"; path = "Target Support Files/Pods-Awesome/Pods-Awesome.release.xcconfig"; sourceTree = "<group>"; };
 		FAC5206CBDA6D5C6D241848D /* Pods_Awesome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Awesome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,8 +106,8 @@
 			children = (
 				36FB7F8626B033E5001F2C39 /* Support */,
 				36FB7F8B26B0340D001F2C39 /* Views */,
-				36FB7F8A26B03407001F2C39 /* Models */,
 				36FB7F8926B033FF001F2C39 /* Services */,
+				36FB7F8A26B03407001F2C39 /* Models */,
 				36FB7F8826B033F7001F2C39 /* Extension */,
 			);
 			path = Source;
@@ -177,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				36FB7F9226B03645001F2C39 /* Home.storyboard */,
+				36FB7FAC26B11D0C001F2C39 /* Setting.storyboard */,
 				36FB7F7626B03381001F2C39 /* Main.storyboard */,
 				36FB7F7B26B03381001F2C39 /* LaunchScreen.storyboard */,
 			);
@@ -198,6 +203,7 @@
 			children = (
 				36FB7F7426B03381001F2C39 /* ViewController.swift */,
 				36FB7F9426B04008001F2C39 /* HomeVC.swift */,
+				36FB7FAE26B11D57001F2C39 /* SettingVC.swift */,
 			);
 			path = VCs;
 			sourceTree = "<group>";
@@ -298,6 +304,7 @@
 				36FB7FA326B076A2001F2C39 /* HomeTVC.xib in Resources */,
 				36FB7F9926B0415D001F2C39 /* GmarketSansTTFLight.ttf in Resources */,
 				36FB7F7A26B03381001F2C39 /* Assets.xcassets in Resources */,
+				36FB7FAD26B11D0C001F2C39 /* Setting.storyboard in Resources */,
 				36FB7F7826B03381001F2C39 /* Main.storyboard in Resources */,
 				36FB7F9326B03645001F2C39 /* Home.storyboard in Resources */,
 				36FB7F9A26B0415D001F2C39 /* GmarketSansTTFMedium.ttf in Resources */,
@@ -354,6 +361,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				36FB7F7526B03381001F2C39 /* ViewController.swift in Sources */,
+				36FB7FAF26B11D57001F2C39 /* SettingVC.swift in Sources */,
 				36FB7FAB26B07B98001F2C39 /* Constants.swift in Sources */,
 				36FB7FA926B07B7E001F2C39 /* NetworkResult.swift in Sources */,
 				36FB7F9D26B0496F001F2C39 /* Extension+UIColor.swift in Sources */,
