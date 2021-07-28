@@ -81,6 +81,9 @@ class HomeVC: UIViewController {
 //MARK: IBOutletFunction
     
     @IBAction func settingButtonClicked(_ sender: Any) {
+        guard let SettingVC = UIStoryboard(name: "Setting", bundle: nil).instantiateViewController(identifier: "SettingVC") as? SettingVC else {return}
+        self.navigationController?.pushViewController(SettingVC, animated: true)
+        print(navigationController)
         
     }
     @IBAction func calendarButtonClicked(_ sender: Any) {
