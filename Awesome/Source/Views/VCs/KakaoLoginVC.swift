@@ -36,6 +36,7 @@ class KakaoLoginVC: UIViewController {
                 self.pushHome()
                 let defaults = UserDefaults.standard
                 defaults.set(true, forKey: "kakaoLoginSucces")
+                defaults.set(true, forKey: "loginBool")
                 defaults.set(loginData, forKey: "userToken")
                 self.getAccessToken()
             case .requestErr(let message):
@@ -72,6 +73,7 @@ class KakaoLoginVC: UIViewController {
         guard let HomeVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(identifier: "HomeVC") as? HomeVC else {return}
         self.navigationController?.pushViewController(HomeVC, animated: true)
     }
+
     
 }
 //MARK: Extension

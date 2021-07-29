@@ -34,6 +34,12 @@
 		36FB7FB726B18589001F2C39 /* KakaoLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FB7FB626B18589001F2C39 /* KakaoLoginVC.swift */; };
 		36FB7FB926B18CE8001F2C39 /* KakaoLoginDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FB7FB826B18CE8001F2C39 /* KakaoLoginDataModel.swift */; };
 		36FB7FBB26B18D6B001F2C39 /* KakaoLoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FB7FBA26B18D6B001F2C39 /* KakaoLoginService.swift */; };
+		36FB7FBD26B1A8A1001F2C39 /* Splash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36FB7FBC26B1A8A1001F2C39 /* Splash.storyboard */; };
+		36FB7FBF26B1A8B5001F2C39 /* SplashVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FB7FBE26B1A8B5001F2C39 /* SplashVC.swift */; };
+		36FB7FC126B1ABCD001F2C39 /* DeviceConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FB7FC026B1ABCD001F2C39 /* DeviceConfig.swift */; };
+		36FB7FC326B1B7DA001F2C39 /* UpdateTokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FB7FC226B1B7DA001F2C39 /* UpdateTokenModel.swift */; };
+		36FB7FC526B1B7FB001F2C39 /* GetNewTokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FB7FC426B1B7FB001F2C39 /* GetNewTokenService.swift */; };
+		36FB7FC926B286F6001F2C39 /* GetScheduleDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FB7FC826B286F6001F2C39 /* GetScheduleDataService.swift */; };
 		C7E8A063BCEED6FD6ACFDBDD /* Pods_Awesome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAC5206CBDA6D5C6D241848D /* Pods_Awesome.framework */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +73,12 @@
 		36FB7FB626B18589001F2C39 /* KakaoLoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLoginVC.swift; sourceTree = "<group>"; };
 		36FB7FB826B18CE8001F2C39 /* KakaoLoginDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLoginDataModel.swift; sourceTree = "<group>"; };
 		36FB7FBA26B18D6B001F2C39 /* KakaoLoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLoginService.swift; sourceTree = "<group>"; };
+		36FB7FBC26B1A8A1001F2C39 /* Splash.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Splash.storyboard; sourceTree = "<group>"; };
+		36FB7FBE26B1A8B5001F2C39 /* SplashVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVC.swift; sourceTree = "<group>"; };
+		36FB7FC026B1ABCD001F2C39 /* DeviceConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceConfig.swift; sourceTree = "<group>"; };
+		36FB7FC226B1B7DA001F2C39 /* UpdateTokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTokenModel.swift; sourceTree = "<group>"; };
+		36FB7FC426B1B7FB001F2C39 /* GetNewTokenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetNewTokenService.swift; sourceTree = "<group>"; };
+		36FB7FC826B286F6001F2C39 /* GetScheduleDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetScheduleDataService.swift; sourceTree = "<group>"; };
 		CE663D472C4C0707FA6F5F24 /* Pods-Awesome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Awesome.debug.xcconfig"; path = "Target Support Files/Pods-Awesome/Pods-Awesome.debug.xcconfig"; sourceTree = "<group>"; };
 		F76C9BB4939BF52024F4A6B0 /* Pods-Awesome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Awesome.release.xcconfig"; path = "Target Support Files/Pods-Awesome/Pods-Awesome.release.xcconfig"; sourceTree = "<group>"; };
 		FAC5206CBDA6D5C6D241848D /* Pods_Awesome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Awesome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -160,6 +172,9 @@
 				36FB7FA826B07B7E001F2C39 /* NetworkResult.swift */,
 				36FB7FAA26B07B98001F2C39 /* Constants.swift */,
 				36FB7FBA26B18D6B001F2C39 /* KakaoLoginService.swift */,
+				36FB7FC026B1ABCD001F2C39 /* DeviceConfig.swift */,
+				36FB7FC426B1B7FB001F2C39 /* GetNewTokenService.swift */,
+				36FB7FC826B286F6001F2C39 /* GetScheduleDataService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -169,6 +184,7 @@
 			children = (
 				36FB7FA626B07B5C001F2C39 /* HomeDataModel.swift */,
 				36FB7FB826B18CE8001F2C39 /* KakaoLoginDataModel.swift */,
+				36FB7FC226B1B7DA001F2C39 /* UpdateTokenModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -200,6 +216,7 @@
 				36FB7F7B26B03381001F2C39 /* LaunchScreen.storyboard */,
 				36FB7FB026B17C6F001F2C39 /* Login.storyboard */,
 				36FB7FB426B18578001F2C39 /* KakaoLogin.storyboard */,
+				36FB7FBC26B1A8A1001F2C39 /* Splash.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -222,6 +239,7 @@
 				36FB7FAE26B11D57001F2C39 /* SettingVC.swift */,
 				36FB7FB226B17C90001F2C39 /* LoginVC.swift */,
 				36FB7FB626B18589001F2C39 /* KakaoLoginVC.swift */,
+				36FB7FBE26B1A8B5001F2C39 /* SplashVC.swift */,
 			);
 			path = VCs;
 			sourceTree = "<group>";
@@ -328,6 +346,7 @@
 				36FB7F9326B03645001F2C39 /* Home.storyboard in Resources */,
 				36FB7FB126B17C6F001F2C39 /* Login.storyboard in Resources */,
 				36FB7F9A26B0415D001F2C39 /* GmarketSansTTFMedium.ttf in Resources */,
+				36FB7FBD26B1A8A1001F2C39 /* Splash.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,19 +402,24 @@
 				36FB7F7526B03381001F2C39 /* ViewController.swift in Sources */,
 				36FB7FAF26B11D57001F2C39 /* SettingVC.swift in Sources */,
 				36FB7FAB26B07B98001F2C39 /* Constants.swift in Sources */,
+				36FB7FC126B1ABCD001F2C39 /* DeviceConfig.swift in Sources */,
 				36FB7FBB26B18D6B001F2C39 /* KakaoLoginService.swift in Sources */,
 				36FB7FA926B07B7E001F2C39 /* NetworkResult.swift in Sources */,
 				36FB7F9D26B0496F001F2C39 /* Extension+UIColor.swift in Sources */,
 				36FB7FA726B07B5C001F2C39 /* HomeDataModel.swift in Sources */,
+				36FB7FC926B286F6001F2C39 /* GetScheduleDataService.swift in Sources */,
 				36FB7FA226B076A2001F2C39 /* HomeTVC.swift in Sources */,
+				36FB7FC326B1B7DA001F2C39 /* UpdateTokenModel.swift in Sources */,
 				36FB7F9526B04008001F2C39 /* HomeVC.swift in Sources */,
 				36FB7F7126B03381001F2C39 /* AppDelegate.swift in Sources */,
 				36FB7FB926B18CE8001F2C39 /* KakaoLoginDataModel.swift in Sources */,
 				36FB7FB326B17C90001F2C39 /* LoginVC.swift in Sources */,
+				36FB7FBF26B1A8B5001F2C39 /* SplashVC.swift in Sources */,
 				36FB7F9F26B04986001F2C39 /* Extension+UIFont.swift in Sources */,
 				36FB7F7326B03381001F2C39 /* SceneDelegate.swift in Sources */,
 				36FB7FB726B18589001F2C39 /* KakaoLoginVC.swift in Sources */,
 				36FB7FA526B07A11001F2C39 /* Extension+TableView.swift in Sources */,
+				36FB7FC526B1B7FB001F2C39 /* GetNewTokenService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
