@@ -1,8 +1,16 @@
-//
-//  EventCalendarModel.swift
-//  Awesome
-//
-//  Created by 박익범 on 2021/07/31.
-//
-
 import Foundation
+import UIKit
+
+struct mainViewDummy {
+    var informationImage : String
+    var name : String
+    var information : String
+    var time : String
+    var person : String
+}
+
+struct eventCalendarModel {
+    var name : String
+    var time : String
+    var icon : String
+}
