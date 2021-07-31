@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--CalendarVC-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="CalendarVC" id="Y6W-OH-hqX" customClass="CalendarVC" customModule="Awesome" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="5SD-HC-0Q5">
+                                <rect key="frame" x="327" y="790" width="72" height="72"/>
+                                <subviews>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J0W-kv-bzF">
+                                        <rect key="frame" x="0.0" y="0.0" width="72" height="0.0"/>
+                                        <state key="normal" backgroundImage="plusSchedule"/>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xkR-IY-9i8">
+                                        <rect key="frame" x="0.0" y="0.0" width="72" height="0.0"/>
+                                        <state key="normal" backgroundImage="notSchedule"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S1U-2P-ECJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="72" height="72"/>
+                                        <state key="normal" backgroundImage="schesuleButton"/>
+                                        <connections>
+                                            <action selector="scheduleButtonClicked:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="6Yg-kT-AUy"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rbk-hP-Lfz" customClass="FSCalendar">
+                                <rect key="frame" x="0.0" y="100" width="414" height="414"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="rbk-hP-Lfz" secondAttribute="height" multiplier="1:1" id="niN-7T-mQj"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bbx-HG-ZbC">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W36-16-Erl">
+                                        <rect key="frame" x="30" y="80" width="12" height="21"/>
+                                        <state key="normal" backgroundImage="backButton2"/>
+                                        <connections>
+                                            <action selector="backButtonClicked:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="1Eg-Em-BBv"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3c5-Tl-sio">
+                                        <rect key="frame" x="352.5" y="70" width="41.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zDS-DJ-nBk">
+                                        <rect key="frame" x="352.5" y="90.5" width="41.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="zDS-DJ-nBk" firstAttribute="top" secondItem="3c5-Tl-sio" secondAttribute="bottom" id="GGq-sq-OMB"/>
+                                    <constraint firstItem="W36-16-Erl" firstAttribute="top" secondItem="bbx-HG-ZbC" secondAttribute="top" constant="80" id="HPZ-hL-fDD"/>
+                                    <constraint firstItem="W36-16-Erl" firstAttribute="leading" secondItem="bbx-HG-ZbC" secondAttribute="leading" constant="30" id="Ka2-SX-saU"/>
+                                    <constraint firstAttribute="height" constant="100" id="gLV-NM-YGj"/>
+                                    <constraint firstAttribute="trailing" secondItem="zDS-DJ-nBk" secondAttribute="trailing" constant="20" id="mB2-dy-jvb"/>
+                                    <constraint firstItem="zDS-DJ-nBk" firstAttribute="top" secondItem="W36-16-Erl" secondAttribute="centerY" id="p9h-vC-nwV"/>
+                                    <constraint firstAttribute="trailing" secondItem="3c5-Tl-sio" secondAttribute="trailing" constant="20" id="uAE-VF-MHr"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CgC-Px-Kau">
+                                <rect key="frame" x="0.0" y="514" width="414" height="382"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="rbk-hP-Lfz" secondAttribute="trailing" id="2er-ED-uQM"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="bbx-HG-ZbC" secondAttribute="trailing" id="30e-aN-7q5"/>
+                            <constraint firstItem="bbx-HG-ZbC" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="3KK-au-ILX"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="CgC-Px-Kau" secondAttribute="trailing" id="4h3-7T-1B6"/>
+                            <constraint firstItem="bbx-HG-ZbC" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="LBw-JE-dJT"/>
+                            <constraint firstAttribute="bottom" secondItem="CgC-Px-Kau" secondAttribute="bottom" id="Oi0-pR-sbC"/>
+                            <constraint firstItem="CgC-Px-Kau" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Qqa-Fq-iPe"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="5SD-HC-0Q5" secondAttribute="trailing" constant="15" id="aEy-7E-KJ6"/>
+                            <constraint firstItem="rbk-hP-Lfz" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="kl5-ZT-KlS"/>
+                            <constraint firstItem="CgC-Px-Kau" firstAttribute="top" secondItem="rbk-hP-Lfz" secondAttribute="bottom" id="uhG-Da-ZJP"/>
+                            <constraint firstItem="rbk-hP-Lfz" firstAttribute="top" secondItem="bbx-HG-ZbC" secondAttribute="bottom" id="wCG-WF-5Rr"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="5SD-HC-0Q5" secondAttribute="bottom" id="xiw-Go-Y3L"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="ScheduleButton" destination="S1U-2P-ECJ" id="e6W-U8-e4e"/>
+                        <outlet property="buttonStackView" destination="5SD-HC-0Q5" id="JE5-pW-3rj"/>
+                        <outlet property="calendarView" destination="rbk-hP-Lfz" id="kG8-9E-Wo7"/>
+                        <outlet property="headerView" destination="bbx-HG-ZbC" id="KbC-8T-CUl"/>
+                        <outlet property="monthLabel" destination="zDS-DJ-nBk" id="ahg-Pf-t40"/>
+                        <outlet property="notScheduleButton" destination="xkR-IY-9i8" id="eEq-bF-68a"/>
+                        <outlet property="plusScheduleButton" destination="J0W-kv-bzF" id="eIZ-fz-miY"/>
+                        <outlet property="tableView" destination="CgC-Px-Kau" id="ct5-b9-aPo"/>
+                        <outlet property="yearLabel" destination="3c5-Tl-sio" id="Az5-5D-5wI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="140.57971014492756" y="-13.392857142857142"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="backButton2" width="12" height="21"/>
+        <image name="notSchedule" width="72" height="72"/>
+        <image name="plusSchedule" width="72" height="72"/>
+        <image name="schesuleButton" width="72" height="72"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

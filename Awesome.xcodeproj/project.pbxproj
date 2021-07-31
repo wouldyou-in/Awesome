@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		363D26DA26B40702009C2F90 /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 363D26D926B40702009C2F90 /* Calendar.storyboard */; };
+		363D26DC26B40718009C2F90 /* CalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D26DB26B40718009C2F90 /* CalendarVC.swift */; };
+		363D26DF26B4169F009C2F90 /* myScheduleTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D26DD26B4169F009C2F90 /* myScheduleTVC.swift */; };
+		363D26E026B4169F009C2F90 /* myScheduleTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 363D26DE26B4169F009C2F90 /* myScheduleTVC.xib */; };
+		363D26E326B416BE009C2F90 /* NoScheduleTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D26E126B416BE009C2F90 /* NoScheduleTVC.swift */; };
+		363D26E426B416BE009C2F90 /* NoScheduleTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 363D26E226B416BE009C2F90 /* NoScheduleTVC.xib */; };
+		363D26E626B52081009C2F90 /* EventCalendarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D26E526B52081009C2F90 /* EventCalendarModel.swift */; };
 		36FB7F7126B03381001F2C39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FB7F7026B03381001F2C39 /* AppDelegate.swift */; };
 		36FB7F7326B03381001F2C39 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FB7F7226B03381001F2C39 /* SceneDelegate.swift */; };
 		36FB7F7526B03381001F2C39 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FB7F7426B03381001F2C39 /* ViewController.swift */; };
@@ -44,6 +51,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		363D26D926B40702009C2F90 /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
+		363D26DB26B40718009C2F90 /* CalendarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarVC.swift; sourceTree = "<group>"; };
+		363D26DD26B4169F009C2F90 /* myScheduleTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myScheduleTVC.swift; sourceTree = "<group>"; };
+		363D26DE26B4169F009C2F90 /* myScheduleTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = myScheduleTVC.xib; sourceTree = "<group>"; };
+		363D26E126B416BE009C2F90 /* NoScheduleTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoScheduleTVC.swift; sourceTree = "<group>"; };
+		363D26E226B416BE009C2F90 /* NoScheduleTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoScheduleTVC.xib; sourceTree = "<group>"; };
+		363D26E526B52081009C2F90 /* EventCalendarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCalendarModel.swift; sourceTree = "<group>"; };
 		36FB7F6D26B03381001F2C39 /* Awesome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Awesome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36FB7F7026B03381001F2C39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		36FB7F7226B03381001F2C39 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -185,6 +199,7 @@
 				36FB7FA626B07B5C001F2C39 /* HomeDataModel.swift */,
 				36FB7FB826B18CE8001F2C39 /* KakaoLoginDataModel.swift */,
 				36FB7FC226B1B7DA001F2C39 /* UpdateTokenModel.swift */,
+				363D26E526B52081009C2F90 /* EventCalendarModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -203,6 +218,8 @@
 			isa = PBXGroup;
 			children = (
 				36FB7FA126B076A2001F2C39 /* HomeTVC.xib */,
+				363D26DE26B4169F009C2F90 /* myScheduleTVC.xib */,
+				363D26E226B416BE009C2F90 /* NoScheduleTVC.xib */,
 			);
 			path = Xibs;
 			sourceTree = "<group>";
@@ -217,6 +234,7 @@
 				36FB7FB026B17C6F001F2C39 /* Login.storyboard */,
 				36FB7FB426B18578001F2C39 /* KakaoLogin.storyboard */,
 				36FB7FBC26B1A8A1001F2C39 /* Splash.storyboard */,
+				363D26D926B40702009C2F90 /* Calendar.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -240,6 +258,7 @@
 				36FB7FB226B17C90001F2C39 /* LoginVC.swift */,
 				36FB7FB626B18589001F2C39 /* KakaoLoginVC.swift */,
 				36FB7FBE26B1A8B5001F2C39 /* SplashVC.swift */,
+				363D26DB26B40718009C2F90 /* CalendarVC.swift */,
 			);
 			path = VCs;
 			sourceTree = "<group>";
@@ -248,6 +267,8 @@
 			isa = PBXGroup;
 			children = (
 				36FB7FA026B076A2001F2C39 /* HomeTVC.swift */,
+				363D26DD26B4169F009C2F90 /* myScheduleTVC.swift */,
+				363D26E126B416BE009C2F90 /* NoScheduleTVC.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -337,15 +358,18 @@
 			files = (
 				36FB7F9B26B0415D001F2C39 /* GmarketSansTTFBold.ttf in Resources */,
 				36FB7FB526B18578001F2C39 /* KakaoLogin.storyboard in Resources */,
+				363D26E026B4169F009C2F90 /* myScheduleTVC.xib in Resources */,
 				36FB7F7D26B03381001F2C39 /* LaunchScreen.storyboard in Resources */,
 				36FB7FA326B076A2001F2C39 /* HomeTVC.xib in Resources */,
 				36FB7F9926B0415D001F2C39 /* GmarketSansTTFLight.ttf in Resources */,
 				36FB7F7A26B03381001F2C39 /* Assets.xcassets in Resources */,
 				36FB7FAD26B11D0C001F2C39 /* Setting.storyboard in Resources */,
 				36FB7F7826B03381001F2C39 /* Main.storyboard in Resources */,
+				363D26E426B416BE009C2F90 /* NoScheduleTVC.xib in Resources */,
 				36FB7F9326B03645001F2C39 /* Home.storyboard in Resources */,
 				36FB7FB126B17C6F001F2C39 /* Login.storyboard in Resources */,
 				36FB7F9A26B0415D001F2C39 /* GmarketSansTTFMedium.ttf in Resources */,
+				363D26DA26B40702009C2F90 /* Calendar.storyboard in Resources */,
 				36FB7FBD26B1A8A1001F2C39 /* Splash.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -401,6 +425,7 @@
 			files = (
 				36FB7F7526B03381001F2C39 /* ViewController.swift in Sources */,
 				36FB7FAF26B11D57001F2C39 /* SettingVC.swift in Sources */,
+				363D26DC26B40718009C2F90 /* CalendarVC.swift in Sources */,
 				36FB7FAB26B07B98001F2C39 /* Constants.swift in Sources */,
 				36FB7FC126B1ABCD001F2C39 /* DeviceConfig.swift in Sources */,
 				36FB7FBB26B18D6B001F2C39 /* KakaoLoginService.swift in Sources */,
@@ -409,15 +434,18 @@
 				36FB7FA726B07B5C001F2C39 /* HomeDataModel.swift in Sources */,
 				36FB7FC926B286F6001F2C39 /* GetScheduleDataService.swift in Sources */,
 				36FB7FA226B076A2001F2C39 /* HomeTVC.swift in Sources */,
+				363D26E626B52081009C2F90 /* EventCalendarModel.swift in Sources */,
 				36FB7FC326B1B7DA001F2C39 /* UpdateTokenModel.swift in Sources */,
 				36FB7F9526B04008001F2C39 /* HomeVC.swift in Sources */,
 				36FB7F7126B03381001F2C39 /* AppDelegate.swift in Sources */,
+				363D26DF26B4169F009C2F90 /* myScheduleTVC.swift in Sources */,
 				36FB7FB926B18CE8001F2C39 /* KakaoLoginDataModel.swift in Sources */,
 				36FB7FB326B17C90001F2C39 /* LoginVC.swift in Sources */,
 				36FB7FBF26B1A8B5001F2C39 /* SplashVC.swift in Sources */,
 				36FB7F9F26B04986001F2C39 /* Extension+UIFont.swift in Sources */,
 				36FB7F7326B03381001F2C39 /* SceneDelegate.swift in Sources */,
 				36FB7FB726B18589001F2C39 /* KakaoLoginVC.swift in Sources */,
+				363D26E326B416BE009C2F90 /* NoScheduleTVC.swift in Sources */,
 				36FB7FA526B07A11001F2C39 /* Extension+TableView.swift in Sources */,
 				36FB7FC526B1B7FB001F2C39 /* GetNewTokenService.swift in Sources */,
 			);
@@ -496,7 +524,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -551,7 +579,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

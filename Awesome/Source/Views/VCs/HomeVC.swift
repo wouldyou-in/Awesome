@@ -87,7 +87,8 @@ class HomeVC: UIViewController {
         
     }
     @IBAction func calendarButtonClicked(_ sender: Any) {
-        
+        guard let calendarVC = UIStoryboard(name: "Calendar", bundle: nil).instantiateViewController(identifier: "CalendarVC") as? CalendarVC else {return}
+        self.navigationController?.pushViewController(calendarVC, animated: true)
     }
     
     
