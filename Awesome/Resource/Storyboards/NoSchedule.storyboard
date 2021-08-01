@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="GmarketSansTTFBold.ttf">
+            <string>GmarketSansTTFBold</string>
+        </array>
+        <array key="GmarketSansTTFMedium.ttf">
+            <string>GmarketSansTTFMedium</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--No ScheduleVC-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="NoScheduleVC" id="Y6W-OH-hqX" customClass="NoScheduleVC" customModule="Awesome" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I1b-YK-AAy">
+                                <rect key="frame" x="0.0" y="465.5" width="414" height="396.5"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noScheduleImage" translatesAutoresizingMaskIntoConstraints="NO" id="wQt-R2-joN">
+                                        <rect key="frame" x="30" y="47" width="354" height="177"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="wQt-R2-joN" secondAttribute="height" multiplier="2:1" id="hRq-Jl-Csg"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qfL-5G-R3D">
+                                        <rect key="frame" x="40" y="289" width="334" height="50"/>
+                                        <color key="backgroundColor" red="0.77647060160000003" green="0.2941176593" blue="0.79215681550000006" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="RQX-Yl-jM9"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="GmarketSansTTFBold" family="Gmarket Sans TTF" pointSize="18"/>
+                                        <state key="normal" title="설정하기">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="selectButtonClicked:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="ZCq-Np-GIS"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="약속 안받을 기간을 설정하세요" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9cZ-5T-uEH">
+                                        <rect key="frame" x="0.0" y="25" width="414" height="22"/>
+                                        <fontDescription key="fontDescription" name="GmarketSansTTFMedium" family="Gmarket Sans TTF" pointSize="22"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LcS-Dz-i3C">
+                                        <rect key="frame" x="222" y="224" width="152" height="50"/>
+                                        <color key="backgroundColor" red="0.94901961089999998" green="0.94901961089999998" blue="0.94901961089999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="0Cv-pz-vEG"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="GmarketSansTTFMedium" family="Gmarket Sans TTF" pointSize="15"/>
+                                        <state key="normal" title="종료기간">
+                                            <color key="titleColor" red="0.61960786580000005" green="0.62352943419999995" blue="0.62352943419999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="finishTimeButtonClicked:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="3RI-dj-igw"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jz4-zX-zXI">
+                                        <rect key="frame" x="40" y="224" width="152" height="50"/>
+                                        <color key="backgroundColor" red="0.94901961089999998" green="0.94901961089999998" blue="0.94901961089999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="pJ4-7k-XWK"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="GmarketSansTTFMedium" family="Gmarket Sans TTF" pointSize="15"/>
+                                        <state key="normal" title="시작기간">
+                                            <color key="titleColor" red="0.61960786580000005" green="0.62352943419999995" blue="0.62352943419999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="startTimeButtonClicked:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="330-iK-03e"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="LcS-Dz-i3C" firstAttribute="leading" secondItem="jz4-zX-zXI" secondAttribute="trailing" constant="30" id="5kd-Br-j8H"/>
+                                    <constraint firstAttribute="trailing" secondItem="wQt-R2-joN" secondAttribute="trailing" constant="30" id="6QB-yg-1Pv"/>
+                                    <constraint firstItem="jz4-zX-zXI" firstAttribute="leading" secondItem="qfL-5G-R3D" secondAttribute="leading" id="8fu-g0-hNC"/>
+                                    <constraint firstAttribute="width" secondItem="I1b-YK-AAy" secondAttribute="height" multiplier="7:6.7" id="Gzb-do-eo6"/>
+                                    <constraint firstAttribute="trailing" secondItem="qfL-5G-R3D" secondAttribute="trailing" constant="40" id="LG9-ul-KE0"/>
+                                    <constraint firstItem="qfL-5G-R3D" firstAttribute="leading" secondItem="I1b-YK-AAy" secondAttribute="leading" constant="40" id="Uev-g3-j1O"/>
+                                    <constraint firstItem="LcS-Dz-i3C" firstAttribute="top" secondItem="wQt-R2-joN" secondAttribute="bottom" id="WVa-3s-bhK"/>
+                                    <constraint firstItem="9cZ-5T-uEH" firstAttribute="leading" secondItem="I1b-YK-AAy" secondAttribute="leading" id="WWg-HP-5ul"/>
+                                    <constraint firstItem="9cZ-5T-uEH" firstAttribute="top" secondItem="I1b-YK-AAy" secondAttribute="top" constant="25" id="Yxv-Ci-5NS"/>
+                                    <constraint firstItem="wQt-R2-joN" firstAttribute="top" secondItem="9cZ-5T-uEH" secondAttribute="bottom" id="cBg-vr-S8d"/>
+                                    <constraint firstAttribute="trailing" secondItem="9cZ-5T-uEH" secondAttribute="trailing" id="d7L-Aq-ubd"/>
+                                    <constraint firstItem="jz4-zX-zXI" firstAttribute="top" secondItem="wQt-R2-joN" secondAttribute="bottom" id="fWw-lC-PqP"/>
+                                    <constraint firstItem="jz4-zX-zXI" firstAttribute="width" secondItem="LcS-Dz-i3C" secondAttribute="width" id="fxG-iW-Kac"/>
+                                    <constraint firstItem="wQt-R2-joN" firstAttribute="leading" secondItem="I1b-YK-AAy" secondAttribute="leading" constant="30" id="iCa-Un-G6U"/>
+                                    <constraint firstItem="qfL-5G-R3D" firstAttribute="top" secondItem="LcS-Dz-i3C" secondAttribute="bottom" constant="15" id="jms-Ye-YaP"/>
+                                    <constraint firstItem="qfL-5G-R3D" firstAttribute="top" secondItem="jz4-zX-zXI" secondAttribute="bottom" constant="15" id="q2i-u8-54y"/>
+                                    <constraint firstItem="LcS-Dz-i3C" firstAttribute="trailing" secondItem="qfL-5G-R3D" secondAttribute="trailing" id="ukZ-It-I0h"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="I1b-YK-AAy" secondAttribute="bottom" id="ATb-NU-j7O"/>
+                            <constraint firstItem="I1b-YK-AAy" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="TeL-wi-r40"/>
+                            <constraint firstItem="I1b-YK-AAy" firstAttribute="width" secondItem="I1b-YK-AAy" secondAttribute="height" multiplier="7:6.7" id="WkP-ie-3Tq"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="I1b-YK-AAy" secondAttribute="trailing" id="YUt-Vv-reZ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backGroundView" destination="I1b-YK-AAy" id="vlO-qY-EK5"/>
+                        <outlet property="finishTimeButton" destination="LcS-Dz-i3C" id="DOg-qU-Cvt"/>
+                        <outlet property="sellectButton" destination="qfL-5G-R3D" id="bEV-6v-pRf"/>
+                        <outlet property="startTimeButton" destination="jz4-zX-zXI" id="FSb-7h-cq9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="28" y="88"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="noScheduleImage" width="270" height="100"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
