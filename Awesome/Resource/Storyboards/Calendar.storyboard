@@ -22,10 +22,16 @@
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J0W-kv-bzF">
                                         <rect key="frame" x="0.0" y="0.0" width="72" height="0.0"/>
                                         <state key="normal" backgroundImage="plusSchedule"/>
+                                        <connections>
+                                            <action selector="plusScheduleButtonClicked:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="az4-ka-Bxi"/>
+                                        </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xkR-IY-9i8">
                                         <rect key="frame" x="0.0" y="0.0" width="72" height="0.0"/>
                                         <state key="normal" backgroundImage="notSchedule"/>
+                                        <connections>
+                                            <action selector="notScheduleButtonClicked:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="DNB-27-iZ6"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S1U-2P-ECJ">
                                         <rect key="frame" x="0.0" y="0.0" width="72" height="72"/>

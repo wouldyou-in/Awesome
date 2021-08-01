@@ -108,7 +108,6 @@ class CalendarVC: UIViewController {
                 }
             }
     }
-    
     func setUserEvents(){
         let nowdate = Date()
         let enddate = Calendar.current.date(byAdding: .day, value: 30, to: nowdate)
@@ -124,7 +123,6 @@ class CalendarVC: UIViewController {
                 let realData = UpdateFormatter.date(from: dateData)
                 Userevents.append(realData!)
             }
-      
     }
 //MARK: dataConnection
     func setdate(){
@@ -225,8 +223,14 @@ class CalendarVC: UIViewController {
             }
 
         }
+    @IBAction func plusScheduleButtonClicked(_ sender: Any) {
+        guard let plusVC = UIStoryboard(name: "AddSchedule", bundle: nil).instantiateViewController(identifier: "AddScheduleVC") as? AddScheduleVC else {return}
+        self.present(plusVC, animated: true, completion: nil)
+    }
     
-
+    @IBAction func notScheduleButtonClicked(_ sender: Any) {
+    }
+    
 }
 //MARK: Extension
 
@@ -262,6 +266,9 @@ extension CalendarVC: UITableViewDataSource{
         }
         return UITableViewCell()
     }
+    
+    
+    
 }
 
 extension CalendarVC: FSCalendarDelegate{
