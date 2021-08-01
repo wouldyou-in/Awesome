@@ -1,25 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17150" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17122"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--No Schedule Date PickerVC-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NoScheduleDatePickerVC" id="Y6W-OH-hqX" customClass="NoScheduleDatePickerVC" customModule="Awesome" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="tOk-Np-dzt">
+                                <rect key="frame" x="0.0" y="244" width="414" height="216"/>
+                                <connections>
+                                    <action selector="datepickerSelected:" destination="Y6W-OH-hqX" eventType="valueChanged" id="GPz-5P-LHE"/>
+                                </connections>
+                            </datePicker>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wD7-pe-AUz">
+                                <rect key="frame" x="50" y="490" width="314" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Vmr-S0-aNP"/>
+                                </constraints>
+                                <state key="normal" title="확인">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="okButtonClicked:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="O6n-Zw-rkm"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="wD7-pe-AUz" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="50" id="Fx3-sZ-ZHi"/>
+                            <constraint firstAttribute="trailing" secondItem="tOk-Np-dzt" secondAttribute="trailing" id="NeP-Ro-IE0"/>
+                            <constraint firstItem="wD7-pe-AUz" firstAttribute="top" secondItem="tOk-Np-dzt" secondAttribute="bottom" constant="30" id="Ns6-fV-3ZE"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="wD7-pe-AUz" secondAttribute="trailing" constant="50" id="PJu-oe-3GD"/>
+                            <constraint firstItem="tOk-Np-dzt" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Q7f-Cc-voq"/>
+                            <constraint firstItem="tOk-Np-dzt" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="200" id="Srt-v7-IBS"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="okButton" destination="wD7-pe-AUz" id="qt6-x7-1nx"/>
+                        <outlet property="pickerView" destination="tOk-Np-dzt" id="ej7-Ez-j9M"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="35" y="98"/>
         </scene>
     </scenes>
     <resources>
