@@ -22,6 +22,8 @@
 		363D26F226B6CF96009C2F90 /* NoScheduleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D26F126B6CF96009C2F90 /* NoScheduleVC.swift */; };
 		363D26F426B6D6E7009C2F90 /* NoScheduleDatePicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 363D26F326B6D6E7009C2F90 /* NoScheduleDatePicker.storyboard */; };
 		363D26F626B6D701009C2F90 /* NoScheduleDatePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D26F526B6D701009C2F90 /* NoScheduleDatePickerVC.swift */; };
+		363D26F826B6F86D009C2F90 /* ScheduleDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 363D26F726B6F86D009C2F90 /* ScheduleDetail.storyboard */; };
+		363D26FA26B6F880009C2F90 /* ScheduleDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D26F926B6F880009C2F90 /* ScheduleDetailVC.swift */; };
 		36FB7F7126B03381001F2C39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FB7F7026B03381001F2C39 /* AppDelegate.swift */; };
 		36FB7F7326B03381001F2C39 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FB7F7226B03381001F2C39 /* SceneDelegate.swift */; };
 		36FB7F7526B03381001F2C39 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FB7F7426B03381001F2C39 /* ViewController.swift */; };
@@ -74,6 +76,8 @@
 		363D26F126B6CF96009C2F90 /* NoScheduleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoScheduleVC.swift; sourceTree = "<group>"; };
 		363D26F326B6D6E7009C2F90 /* NoScheduleDatePicker.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NoScheduleDatePicker.storyboard; sourceTree = "<group>"; };
 		363D26F526B6D701009C2F90 /* NoScheduleDatePickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoScheduleDatePickerVC.swift; sourceTree = "<group>"; };
+		363D26F726B6F86D009C2F90 /* ScheduleDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ScheduleDetail.storyboard; sourceTree = "<group>"; };
+		363D26F926B6F880009C2F90 /* ScheduleDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDetailVC.swift; sourceTree = "<group>"; };
 		36FB7F6D26B03381001F2C39 /* Awesome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Awesome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36FB7F7026B03381001F2C39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		36FB7F7226B03381001F2C39 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -255,6 +259,7 @@
 				363D26EB26B6808F009C2F90 /* DatePicker.storyboard */,
 				363D26EF26B6CF7D009C2F90 /* NoSchedule.storyboard */,
 				363D26F326B6D6E7009C2F90 /* NoScheduleDatePicker.storyboard */,
+				363D26F726B6F86D009C2F90 /* ScheduleDetail.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -283,6 +288,7 @@
 				363D26ED26B680A4009C2F90 /* DatePickerVC.swift */,
 				363D26F126B6CF96009C2F90 /* NoScheduleVC.swift */,
 				363D26F526B6D701009C2F90 /* NoScheduleDatePickerVC.swift */,
+				363D26F926B6F880009C2F90 /* ScheduleDetailVC.swift */,
 			);
 			path = VCs;
 			sourceTree = "<group>";
@@ -392,6 +398,7 @@
 				36FB7FAD26B11D0C001F2C39 /* Setting.storyboard in Resources */,
 				363D26F026B6CF7D009C2F90 /* NoSchedule.storyboard in Resources */,
 				36FB7F7826B03381001F2C39 /* Main.storyboard in Resources */,
+				363D26F826B6F86D009C2F90 /* ScheduleDetail.storyboard in Resources */,
 				363D26E426B416BE009C2F90 /* NoScheduleTVC.xib in Resources */,
 				36FB7F9326B03645001F2C39 /* Home.storyboard in Resources */,
 				363D26F426B6D6E7009C2F90 /* NoScheduleDatePicker.storyboard in Resources */,
@@ -471,6 +478,7 @@
 				363D26DF26B4169F009C2F90 /* myScheduleTVC.swift in Sources */,
 				36FB7FB926B18CE8001F2C39 /* KakaoLoginDataModel.swift in Sources */,
 				36FB7FB326B17C90001F2C39 /* LoginVC.swift in Sources */,
+				363D26FA26B6F880009C2F90 /* ScheduleDetailVC.swift in Sources */,
 				363D26F626B6D701009C2F90 /* NoScheduleDatePickerVC.swift in Sources */,
 				363D26F226B6CF96009C2F90 /* NoScheduleVC.swift in Sources */,
 				36FB7FBF26B1A8B5001F2C39 /* SplashVC.swift in Sources */,
