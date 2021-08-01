@@ -1,25 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17150" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17122"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="GmarketSansTTFBold.ttf">
+            <string>GmarketSansTTFBold</string>
+        </array>
+    </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--Date PickerVC-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DatePickerVC" id="Y6W-OH-hqX" customClass="DatePickerVC" customModule="Awesome" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="05N-Rn-ffh">
+                                <rect key="frame" x="0.0" y="244" width="414" height="216"/>
+                                <connections>
+                                    <action selector="datepickerSelected:" destination="Y6W-OH-hqX" eventType="valueChanged" id="Gf9-rx-SrT"/>
+                                </connections>
+                            </datePicker>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hZB-mO-aTc">
+                                <rect key="frame" x="50" y="490" width="314" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Idy-Wh-b7e"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="GmarketSansTTFBold" family="Gmarket Sans TTF" pointSize="18"/>
+                                <state key="normal" title="확인">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="okButtonClicked:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="3AC-rs-CaO"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="05N-Rn-ffh" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="5fD-ec-hUx"/>
+                            <constraint firstItem="hZB-mO-aTc" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="50" id="Tip-Fr-0eQ"/>
+                            <constraint firstItem="05N-Rn-ffh" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="200" id="rZO-z2-kde"/>
+                            <constraint firstItem="hZB-mO-aTc" firstAttribute="top" secondItem="05N-Rn-ffh" secondAttribute="bottom" constant="30" id="rqW-Aa-70W"/>
+                            <constraint firstItem="05N-Rn-ffh" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="sml-uE-IHh"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="hZB-mO-aTc" secondAttribute="trailing" constant="50" id="zwv-dm-xwV"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="okButton" destination="hZB-mO-aTc" id="XMp-Cq-Mvd"/>
+                        <outlet property="pickerView" destination="05N-Rn-ffh" id="iJR-Gb-8IG"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="75" y="58"/>
         </scene>
     </scenes>
     <resources>
