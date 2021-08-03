@@ -24,6 +24,7 @@ class HomeVC: UIViewController {
 //MARK: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        uppdateProfile()
         setHeaderUI()
         setTableView()
         setIdentifier()
@@ -76,7 +77,33 @@ class HomeVC: UIViewController {
         tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor.mainGray
     }
-
+    func setProfile(){
+        let defaults = UserDefaults.standard
+        nameLabel.text = defaults.string(forKey: "name") ?? "none"
+        
+        let url = URL(string: defaults.string(forKey: "profile") ?? "none")
+            DispatchQueue.global().async { let data = try? Data(contentsOf: url!)
+                DispatchQueue.main.async { self.settingButton.setImage(UIImage(data: data!), for: .normal)}}
+    }
+    
+//MARK: GetDataFunction
+    func uppdateProfile(){
+        GetProfileDataService.ProfileData.getRecommendInfo{ (response) in
+            switch(response)
+            {
+            case .success(let loginData):
+                self.setProfile()
+            case .requestErr(let message):
+                print("requestERR")
+            case .pathErr :
+                print("pathERR")
+            case .serverErr:
+                print("serverERR")
+            case .networkFail:
+                print("networkFail")
+            }
+        }
+    }
     
 //MARK: IBOutletFunction
     
