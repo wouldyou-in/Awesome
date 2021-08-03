@@ -34,6 +34,7 @@ class HomeVC: UIViewController {
         setHeaderUI()
         setTableView()
         setIdentifier()
+        initRefresh()
     }
     
 //MARK: function
@@ -132,6 +133,23 @@ class HomeVC: UIViewController {
         }
         
     }
+//MARK: RefreshTableView
+    func initRefresh(){
+        let refresh = UIRefreshControl()
+        refresh.addTarget(self, action: #selector(updateUI(refresh:)), for: .valueChanged)
+        
+        if #available(iOS 10.0, *){
+            tableView.refreshControl = refresh
+        }else{
+            tableView.addSubview(refresh)
+        }
+    }
+    
+    @objc func updateUI(refresh: UIRefreshControl){
+        refresh.endRefreshing()
+        tableViewReloadDelegate()
+        tableView.reloadData()
+    }
     
 //MARK: GetDataFunction
     func uppdateProfile(){
@@ -157,12 +175,10 @@ class HomeVC: UIViewController {
             {
             case .success(let loginData):
                 if let response = loginData as? ScheduleNoticeModel{
+                    self.tableView.backgroundView = .none
+                    self.tableView.backgroundColor = UIColor.mainGray
                     DispatchQueue.global().async {
                         self.scheduleData.append(response)
-                    }
-                    self.tableView.reloadData()
-                    if self.scheduleData.count == 0{
-                        self.tableView.backgroundView = UIImageView(image: UIImage(named: "mainNoSCBackground.png"))
                     }
                     self.tableView.reloadData()
                 }
@@ -174,6 +190,7 @@ class HomeVC: UIViewController {
                 print("serverERR")
             case .networkFail:
                 print("networkFail")
+                    self.tableView.backgroundView = UIImageView(image: UIImage(named: "mainNoSCBackground.png"))
             }
         }
     }
@@ -238,7 +255,16 @@ extension HomeVC: UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let detailVC = UIStoryboard(name: "ScheduleDetail", bundle: nil).instantiateViewController(identifier: "ScheduleDetailVC") as? ScheduleDetailVC else {return}
         self.present(detailVC, animated: true, completion: nil)
-        detailVC.setData(time: scheduleDateString, information: scheduleData[0].calendars[indexPath.section].comment, person: scheduleData[0].calendars[indexPath.section].creatorName)
+        detailVC.setData(time: scheduleDateString, information: scheduleData[0].calendars[indexPath.section].comment, person: scheduleData[0].calendars[indexPath.section].creatorName, scheduleID: scheduleData[0].calendars[indexPath.section].id)
+        detailVC.delegate = self
         
+    }
+}
+
+extension HomeVC: tableViewReloadDelegate{
+    func tableViewReloadDelegate() {
+        scheduleData = []
+        getScheduleData()
+        self.tableView.reloadData()
     }
 }
