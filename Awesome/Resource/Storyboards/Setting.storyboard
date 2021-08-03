@@ -117,6 +117,9 @@
                                     </label>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Z8C-L8-H7j">
                                         <rect key="frame" x="290" y="24" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="notificationToggleClicked:" destination="Y6W-OH-hqX" eventType="valueChanged" id="Feg-Tk-9fN"/>
+                                        </connections>
                                     </switch>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="앱에서 알림을 전송합니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0mr-bt-iXt">
                                         <rect key="frame" x="20" y="43" width="159" height="15"/>
@@ -233,8 +236,11 @@
                         <outlet property="headerView" destination="pgG-ZI-uM9" id="oYN-ty-Fwx"/>
                         <outlet property="leftInviteLabel" destination="q7h-Rd-m2b" id="UyO-OB-H42"/>
                         <outlet property="leftInviteView" destination="oSi-2q-hrl" id="cja-Ml-DRP"/>
+                        <outlet property="linkShareButton" destination="IMC-cL-Myf" id="9qB-w0-bJ2"/>
                         <outlet property="linkshareView" destination="gej-ar-IMm" id="Ht8-as-ovI"/>
                         <outlet property="notificationView" destination="IKM-Ir-Cwl" id="lI1-fq-jWj"/>
+                        <outlet property="shareLabel" destination="J0S-IF-uyZ" id="YNl-sy-nh6"/>
+                        <outlet property="toggle" destination="Z8C-L8-H7j" id="rCj-NZ-zWs"/>
                         <outlet property="withdrawView" destination="yaO-Jh-HcN" id="PIG-15-fQ7"/>
                     </connections>
                 </viewController>
