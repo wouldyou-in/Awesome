@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol tableViewReloadDelegate {
+    func tableViewReloadDelegate()
+}
+
 class ScheduleDetailVC: UIViewController {
 //MARK: IBOulet
     @IBOutlet weak var nameLabel: UILabel!
@@ -23,6 +27,8 @@ class ScheduleDetailVC: UIViewController {
     
 //MARK: Var
     let width = UIScreen.main.bounds.width
+    var scID: Int = 0
+    var delegate: tableViewReloadDelegate?
 
     
     override func viewDidLoad() {
@@ -36,10 +42,11 @@ class ScheduleDetailVC: UIViewController {
     func setLabelFont(){
         headerLabelConstraint.constant = headerLabelConstraint.constant * (width/428)
     }
-    func setData(time : String , information : String, person : String){
+    func setData(time: String , information: String, person: String, scheduleID: Int){
         nameLabel.text = person
         timeLabel.text = time
         promiseObject.text = information
+        scID = scheduleID
     }
     func setDetailLabel(){
         promiseObject.lineBreakStrategy = .hangulWordPriority
@@ -62,10 +69,29 @@ class ScheduleDetailVC: UIViewController {
     }
 //MARK: IBAction
     @IBAction func acceptButtonClicked(_ sender: Any) {
+        postAccessDenine(bool: true)
+        delegate?.tableViewReloadDelegate()
         self.dismiss(animated: true, completion: nil)
+        
     }
     @IBAction func denineButtonClicked(_ sender: Any) {
+        postAccessDenine(bool: false)
+        delegate?.tableViewReloadDelegate()
         self.dismiss(animated: true, completion: nil)
+    }
+//MARK: function
+    func postAccessDenine(bool: Bool){
+        PostAccessDenineDataService.shared.AutoLoginService(calendar_id: scID, is_accept: bool) { [self] result in
+            switch result{
+            case .success(let tokenData):
+                print("수락 혹은 거절 성공")
+            case .requestErr(let msg):
+                print("requestErr")
+            default :
+                print("ERROR")
+            }
+        }
     }
     
 }
+
