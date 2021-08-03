@@ -19,11 +19,18 @@ class HomeVC: UIViewController {
 
     //MARK: VAR
     let attributedStr = NSMutableAttributedString(string: "어떰에 오신걸 환영합니다.")
-    let profileName: String = ""
+    var profileName: String = ""
+    var scheduleData: [CalendarDataModel] = []
+    var scheduleDateString: String = ""
+    var titleSchedule: String = ""
+    var finishSchedule: String = ""
+    var timeAgo: String = ""
 
 //MARK: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        uppdateProfile()
+        getCalendarData()
         setHeaderUI()
         setTableView()
         setIdentifier()
@@ -49,7 +56,7 @@ class HomeVC: UIViewController {
         nameLabel.textColor = UIColor.black
         
         settingButton.layer.borderWidth = 1
-        settingButton.layer.masksToBounds = false
+        settingButton.layer.masksToBounds = true
         settingButton.layer.borderColor = UIColor.clear.cgColor
         settingButton.layer.cornerRadius = settingButton.frame.height/2
         
@@ -76,7 +83,101 @@ class HomeVC: UIViewController {
         tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor.mainGray
     }
+    func setProfile(){
+        let defaults = UserDefaults.standard
+        profileName = defaults.string(forKey: "name") ?? "none"
+        nameLabel.text = "HI, \(profileName)"
+        let url = URL(string: defaults.string(forKey: "profile")!)
+            DispatchQueue.global().async { let data = try? Data(contentsOf: url!)
+                DispatchQueue.main.async { self.settingButton.setImage(UIImage(data: data!), for: .normal)}}
+    }
+    
+    func changeDate(start: Date, finish: Date, upload: String){
+        let startFormatter = DateFormatter()
+        let titleFormatter = DateFormatter()
+        let finishFormatter = DateFormatter()
+        let agoFormatter = DateFormatter()
+        var nowDate = Date()
+        
+        startFormatter.locale = Locale(identifier: "ko_KR")
+        startFormatter.dateFormat = "MM월 dd일 HH:mm"
+        finishFormatter.locale = Locale(identifier: "ko_KR")
+        finishFormatter.dateFormat = "HH:mm"
+        titleFormatter.dateFormat = "yyyy년 MM월 dd일"
+        agoFormatter.locale = Locale(identifier: "ko_KR")
+        agoFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
 
+        print(upload)
+        var startUpload = agoFormatter.date(from: upload)
+        let distanceSecond = Calendar.current.dateComponents([.minute], from: startUpload ?? Date(), to: nowDate).minute
+        titleSchedule = titleFormatter.string(from: start)
+        finishSchedule = finishFormatter.string(from: start)
+        
+        scheduleDateString = startFormatter.string(from: start) + "~" + finishFormatter.string(from: finish)
+        
+        if distanceSecond! < 1{
+            timeAgo = "1m ago"
+        }
+        else if distanceSecond! < 15{
+            timeAgo = "15m ago"
+        }
+        else if distanceSecond! < 30{
+            timeAgo = "30m ago"
+        }
+        else if distanceSecond! < 60{
+            timeAgo = "60m ago"
+        }
+        else{
+            timeAgo = "long time ago"
+        }
+        
+    }
+    
+//MARK: GetDataFunction
+    func uppdateProfile(){
+        GetProfileDataService.ProfileData.getRecommendInfo{ (response) in
+            switch(response)
+            {
+            case .success(let loginData):
+                self.setProfile()
+            case .requestErr(let message):
+                print("requestERR")
+            case .pathErr :
+                print("pathERR")
+            case .serverErr:
+                print("serverERR")
+            case .networkFail:
+                print("networkFail")
+            }
+        }
+    }
+    func getCalendarData(){
+        GetCalendarDataService.CalendarData.getRecommendInfo{ (response) in
+            switch(response)
+            {
+            case .success(let loginData):
+                if let response = loginData as? CalendarDataModel{
+                    DispatchQueue.global().async {
+                        self.scheduleData.append(response)
+                    }
+                    self.tableView.reloadData()
+                    if self.scheduleData[0].myCalendar.count == 0{
+                        self.tableView.backgroundView = UIImageView(image: UIImage(named: "mainNoSCBackground.png"))
+                    }
+                    self.tableView.reloadData()
+                }
+                print("우가우가", loginData)
+            case .requestErr(let message):
+                print("requestERR")
+            case .pathErr :
+                print("pathERR")
+            case .serverErr:
+                print("serverERR")
+            case .networkFail:
+                print("networkFail")
+            }
+        }
+    }
     
 //MARK: IBOutletFunction
     
@@ -101,6 +202,7 @@ extension HomeVC: UITableViewDelegate{
 }
 extension HomeVC: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
         return 1
     }
     
@@ -108,8 +210,8 @@ extension HomeVC: UITableViewDataSource{
         let cell: HomeTVC = tableView.dequeueReusableCell(withIdentifier: HomeTVC.identifier) as! HomeTVC
         cell.clipsToBounds = true
         cell.layer.cornerRadius = 20
-        cell.setData(date: "222", info: "222", ago: "222")
-        
+        changeDate(start: scheduleData[0].myCalendar[indexPath.section].startDate, finish: scheduleData[0].myCalendar[indexPath.section].endDate, upload: scheduleData[0].myCalendar[indexPath.section].createdAt)
+        cell.setData(date: titleSchedule, info: scheduleData[0].myCalendar[indexPath.section].comment, ago: timeAgo)
         return cell
     }
     
@@ -126,13 +228,18 @@ extension HomeVC: UITableViewDataSource{
         return 10
     }
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
+        if scheduleData.count == 0{
+            return 0
+        }
+        else{
+            return scheduleData[0].myCalendar.count
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let detailVC = UIStoryboard(name: "ScheduleDetail", bundle: nil).instantiateViewController(identifier: "ScheduleDetailVC") as? ScheduleDetailVC else {return}
         self.present(detailVC, animated: true, completion: nil)
-        detailVC.setData(time: "222", information: "222", person: "222")
-        print(indexPath.section)
+        detailVC.setData(time: scheduleDateString, information: scheduleData[0].myCalendar[indexPath.section].comment, person: scheduleData[0].myCalendar[indexPath.section].creatorName)
+        
     }
 }

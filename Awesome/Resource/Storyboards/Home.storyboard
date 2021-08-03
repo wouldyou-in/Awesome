@@ -39,13 +39,13 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qtX-NU-Lx8">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qtX-NU-Lx8">
                                         <rect key="frame" x="260" y="5" width="70" height="70"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="70" id="H47-co-7Nb"/>
                                             <constraint firstAttribute="width" constant="70" id="THq-kh-7f1"/>
                                         </constraints>
-                                        <state key="normal" backgroundImage="noImage"/>
+                                        <state key="normal" image="noImage"/>
                                         <connections>
                                             <action selector="settingButtonClicked:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Jx9-fY-uGU"/>
                                         </connections>
