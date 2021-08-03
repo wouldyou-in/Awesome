@@ -20,6 +20,7 @@ struct MyCalendar: Codable {
     let comment: String
     let startDate, endDate: Date
     let createdAt: String
+    let isAccept: Bool
 
     enum CodingKeys: String, CodingKey {
         case id, creator, participant, comment
@@ -28,6 +29,8 @@ struct MyCalendar: Codable {
         case startDate = "start_date"
         case endDate = "end_date"
         case createdAt = "created_at"
+        case isAccept = "is_accept"
+
     }
 }
 

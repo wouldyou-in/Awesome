@@ -20,7 +20,7 @@ class HomeVC: UIViewController {
     //MARK: VAR
     let attributedStr = NSMutableAttributedString(string: "어떰에 오신걸 환영합니다.")
     var profileName: String = ""
-    var scheduleData: [CalendarDataModel] = []
+    var scheduleData: [ScheduleNoticeModel] = []
     var scheduleDateString: String = ""
     var titleSchedule: String = ""
     var finishSchedule: String = ""
@@ -30,10 +30,11 @@ class HomeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         uppdateProfile()
-        getCalendarData()
+        getScheduleData()
         setHeaderUI()
         setTableView()
         setIdentifier()
+        initRefresh()
     }
     
 //MARK: function
@@ -132,6 +133,23 @@ class HomeVC: UIViewController {
         }
         
     }
+//MARK: RefreshTableView
+    func initRefresh(){
+        let refresh = UIRefreshControl()
+        refresh.addTarget(self, action: #selector(updateUI(refresh:)), for: .valueChanged)
+        
+        if #available(iOS 10.0, *){
+            tableView.refreshControl = refresh
+        }else{
+            tableView.addSubview(refresh)
+        }
+    }
+    
+    @objc func updateUI(refresh: UIRefreshControl){
+        refresh.endRefreshing()
+        tableViewReloadDelegate()
+        tableView.reloadData()
+    }
     
 //MARK: GetDataFunction
     func uppdateProfile(){
@@ -151,22 +169,19 @@ class HomeVC: UIViewController {
             }
         }
     }
-    func getCalendarData(){
-        GetCalendarDataService.CalendarData.getRecommendInfo{ (response) in
+    func getScheduleData(){
+        GetScheduleNoticeDataService.scheduleData.getRecommendInfo{ (response) in
             switch(response)
             {
             case .success(let loginData):
-                if let response = loginData as? CalendarDataModel{
+                if let response = loginData as? ScheduleNoticeModel{
+                    self.tableView.backgroundView = .none
+                    self.tableView.backgroundColor = UIColor.mainGray
                     DispatchQueue.global().async {
                         self.scheduleData.append(response)
                     }
                     self.tableView.reloadData()
-                    if self.scheduleData[0].myCalendar.count == 0{
-                        self.tableView.backgroundView = UIImageView(image: UIImage(named: "mainNoSCBackground.png"))
-                    }
-                    self.tableView.reloadData()
                 }
-                print("우가우가", loginData)
             case .requestErr(let message):
                 print("requestERR")
             case .pathErr :
@@ -175,6 +190,7 @@ class HomeVC: UIViewController {
                 print("serverERR")
             case .networkFail:
                 print("networkFail")
+                    self.tableView.backgroundView = UIImageView(image: UIImage(named: "mainNoSCBackground.png"))
             }
         }
     }
@@ -210,8 +226,8 @@ extension HomeVC: UITableViewDataSource{
         let cell: HomeTVC = tableView.dequeueReusableCell(withIdentifier: HomeTVC.identifier) as! HomeTVC
         cell.clipsToBounds = true
         cell.layer.cornerRadius = 20
-        changeDate(start: scheduleData[0].myCalendar[indexPath.section].startDate, finish: scheduleData[0].myCalendar[indexPath.section].endDate, upload: scheduleData[0].myCalendar[indexPath.section].createdAt)
-        cell.setData(date: titleSchedule, info: scheduleData[0].myCalendar[indexPath.section].comment, ago: timeAgo)
+        changeDate(start: scheduleData[0].calendars[indexPath.section].startDate, finish: scheduleData[0].calendars[indexPath.section].endDate, upload: scheduleData[0].calendars[indexPath.section].createdAt)
+        cell.setData(date: titleSchedule, info: scheduleData[0].calendars[indexPath.section].comment, ago: timeAgo)
         return cell
     }
     
@@ -232,14 +248,23 @@ extension HomeVC: UITableViewDataSource{
             return 0
         }
         else{
-            return scheduleData[0].myCalendar.count
+            return scheduleData[0].calendars.count
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let detailVC = UIStoryboard(name: "ScheduleDetail", bundle: nil).instantiateViewController(identifier: "ScheduleDetailVC") as? ScheduleDetailVC else {return}
         self.present(detailVC, animated: true, completion: nil)
-        detailVC.setData(time: scheduleDateString, information: scheduleData[0].myCalendar[indexPath.section].comment, person: scheduleData[0].myCalendar[indexPath.section].creatorName)
+        detailVC.setData(time: scheduleDateString, information: scheduleData[0].calendars[indexPath.section].comment, person: scheduleData[0].calendars[indexPath.section].creatorName, scheduleID: scheduleData[0].calendars[indexPath.section].id)
+        detailVC.delegate = self
         
+    }
+}
+
+extension HomeVC: tableViewReloadDelegate{
+    func tableViewReloadDelegate() {
+        scheduleData = []
+        getScheduleData()
+        self.tableView.reloadData()
     }
 }
