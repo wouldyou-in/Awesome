@@ -1,8 +1,11 @@
-//
-//  InviteDataModel.swift
-//  Awesome
-//
-//  Created by 박익범 on 2021/08/04.
-//
-
 import Foundation
+
+// MARK: - InviteDataModel
+struct InviteDataModel: Codable {
+    let status, link: String
+}
+
+
+struct inviteCountDataModel: Codable {
+    let invitations: [String]
+}
