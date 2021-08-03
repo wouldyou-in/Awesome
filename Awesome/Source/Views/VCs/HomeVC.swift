@@ -239,7 +239,7 @@ extension HomeVC: UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let detailVC = UIStoryboard(name: "ScheduleDetail", bundle: nil).instantiateViewController(identifier: "ScheduleDetailVC") as? ScheduleDetailVC else {return}
         self.present(detailVC, animated: true, completion: nil)
-        detailVC.setData(time: "222", information: "222", person: "222")
-        print(indexPath.section)
+        detailVC.setData(time: scheduleDateString, information: scheduleData[0].myCalendar[indexPath.section].comment, person: scheduleData[0].myCalendar[indexPath.section].creatorName)
+        
     }
 }
