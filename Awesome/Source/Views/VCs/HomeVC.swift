@@ -19,7 +19,7 @@ class HomeVC: UIViewController {
 
     //MARK: VAR
     let attributedStr = NSMutableAttributedString(string: "어떰에 오신걸 환영합니다.")
-    let profileName: String = ""
+    var profileName: String = ""
 
 //MARK: ViewDidLoad
     override func viewDidLoad() {
@@ -50,7 +50,7 @@ class HomeVC: UIViewController {
         nameLabel.textColor = UIColor.black
         
         settingButton.layer.borderWidth = 1
-        settingButton.layer.masksToBounds = false
+        settingButton.layer.masksToBounds = true
         settingButton.layer.borderColor = UIColor.clear.cgColor
         settingButton.layer.cornerRadius = settingButton.frame.height/2
         
@@ -79,9 +79,9 @@ class HomeVC: UIViewController {
     }
     func setProfile(){
         let defaults = UserDefaults.standard
-        nameLabel.text = defaults.string(forKey: "name") ?? "none"
-        
-        let url = URL(string: defaults.string(forKey: "profile") ?? "none")
+        profileName = defaults.string(forKey: "name") ?? "none"
+        nameLabel.text = "HI, \(profileName)"
+        let url = URL(string: defaults.string(forKey: "profile")!)
             DispatchQueue.global().async { let data = try? Data(contentsOf: url!)
                 DispatchQueue.main.async { self.settingButton.setImage(UIImage(data: data!), for: .normal)}}
     }
