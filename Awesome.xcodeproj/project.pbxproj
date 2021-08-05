@@ -29,6 +29,8 @@
 		3627E52426BBD9E80047C9DF /* TermPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3627E52326BBD9E80047C9DF /* TermPickerVC.swift */; };
 		3627E52826BBDEB80047C9DF /* PostBlockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3627E52726BBDEB80047C9DF /* PostBlockData.swift */; };
 		3627E52A26BBDEC50047C9DF /* PostBlockDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3627E52926BBDEC50047C9DF /* PostBlockDataService.swift */; };
+		3627E52D26BBF5130047C9DF /* AppleLoginDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3627E52C26BBF5130047C9DF /* AppleLoginDataModel.swift */; };
+		3627E52F26BBF51F0047C9DF /* AppleLoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3627E52E26BBF51F0047C9DF /* AppleLoginService.swift */; };
 		363D26DA26B40702009C2F90 /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 363D26D926B40702009C2F90 /* Calendar.storyboard */; };
 		363D26DC26B40718009C2F90 /* CalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D26DB26B40718009C2F90 /* CalendarVC.swift */; };
 		363D26DF26B4169F009C2F90 /* myScheduleTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D26DD26B4169F009C2F90 /* myScheduleTVC.swift */; };
@@ -101,6 +103,9 @@
 		3627E52326BBD9E80047C9DF /* TermPickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermPickerVC.swift; sourceTree = "<group>"; };
 		3627E52726BBDEB80047C9DF /* PostBlockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostBlockData.swift; sourceTree = "<group>"; };
 		3627E52926BBDEC50047C9DF /* PostBlockDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostBlockDataService.swift; sourceTree = "<group>"; };
+		3627E52B26BBF1B90047C9DF /* Awesome.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Awesome.entitlements; sourceTree = "<group>"; };
+		3627E52C26BBF5130047C9DF /* AppleLoginDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginDataModel.swift; sourceTree = "<group>"; };
+		3627E52E26BBF51F0047C9DF /* AppleLoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginService.swift; sourceTree = "<group>"; };
 		363D26D926B40702009C2F90 /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
 		363D26DB26B40718009C2F90 /* CalendarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarVC.swift; sourceTree = "<group>"; };
 		363D26DD26B4169F009C2F90 /* myScheduleTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myScheduleTVC.swift; sourceTree = "<group>"; };
@@ -187,6 +192,7 @@
 		36FB7F6F26B03381001F2C39 /* Awesome */ = {
 			isa = PBXGroup;
 			children = (
+				3627E52B26BBF1B90047C9DF /* Awesome.entitlements */,
 				36FB7F8426B033CB001F2C39 /* Source */,
 				36FB7F8526B033D3001F2C39 /* Resource */,
 				36FB7F7926B03381001F2C39 /* Assets.xcassets */,
@@ -253,6 +259,7 @@
 				3627E51126B9CAA50047C9DF /* KakaoLogOutService.swift */,
 				3627E51726BBCFE60047C9DF /* AddMyscheduleDataModel.swift */,
 				3627E52926BBDEC50047C9DF /* PostBlockDataService.swift */,
+				3627E52E26BBF51F0047C9DF /* AppleLoginService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -272,6 +279,7 @@
 				3627E50F26B9CA890047C9DF /* KakaoLogoutModel.swift */,
 				3627E51926BBCFF00047C9DF /* AddMyScheduleDataService.swift */,
 				3627E52726BBDEB80047C9DF /* PostBlockData.swift */,
+				3627E52C26BBF5130047C9DF /* AppleLoginDataModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -518,6 +526,7 @@
 				36FB7FAF26B11D57001F2C39 /* SettingVC.swift in Sources */,
 				3627E52826BBDEB80047C9DF /* PostBlockData.swift in Sources */,
 				3627E50626B9A0DD0047C9DF /* PostAccessDenineDataService.swift in Sources */,
+				3627E52F26BBF51F0047C9DF /* AppleLoginService.swift in Sources */,
 				363D26DC26B40718009C2F90 /* CalendarVC.swift in Sources */,
 				36FB7FAB26B07B98001F2C39 /* Constants.swift in Sources */,
 				36FB7FC126B1ABCD001F2C39 /* DeviceConfig.swift in Sources */,
@@ -539,6 +548,7 @@
 				3627E4FC26B8F13A0047C9DF /* UserProfile.swift in Sources */,
 				36FB7F7126B03381001F2C39 /* AppDelegate.swift in Sources */,
 				363D26EE26B680A4009C2F90 /* DatePickerVC.swift in Sources */,
+				3627E52D26BBF5130047C9DF /* AppleLoginDataModel.swift in Sources */,
 				363D26DF26B4169F009C2F90 /* myScheduleTVC.swift in Sources */,
 				3627E51626BBB77D0047C9DF /* AskApnVC.swift in Sources */,
 				36FB7FB926B18CE8001F2C39 /* KakaoLoginDataModel.swift in Sources */,
@@ -707,6 +717,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Awesome/Awesome.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U24ZACT97M;
 				INFOPLIST_FILE = Awesome/Info.plist;
@@ -715,6 +726,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = wouldyouin.dev.Awesome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -728,6 +740,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Awesome/Awesome.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U24ZACT97M;
 				INFOPLIST_FILE = Awesome/Info.plist;
@@ -736,6 +749,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = wouldyouin.dev.Awesome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
