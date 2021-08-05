@@ -20,6 +20,7 @@ struct Constants {
     static var calendarURL = baseURL + "/calendar/"
     static var calendarAcceptURL = baseURL + "/calendar/accept/"
     static var postCalendearURL = baseURL + "/calendar/apply/"
+    static var blockDateURL = baseURL + "/calendar/block/"
     /// 4.초대장 URL
     static var inviteURL = baseURL + "/invite/link/"
     
