@@ -44,7 +44,18 @@ class AddScheduleVC: UIViewController {
         okButton.layer.cornerRadius = 20
         self.view.backgroundColor = .none
     }
-    
+    func setIsAccess(){
+        PostAccessDenineDataService.shared.AutoLoginService(calendar_id: UserDefaults.standard.integer(forKey: "postID"), is_accept: true) { [self] result in
+            switch result{
+            case .success(let tokenData):
+                print("수락 혹은 거절 성공")
+            case .requestErr(let msg):
+                print("requestErr")
+            default :
+                print("ERROR")
+            }
+        }
+    }
 //MARK: IBAction
     @IBAction func nameButtonClicked(_ sender: Any) {
         let nameAlert = UIAlertController(title: "이름을 입력하세요", message: "", preferredStyle: UIAlertController.Style.alert)
@@ -88,17 +99,14 @@ class AddScheduleVC: UIViewController {
             switch result{
             case .success(let tokenData):
                 print("성공")
+                self.setIsAccess()
             case .requestErr(let msg):
                 print("requestErr")
             default :
                 print("ERROR")
             }
         }
-        
-        
         self.dismiss(animated: true, completion: nil)
-        
-        
     }
     
 }

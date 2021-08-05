@@ -44,16 +44,14 @@ struct PostScheduleDataService {
         
         let decoder = JSONDecoder()
         
-        
+        decoder.dateDecodingStrategy = .iso8601
         guard let decodedData = try? decoder.decode(PostCalendarDataModel.self, from: data)
         else {
             print("패쓰에러")
             return .pathErr
-            
         }
-        
+        UserDefaults.standard.setValue(decodedData.data.id, forKeyPath: "postID")
         switch statusCode {
-        
         case 200:
             print("--- 내 일정 올리는 데이터 받기 성공")
             return .success(decodedData)
