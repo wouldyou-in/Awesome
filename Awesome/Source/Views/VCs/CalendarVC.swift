@@ -37,6 +37,8 @@ class CalendarVC: UIViewController {
     var monthData : String = ""
     var dayData : String = ""
     var checkDate : String = ""
+    var isScheduleFinish: Bool = false
+
     
     var userEventsDetail: [CalendarDataModel] = []
     var scheduleData: [eventCalendarModel] = []
@@ -137,14 +139,11 @@ class CalendarVC: UIViewController {
             blockDate.append(start ?? Date())
             blockDate.append(end ?? Date())
             
-            
-            print(days)
             for k in 0 ... days-1{
                 var dateComponent = DateComponents(day: 1)
                 var plusDay = calendar.date(byAdding: dateComponent, to: start!)
                 start = plusDay
             blockDate.append(plusDay!)
-                print("추가", plusDay)
             }
         }
     }
@@ -224,6 +223,14 @@ class CalendarVC: UIViewController {
                 Userevents.append(realData!)
             }
     }
+    
+    func days(from date: Date) -> Int {
+        let calendar = Calendar.current
+        let currentDate = Date()
+        
+        return calendar.dateComponents([.second], from: date, to: currentDate).second! + 1
+    }
+
 //MARK: dataConnection
     func setdate(){
 //        let dateFormatter = DateFormatter()
@@ -250,10 +257,16 @@ class CalendarVC: UIViewController {
                   let start = formatter.string(from: event.startDate)
                   let startTime = startTimeFormatter.string(from: event.startDate)
                   let finishTime = finishTimeFormatter.string(from: event.endDate)
-            
             if checkDate == start{
-                    scheduleData.append(contentsOf:[eventCalendarModel(name: event.title, time: startTime + comma + finishTime, icon: "continueIcon")])
-                      Userevents.append(event.startDate)
+                print(days(from: event.endDate),"이게맞냐?")
+                if days(from: event.endDate) > 0 {
+                    isScheduleFinish = true
+                }
+                else{
+                    isScheduleFinish = false
+                }
+                scheduleData.append(contentsOf:[eventCalendarModel(name: event.title, time: startTime + comma + finishTime, icon: "continueIcon", isFinish: isScheduleFinish)])
+                Userevents.append(event.startDate)
 //                  print("dd", scheduleData)
                 tableView.reloadData()
                   }
@@ -273,7 +286,15 @@ class CalendarVC: UIViewController {
             let startTime = startTimeFormatter.string(from: userEvents.startDate)
             let finishTime = finishTimeFormatter.string(from: userEvents.endDate)
             if checkDate == start{
-                scheduleData.append(contentsOf:[eventCalendarModel(name: userEvents.comment, time: startTime + comma + finishTime, icon: "continueIcon")])
+                
+                if days(from: userEvents.endDate) < 0 {
+                    isScheduleFinish = false
+                }
+                else{
+                    isScheduleFinish = true
+                }
+                
+                scheduleData.append(contentsOf:[eventCalendarModel(name: userEvents.comment, time: startTime + comma + finishTime, icon: "continueIcon", isFinish: isScheduleFinish)])
 //                  Userevents.append(userEvents.startDate)
               print("dd", scheduleData)
                 tableView.reloadData()
@@ -362,9 +383,13 @@ extension CalendarVC: UITableViewDataSource{
         let scheduleCell: myScheduleTVC = tableView.dequeueReusableCell(withIdentifier: myScheduleTVC.identifier) as! myScheduleTVC
         let noScheduleCell: NoScheduleTVC = tableView.dequeueReusableCell(withIdentifier: NoScheduleTVC.identifier) as! NoScheduleTVC
         
+        
+        
         if isSchedule == true{
             print("셀실행")
-            scheduleCell.setData(name: scheduleData[indexPath.row].name, time: scheduleData[indexPath.row].time, isFinish: false)
+            print(scheduleData[indexPath.row].time)
+            scheduleCell.setData(name: scheduleData[indexPath.row].name, time: scheduleData[indexPath.row].time, isFinish: scheduleData[indexPath.row].isFinish)
+        
             return scheduleCell
         }
         if isSchedule == false{
