@@ -28,6 +28,7 @@ class SettingVC: UIViewController {
     var invite: String = ""
     var intInviteCount: Int = 0
     var inviteCount: [InviteCountDataModel] = []
+    var notiPermission: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,11 +93,15 @@ class SettingVC: UIViewController {
     @IBAction func notificationToggleClicked(_ sender: Any) {
         if toggle.isOn{
             UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge], completionHandler: {didAllow,Error in
+                self.notiPermission = didAllow
                 UserDefaults.standard.setValue(didAllow, forKey: "noti")
             })
         }
         else{
-            UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+            if let appSetting = URL(string: UIApplication.openSettingsURLString){
+                UIApplication.shared.open(appSetting, options: [:], completionHandler: nil)
+                UserDefaults.standard.setValue(notiPermission, forKey: "noti")
+            }
         }
     }
     
