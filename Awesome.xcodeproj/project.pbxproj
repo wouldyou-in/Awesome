@@ -21,6 +21,8 @@
 		3627E51226B9CAA50047C9DF /* KakaoLogOutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3627E51126B9CAA50047C9DF /* KakaoLogOutService.swift */; };
 		3627E51426BBB7690047C9DF /* AskApn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3627E51326BBB7690047C9DF /* AskApn.storyboard */; };
 		3627E51626BBB77D0047C9DF /* AskApnVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3627E51526BBB77D0047C9DF /* AskApnVC.swift */; };
+		3627E51826BBCFE60047C9DF /* AddMyscheduleDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3627E51726BBCFE60047C9DF /* AddMyscheduleDataModel.swift */; };
+		3627E51A26BBCFF00047C9DF /* AddMyScheduleDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3627E51926BBCFF00047C9DF /* AddMyScheduleDataService.swift */; };
 		363D26DA26B40702009C2F90 /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 363D26D926B40702009C2F90 /* Calendar.storyboard */; };
 		363D26DC26B40718009C2F90 /* CalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D26DB26B40718009C2F90 /* CalendarVC.swift */; };
 		363D26DF26B4169F009C2F90 /* myScheduleTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D26DD26B4169F009C2F90 /* myScheduleTVC.swift */; };
@@ -89,6 +91,8 @@
 		3627E51126B9CAA50047C9DF /* KakaoLogOutService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLogOutService.swift; sourceTree = "<group>"; };
 		3627E51326BBB7690047C9DF /* AskApn.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AskApn.storyboard; sourceTree = "<group>"; };
 		3627E51526BBB77D0047C9DF /* AskApnVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskApnVC.swift; sourceTree = "<group>"; };
+		3627E51726BBCFE60047C9DF /* AddMyscheduleDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMyscheduleDataModel.swift; sourceTree = "<group>"; };
+		3627E51926BBCFF00047C9DF /* AddMyScheduleDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMyScheduleDataService.swift; sourceTree = "<group>"; };
 		363D26D926B40702009C2F90 /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
 		363D26DB26B40718009C2F90 /* CalendarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarVC.swift; sourceTree = "<group>"; };
 		363D26DD26B4169F009C2F90 /* myScheduleTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myScheduleTVC.swift; sourceTree = "<group>"; };
@@ -243,6 +247,7 @@
 				3627E50926B9B2C60047C9DF /* GetInviteDataService.swift */,
 				3627E50D26B9C0D90047C9DF /* GetInviteCountService.swift */,
 				3627E51126B9CAA50047C9DF /* KakaoLogOutService.swift */,
+				3627E51726BBCFE60047C9DF /* AddMyscheduleDataModel.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -260,6 +265,7 @@
 				3627E50726B9B2B90047C9DF /* InviteDataModel.swift */,
 				3627E50B26B9C0CD0047C9DF /* InviteCountModel.swift */,
 				3627E50F26B9CA890047C9DF /* KakaoLogoutModel.swift */,
+				3627E51926BBCFF00047C9DF /* AddMyScheduleDataService.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -539,6 +545,8 @@
 				3627E50426B9A0AF0047C9DF /* AccesDenineDataModel.swift in Sources */,
 				3627E4FE26B8F1520047C9DF /* GetProfileData.swift in Sources */,
 				36FB7F7326B03381001F2C39 /* SceneDelegate.swift in Sources */,
+				3627E51826BBCFE60047C9DF /* AddMyscheduleDataModel.swift in Sources */,
+				3627E51A26BBCFF00047C9DF /* AddMyScheduleDataService.swift in Sources */,
 				36FB7FB726B18589001F2C39 /* KakaoLoginVC.swift in Sources */,
 				363D26E326B416BE009C2F90 /* NoScheduleTVC.swift in Sources */,
 				36FB7FA526B07A11001F2C39 /* Extension+TableView.swift in Sources */,

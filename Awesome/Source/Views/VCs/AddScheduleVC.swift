@@ -66,53 +66,39 @@ class AddScheduleVC: UIViewController {
     
   
     @IBAction func okButtonClicked(_ sender: Any) {
-//        let formatter = DateFormatter()
-//        let hourFormatter = DateFormatter()
-//        let minuteFormatter = DateFormatter()
-//        formatter.locale = Locale(identifier: "ko_KR")
-//        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
-//        
-//        var start = startTime.components(separatedBy: ":")
-//        var finish = finishTime.components(separatedBy: ":")
-//        
-//        var startDate = formatter.date(from: selectDay)
-//
-//        if Int(start[0])! > 15{
-//            startHour = Int(start[0])! - 15
-//            finishHour = Int(finish[0])! - 15
-//        }
-//        else{
-//            startHour = 15 - Int(start[0])!
-//            finishHour = 15 - Int(finish[0])!
-//        }
-//        print(startHour, start[1])
-//        
-//        var addStartTime: Double = Double(startHour)*3600 + Double(start[1])! * 60
-//        var addFinishTime: Double = Double(finishHour)*3600 + Double(finish[1])! * 60
-//        
-//        let startMydate = startDate?.addingTimeInterval(addStartTime)
-//        let startString:String = "\(selectDay)T\(startTime):00+09:00"
-//        let finishString:String = "\(selectDay)T\(finishTime):00+09:00"
-//        let finishMydate = startDate?.addingTimeInterval(addFinishTime)
-////        let startMyendDat =
-////        var endDate = formatter.date(from: selectDay + finishTime)
-//print(startString, finishString)
-//        
-//        PostScheduleDataService.shared.postScheduleService(comment: nameText, start_date: startString, end_date: finishString, receiver_id: UserDefaults.standard.integer(forKey: "myKey") ) { [self] result in
-//            switch result{
-//            case .success(let tokenData):
-//                print("성공")
-//            case .requestErr(let msg):
-//                print("requestErr")
-//            default :
-//                print("ERROR")
-//            }
-//        }
-//        
-//        
-//        self.dismiss(animated: true, completion: nil)
-//        
-//        
+        let start = startTime.components(separatedBy: ":")
+        let finish = finishTime.components(separatedBy: ":")
+        
+        if Int(start[0])! > 15{
+            startHour = Int(start[0])! - 15
+            finishHour = Int(finish[0])! - 15
+        }
+        else{
+            startHour = 15 - Int(start[0])!
+            finishHour = 15 - Int(finish[0])!
+        }
+        print(startHour, start[1])
+        
+        let startString:String = "\(selectDay)T\(startTime):00+09:00"
+        let finishString:String = "\(selectDay)T\(finishTime):00+09:00"
+        
+        print(startString, finishString)
+        
+        PostScheduleDataService.shared.postScheduleService(comment: nameText, start_date: startString, end_date: finishString, receiver_id: UserDefaults.standard.integer(forKey: "myKey") ) { [self] result in
+            switch result{
+            case .success(let tokenData):
+                print("성공")
+            case .requestErr(let msg):
+                print("requestErr")
+            default :
+                print("ERROR")
+            }
+        }
+        
+        
+        self.dismiss(animated: true, completion: nil)
+        
+        
     }
     
 }

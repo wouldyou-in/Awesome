@@ -76,6 +76,9 @@ class CalendarVC: UIViewController {
         calendarView.calendarWeekdayView.weekdayLabels[5].text = "Fr"
         calendarView.calendarWeekdayView.weekdayLabels[6].text = "Sa"
         calendarView.firstWeekday = 1
+        let formatter = DateFormatter()
+        formatter.dateFormat = "YYYY-MM-dd"
+        checkDate = formatter.string(from: Date())
     }
     func setCell(){
         tableView.registerCustomXib(xibName: "myScheduleTVC")
@@ -226,6 +229,7 @@ class CalendarVC: UIViewController {
     @IBAction func plusScheduleButtonClicked(_ sender: Any) {
         guard let plusVC = UIStoryboard(name: "AddSchedule", bundle: nil).instantiateViewController(identifier: "AddScheduleVC") as? AddScheduleVC else {return}
         self.present(plusVC, animated: true, completion: nil)
+        plusVC.selectDay = checkDate
     }
     
     @IBAction func notScheduleButtonClicked(_ sender: Any) {
