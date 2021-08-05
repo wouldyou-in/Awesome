@@ -19,6 +19,8 @@
 		3627E50E26B9C0D90047C9DF /* GetInviteCountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3627E50D26B9C0D90047C9DF /* GetInviteCountService.swift */; };
 		3627E51026B9CA890047C9DF /* KakaoLogoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3627E50F26B9CA890047C9DF /* KakaoLogoutModel.swift */; };
 		3627E51226B9CAA50047C9DF /* KakaoLogOutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3627E51126B9CAA50047C9DF /* KakaoLogOutService.swift */; };
+		3627E51426BBB7690047C9DF /* AskApn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3627E51326BBB7690047C9DF /* AskApn.storyboard */; };
+		3627E51626BBB77D0047C9DF /* AskApnVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3627E51526BBB77D0047C9DF /* AskApnVC.swift */; };
 		363D26DA26B40702009C2F90 /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 363D26D926B40702009C2F90 /* Calendar.storyboard */; };
 		363D26DC26B40718009C2F90 /* CalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D26DB26B40718009C2F90 /* CalendarVC.swift */; };
 		363D26DF26B4169F009C2F90 /* myScheduleTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D26DD26B4169F009C2F90 /* myScheduleTVC.swift */; };
@@ -85,6 +87,8 @@
 		3627E50D26B9C0D90047C9DF /* GetInviteCountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetInviteCountService.swift; sourceTree = "<group>"; };
 		3627E50F26B9CA890047C9DF /* KakaoLogoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLogoutModel.swift; sourceTree = "<group>"; };
 		3627E51126B9CAA50047C9DF /* KakaoLogOutService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLogOutService.swift; sourceTree = "<group>"; };
+		3627E51326BBB7690047C9DF /* AskApn.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AskApn.storyboard; sourceTree = "<group>"; };
+		3627E51526BBB77D0047C9DF /* AskApnVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskApnVC.swift; sourceTree = "<group>"; };
 		363D26D926B40702009C2F90 /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
 		363D26DB26B40718009C2F90 /* CalendarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarVC.swift; sourceTree = "<group>"; };
 		363D26DD26B4169F009C2F90 /* myScheduleTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myScheduleTVC.swift; sourceTree = "<group>"; };
@@ -296,6 +300,7 @@
 				363D26EF26B6CF7D009C2F90 /* NoSchedule.storyboard */,
 				363D26F326B6D6E7009C2F90 /* NoScheduleDatePicker.storyboard */,
 				363D26F726B6F86D009C2F90 /* ScheduleDetail.storyboard */,
+				3627E51326BBB7690047C9DF /* AskApn.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -325,6 +330,7 @@
 				363D26F126B6CF96009C2F90 /* NoScheduleVC.swift */,
 				363D26F526B6D701009C2F90 /* NoScheduleDatePickerVC.swift */,
 				363D26F926B6F880009C2F90 /* ScheduleDetailVC.swift */,
+				3627E51526BBB77D0047C9DF /* AskApnVC.swift */,
 			);
 			path = VCs;
 			sourceTree = "<group>";
@@ -426,6 +432,7 @@
 				36FB7FB526B18578001F2C39 /* KakaoLogin.storyboard in Resources */,
 				363D26EC26B6808F009C2F90 /* DatePicker.storyboard in Resources */,
 				363D26E026B4169F009C2F90 /* myScheduleTVC.xib in Resources */,
+				3627E51426BBB7690047C9DF /* AskApn.storyboard in Resources */,
 				363D26E826B53012009C2F90 /* AddSchedule.storyboard in Resources */,
 				36FB7F7D26B03381001F2C39 /* LaunchScreen.storyboard in Resources */,
 				36FB7FA326B076A2001F2C39 /* HomeTVC.xib in Resources */,
@@ -519,6 +526,7 @@
 				36FB7F7126B03381001F2C39 /* AppDelegate.swift in Sources */,
 				363D26EE26B680A4009C2F90 /* DatePickerVC.swift in Sources */,
 				363D26DF26B4169F009C2F90 /* myScheduleTVC.swift in Sources */,
+				3627E51626BBB77D0047C9DF /* AskApnVC.swift in Sources */,
 				36FB7FB926B18CE8001F2C39 /* KakaoLoginDataModel.swift in Sources */,
 				36FB7FB326B17C90001F2C39 /* LoginVC.swift in Sources */,
 				363D26FA26B6F880009C2F90 /* ScheduleDetailVC.swift in Sources */,

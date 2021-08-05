@@ -33,8 +33,8 @@ class KakaoLoginVC: UIViewController {
             switch(response)
             {
             case .success(let loginData):
-                self.pushHome()
                 let defaults = UserDefaults.standard
+                self.pushHome()
                 defaults.set(true, forKey: "kakaoLoginSucces")
                 defaults.set(true, forKey: "loginBool")
                 defaults.set(loginData, forKey: "userToken")
@@ -71,7 +71,9 @@ class KakaoLoginVC: UIViewController {
     
     func pushHome(){
         guard let HomeVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(identifier: "HomeVC") as? HomeVC else {return}
+        HomeVC.isFirstLoginBool = true
         self.navigationController?.pushViewController(HomeVC, animated: true)
+       
     }
 
     

@@ -25,6 +25,7 @@ class HomeVC: UIViewController {
     var titleSchedule: String = ""
     var finishSchedule: String = ""
     var timeAgo: String = ""
+    var isFirstLoginBool: Bool = false
 
 //MARK: ViewDidLoad
     override func viewDidLoad() {
@@ -35,11 +36,18 @@ class HomeVC: UIViewController {
         setTableView()
         setIdentifier()
         initRefresh()
+        isFirstLogin()
     }
     
 //MARK: function
     func setIdentifier(){
         tableView.registerCustomXib(xibName: "HomeTVC")
+    }
+    func isFirstLogin(){
+        guard let apnVC = UIStoryboard(name: "AskApn", bundle: nil).instantiateViewController(identifier: "AskApnVC") as? AskApnVC else {return}
+        if isFirstLoginBool == true {
+            self.present(apnVC, animated: true, completion: nil)
+        }
     }
     
     

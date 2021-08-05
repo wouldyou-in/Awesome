@@ -92,6 +92,15 @@ class SettingVC: UIViewController {
     
     @IBAction func notificationToggleClicked(_ sender: Any) {
         if toggle.isOn{
+            
+            if notiPermission == false{if let appSetting = URL(string: UIApplication.openSettingsURLString){
+                UIApplication.shared.open(appSetting, options: [:], completionHandler: nil)
+                UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge], completionHandler: {didAllow,Error in
+                    self.notiPermission = didAllow
+                    UserDefaults.standard.setValue(didAllow, forKey: "noti")
+                })
+            }}
+            
             UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge], completionHandler: {didAllow,Error in
                 self.notiPermission = didAllow
                 UserDefaults.standard.setValue(didAllow, forKey: "noti")
