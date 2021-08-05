@@ -28,6 +28,8 @@ class CalendarVC: UIViewController {
     var isSchedule: Bool = false
 
     var Userevents : [Date] = []
+    var blockDateString: [String] = []
+    var blockDate: [Date] = []
     
     let eventStore = EKEventStore()
     
@@ -38,6 +40,8 @@ class CalendarVC: UIViewController {
     
     var userEventsDetail: [CalendarDataModel] = []
     var scheduleData: [eventCalendarModel] = []
+    var blockDataDetail: [BlockDataModel] = []
+    
 //MARK: viewDidLoad
     
     override func viewDidLoad() {
@@ -49,9 +53,102 @@ class CalendarVC: UIViewController {
         requestAccess()
         setUserEvents()
         setdate()
-        // Do any additional setup after loading the view.
+        setCalendarData()
+        getBlockDateData()
     }
 //MARK: Function
+    func setCalendarData(){
+        GetCalendarDataService.CalendarData.getRecommendInfo{ (response) in
+            switch(response)
+            {
+            case .success(let loginData):
+                if let response = loginData as? CalendarDataModel{
+                    DispatchQueue.global().sync {
+                        self.userEventsDetail.append(response)
+                    }
+                    if response.myCalendar.count != 0{
+                        self.serverData()
+}
+                    self.calendarView.reloadData()
+                    print(self.Userevents)
+                }
+            case .requestErr(let message):
+                print("requestERR")
+            case .pathErr :
+                print("pathERR")
+            case .serverErr:
+                print("serverERR")
+            case .networkFail:
+                print("networkFail")
+            }
+        }
+    }
+    
+    func getBlockDateData(){
+        GetBlockScheduleService.blockData.getRecommendInfo{ (response) in
+            switch(response)
+            {
+            case .success(let loginData):
+                if let response = loginData as? BlockDataModel{
+                    self.blockDataDetail.append(response)
+                }
+                self.setBlockData()
+            case .requestErr(let message):
+                print("requestERR")
+            case .pathErr :
+                print("pathERR")
+            case .serverErr:
+                print("serverERR")
+            case .networkFail:
+                print("networkFail")
+            }
+        }
+    }
+    
+    func serverData(){
+        let UpdateFormatter = DateFormatter()
+        UpdateFormatter.locale = Locale(identifier: "ko_KR")
+        UpdateFormatter.dateFormat = "yyyy-MM-dd"
+        for i in 0 ... userEventsDetail[0].myCalendar.count - 1{
+            if userEventsDetail[0].myCalendar[i].isAccept == true{
+                let dateData = UpdateFormatter.string(from: userEventsDetail[0].myCalendar[i].startDate)
+                let realData = UpdateFormatter.date(from: dateData)
+                Userevents.append(realData!)
+            }
+            
+        }
+    }
+    func setBlockData(){
+        let calendar = Calendar.current
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        
+        for i in 0 ... blockDataDetail[0].block.count-1{
+            let startBlockdate = blockDataDetail[0].block[i].startDate.components(separatedBy: "T")
+            let endBlockdate = blockDataDetail[0].block[i].endDate.components(separatedBy: "T")
+            
+            var start = formatter.date(from: startBlockdate[0])
+            let end = formatter.date(from: endBlockdate[0])
+            
+            let interval = end!.timeIntervalSince(start!)
+            let days = Int(interval / 86400)
+            
+            blockDate.append(start ?? Date())
+            blockDate.append(end ?? Date())
+            
+            
+            print(days)
+            for k in 0 ... days-1{
+                var dateComponent = DateComponents(day: 1)
+                var plusDay = calendar.date(byAdding: dateComponent, to: start!)
+                start = plusDay
+            blockDate.append(plusDay!)
+                print("추가", plusDay)
+            }
+        }
+    }
+    
     func setCalendar(){
         calendarView.dataSource = self
         calendarView.delegate = self
@@ -170,6 +267,8 @@ class CalendarVC: UIViewController {
           }
         if userEventsDetail.count != 0{
         for userEvents in userEventsDetail[0].myCalendar{
+            
+            if userEvents.isAccept == true {
             let start = formatter.string(from: userEvents.startDate)
             let startTime = startTimeFormatter.string(from: userEvents.startDate)
             let finishTime = finishTimeFormatter.string(from: userEvents.endDate)
@@ -186,6 +285,8 @@ class CalendarVC: UIViewController {
             isSchedule = false
                 tableView.reloadData()
             }
+            
+        }
         }
         }
         
@@ -322,5 +423,15 @@ extension CalendarVC: FSCalendarDataSource{
             return 0
         }
     }
-    
+}
+extension CalendarVC: FSCalendarDelegateAppearance{
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, borderDefaultColorFor date: Date) -> UIColor? {
+        print(blockDate)
+        if blockDate.contains(date){
+            return UIColor.mainPinkAlpha
+        }
+        else{
+            return .none
+        }
+    }
 }
