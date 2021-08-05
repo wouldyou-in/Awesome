@@ -23,6 +23,12 @@
 		3627E51626BBB77D0047C9DF /* AskApnVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3627E51526BBB77D0047C9DF /* AskApnVC.swift */; };
 		3627E51826BBCFE60047C9DF /* AddMyscheduleDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3627E51726BBCFE60047C9DF /* AddMyscheduleDataModel.swift */; };
 		3627E51A26BBCFF00047C9DF /* AddMyScheduleDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3627E51926BBCFF00047C9DF /* AddMyScheduleDataService.swift */; };
+		3627E51E26BBD77E0047C9DF /* BlockSchedule.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3627E51D26BBD77E0047C9DF /* BlockSchedule.storyboard */; };
+		3627E52026BBD7910047C9DF /* BlockScheduleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3627E51F26BBD7910047C9DF /* BlockScheduleVC.swift */; };
+		3627E52226BBD9D70047C9DF /* TermPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3627E52126BBD9D70047C9DF /* TermPicker.storyboard */; };
+		3627E52426BBD9E80047C9DF /* TermPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3627E52326BBD9E80047C9DF /* TermPickerVC.swift */; };
+		3627E52826BBDEB80047C9DF /* PostBlockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3627E52726BBDEB80047C9DF /* PostBlockData.swift */; };
+		3627E52A26BBDEC50047C9DF /* PostBlockDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3627E52926BBDEC50047C9DF /* PostBlockDataService.swift */; };
 		363D26DA26B40702009C2F90 /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 363D26D926B40702009C2F90 /* Calendar.storyboard */; };
 		363D26DC26B40718009C2F90 /* CalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D26DB26B40718009C2F90 /* CalendarVC.swift */; };
 		363D26DF26B4169F009C2F90 /* myScheduleTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D26DD26B4169F009C2F90 /* myScheduleTVC.swift */; };
@@ -34,10 +40,6 @@
 		363D26EA26B5302B009C2F90 /* AddScheduleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D26E926B5302B009C2F90 /* AddScheduleVC.swift */; };
 		363D26EC26B6808F009C2F90 /* DatePicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 363D26EB26B6808F009C2F90 /* DatePicker.storyboard */; };
 		363D26EE26B680A4009C2F90 /* DatePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D26ED26B680A4009C2F90 /* DatePickerVC.swift */; };
-		363D26F026B6CF7D009C2F90 /* NoSchedule.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 363D26EF26B6CF7D009C2F90 /* NoSchedule.storyboard */; };
-		363D26F226B6CF96009C2F90 /* NoScheduleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D26F126B6CF96009C2F90 /* NoScheduleVC.swift */; };
-		363D26F426B6D6E7009C2F90 /* NoScheduleDatePicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 363D26F326B6D6E7009C2F90 /* NoScheduleDatePicker.storyboard */; };
-		363D26F626B6D701009C2F90 /* NoScheduleDatePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D26F526B6D701009C2F90 /* NoScheduleDatePickerVC.swift */; };
 		363D26F826B6F86D009C2F90 /* ScheduleDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 363D26F726B6F86D009C2F90 /* ScheduleDetail.storyboard */; };
 		363D26FA26B6F880009C2F90 /* ScheduleDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D26F926B6F880009C2F90 /* ScheduleDetailVC.swift */; };
 		36FB7F7126B03381001F2C39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FB7F7026B03381001F2C39 /* AppDelegate.swift */; };
@@ -93,6 +95,12 @@
 		3627E51526BBB77D0047C9DF /* AskApnVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskApnVC.swift; sourceTree = "<group>"; };
 		3627E51726BBCFE60047C9DF /* AddMyscheduleDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMyscheduleDataModel.swift; sourceTree = "<group>"; };
 		3627E51926BBCFF00047C9DF /* AddMyScheduleDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMyScheduleDataService.swift; sourceTree = "<group>"; };
+		3627E51D26BBD77E0047C9DF /* BlockSchedule.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BlockSchedule.storyboard; sourceTree = "<group>"; };
+		3627E51F26BBD7910047C9DF /* BlockScheduleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockScheduleVC.swift; sourceTree = "<group>"; };
+		3627E52126BBD9D70047C9DF /* TermPicker.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TermPicker.storyboard; sourceTree = "<group>"; };
+		3627E52326BBD9E80047C9DF /* TermPickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermPickerVC.swift; sourceTree = "<group>"; };
+		3627E52726BBDEB80047C9DF /* PostBlockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostBlockData.swift; sourceTree = "<group>"; };
+		3627E52926BBDEC50047C9DF /* PostBlockDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostBlockDataService.swift; sourceTree = "<group>"; };
 		363D26D926B40702009C2F90 /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
 		363D26DB26B40718009C2F90 /* CalendarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarVC.swift; sourceTree = "<group>"; };
 		363D26DD26B4169F009C2F90 /* myScheduleTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myScheduleTVC.swift; sourceTree = "<group>"; };
@@ -104,10 +112,6 @@
 		363D26E926B5302B009C2F90 /* AddScheduleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddScheduleVC.swift; sourceTree = "<group>"; };
 		363D26EB26B6808F009C2F90 /* DatePicker.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DatePicker.storyboard; sourceTree = "<group>"; };
 		363D26ED26B680A4009C2F90 /* DatePickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerVC.swift; sourceTree = "<group>"; };
-		363D26EF26B6CF7D009C2F90 /* NoSchedule.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NoSchedule.storyboard; sourceTree = "<group>"; };
-		363D26F126B6CF96009C2F90 /* NoScheduleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoScheduleVC.swift; sourceTree = "<group>"; };
-		363D26F326B6D6E7009C2F90 /* NoScheduleDatePicker.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NoScheduleDatePicker.storyboard; sourceTree = "<group>"; };
-		363D26F526B6D701009C2F90 /* NoScheduleDatePickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoScheduleDatePickerVC.swift; sourceTree = "<group>"; };
 		363D26F726B6F86D009C2F90 /* ScheduleDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ScheduleDetail.storyboard; sourceTree = "<group>"; };
 		363D26F926B6F880009C2F90 /* ScheduleDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDetailVC.swift; sourceTree = "<group>"; };
 		36FB7F6D26B03381001F2C39 /* Awesome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Awesome.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -248,6 +252,7 @@
 				3627E50D26B9C0D90047C9DF /* GetInviteCountService.swift */,
 				3627E51126B9CAA50047C9DF /* KakaoLogOutService.swift */,
 				3627E51726BBCFE60047C9DF /* AddMyscheduleDataModel.swift */,
+				3627E52926BBDEC50047C9DF /* PostBlockDataService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -266,6 +271,7 @@
 				3627E50B26B9C0CD0047C9DF /* InviteCountModel.swift */,
 				3627E50F26B9CA890047C9DF /* KakaoLogoutModel.swift */,
 				3627E51926BBCFF00047C9DF /* AddMyScheduleDataService.swift */,
+				3627E52726BBDEB80047C9DF /* PostBlockData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -303,10 +309,10 @@
 				363D26D926B40702009C2F90 /* Calendar.storyboard */,
 				363D26E726B53012009C2F90 /* AddSchedule.storyboard */,
 				363D26EB26B6808F009C2F90 /* DatePicker.storyboard */,
-				363D26EF26B6CF7D009C2F90 /* NoSchedule.storyboard */,
-				363D26F326B6D6E7009C2F90 /* NoScheduleDatePicker.storyboard */,
 				363D26F726B6F86D009C2F90 /* ScheduleDetail.storyboard */,
 				3627E51326BBB7690047C9DF /* AskApn.storyboard */,
+				3627E51D26BBD77E0047C9DF /* BlockSchedule.storyboard */,
+				3627E52126BBD9D70047C9DF /* TermPicker.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -333,10 +339,10 @@
 				363D26DB26B40718009C2F90 /* CalendarVC.swift */,
 				363D26E926B5302B009C2F90 /* AddScheduleVC.swift */,
 				363D26ED26B680A4009C2F90 /* DatePickerVC.swift */,
-				363D26F126B6CF96009C2F90 /* NoScheduleVC.swift */,
-				363D26F526B6D701009C2F90 /* NoScheduleDatePickerVC.swift */,
 				363D26F926B6F880009C2F90 /* ScheduleDetailVC.swift */,
 				3627E51526BBB77D0047C9DF /* AskApnVC.swift */,
+				3627E51F26BBD7910047C9DF /* BlockScheduleVC.swift */,
+				3627E52326BBD9E80047C9DF /* TermPickerVC.swift */,
 			);
 			path = VCs;
 			sourceTree = "<group>";
@@ -441,16 +447,16 @@
 				3627E51426BBB7690047C9DF /* AskApn.storyboard in Resources */,
 				363D26E826B53012009C2F90 /* AddSchedule.storyboard in Resources */,
 				36FB7F7D26B03381001F2C39 /* LaunchScreen.storyboard in Resources */,
+				3627E51E26BBD77E0047C9DF /* BlockSchedule.storyboard in Resources */,
 				36FB7FA326B076A2001F2C39 /* HomeTVC.xib in Resources */,
+				3627E52226BBD9D70047C9DF /* TermPicker.storyboard in Resources */,
 				36FB7F9926B0415D001F2C39 /* GmarketSansTTFLight.ttf in Resources */,
 				36FB7F7A26B03381001F2C39 /* Assets.xcassets in Resources */,
 				36FB7FAD26B11D0C001F2C39 /* Setting.storyboard in Resources */,
-				363D26F026B6CF7D009C2F90 /* NoSchedule.storyboard in Resources */,
 				36FB7F7826B03381001F2C39 /* Main.storyboard in Resources */,
 				363D26F826B6F86D009C2F90 /* ScheduleDetail.storyboard in Resources */,
 				363D26E426B416BE009C2F90 /* NoScheduleTVC.xib in Resources */,
 				36FB7F9326B03645001F2C39 /* Home.storyboard in Resources */,
-				363D26F426B6D6E7009C2F90 /* NoScheduleDatePicker.storyboard in Resources */,
 				36FB7FB126B17C6F001F2C39 /* Login.storyboard in Resources */,
 				36FB7F9A26B0415D001F2C39 /* GmarketSansTTFMedium.ttf in Resources */,
 				363D26DA26B40702009C2F90 /* Calendar.storyboard in Resources */,
@@ -510,6 +516,7 @@
 				36FB7F7526B03381001F2C39 /* ViewController.swift in Sources */,
 				3627E50C26B9C0CD0047C9DF /* InviteCountModel.swift in Sources */,
 				36FB7FAF26B11D57001F2C39 /* SettingVC.swift in Sources */,
+				3627E52826BBDEB80047C9DF /* PostBlockData.swift in Sources */,
 				3627E50626B9A0DD0047C9DF /* PostAccessDenineDataService.swift in Sources */,
 				363D26DC26B40718009C2F90 /* CalendarVC.swift in Sources */,
 				36FB7FAB26B07B98001F2C39 /* Constants.swift in Sources */,
@@ -518,6 +525,7 @@
 				36FB7FA926B07B7E001F2C39 /* NetworkResult.swift in Sources */,
 				363D26EA26B5302B009C2F90 /* AddScheduleVC.swift in Sources */,
 				36FB7F9D26B0496F001F2C39 /* Extension+UIColor.swift in Sources */,
+				3627E52A26BBDEC50047C9DF /* PostBlockDataService.swift in Sources */,
 				3627E51226B9CAA50047C9DF /* KakaoLogOutService.swift in Sources */,
 				3627E51026B9CA890047C9DF /* KakaoLogoutModel.swift in Sources */,
 				36FB7FA726B07B5C001F2C39 /* HomeDataModel.swift in Sources */,
@@ -536,10 +544,9 @@
 				36FB7FB926B18CE8001F2C39 /* KakaoLoginDataModel.swift in Sources */,
 				36FB7FB326B17C90001F2C39 /* LoginVC.swift in Sources */,
 				363D26FA26B6F880009C2F90 /* ScheduleDetailVC.swift in Sources */,
+				3627E52426BBD9E80047C9DF /* TermPickerVC.swift in Sources */,
 				3627E50A26B9B2C60047C9DF /* GetInviteDataService.swift in Sources */,
-				363D26F626B6D701009C2F90 /* NoScheduleDatePickerVC.swift in Sources */,
 				3627E50826B9B2B90047C9DF /* InviteDataModel.swift in Sources */,
-				363D26F226B6CF96009C2F90 /* NoScheduleVC.swift in Sources */,
 				36FB7FBF26B1A8B5001F2C39 /* SplashVC.swift in Sources */,
 				36FB7F9F26B04986001F2C39 /* Extension+UIFont.swift in Sources */,
 				3627E50426B9A0AF0047C9DF /* AccesDenineDataModel.swift in Sources */,
@@ -548,6 +555,7 @@
 				3627E51826BBCFE60047C9DF /* AddMyscheduleDataModel.swift in Sources */,
 				3627E51A26BBCFF00047C9DF /* AddMyScheduleDataService.swift in Sources */,
 				36FB7FB726B18589001F2C39 /* KakaoLoginVC.swift in Sources */,
+				3627E52026BBD7910047C9DF /* BlockScheduleVC.swift in Sources */,
 				363D26E326B416BE009C2F90 /* NoScheduleTVC.swift in Sources */,
 				36FB7FA526B07A11001F2C39 /* Extension+TableView.swift in Sources */,
 				36FB7FC526B1B7FB001F2C39 /* GetNewTokenService.swift in Sources */,

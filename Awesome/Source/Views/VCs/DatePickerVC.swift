@@ -25,6 +25,7 @@ class DatePickerVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setLayout()
+        changed()
         // Do any additional setup after loading the view.
     }
     

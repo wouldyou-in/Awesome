@@ -8,52 +8,52 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--No Schedule Date PickerVC-->
+        <!--Term PickerVC-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="NoScheduleDatePickerVC" id="Y6W-OH-hqX" customClass="NoScheduleDatePickerVC" customModule="Awesome" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TermPickerVC" id="Y6W-OH-hqX" customClass="TermPickerVC" customModule="Awesome" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="tOk-Np-dzt">
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="wheels" translatesAutoresizingMaskIntoConstraints="NO" id="gan-rq-1Cg">
                                 <rect key="frame" x="0.0" y="244" width="414" height="216"/>
                                 <connections>
-                                    <action selector="datepickerSelected:" destination="Y6W-OH-hqX" eventType="valueChanged" id="GPz-5P-LHE"/>
+                                    <action selector="datePickerSelected:" destination="Y6W-OH-hqX" eventType="valueChanged" id="7DL-fx-Aqt"/>
                                 </connections>
                             </datePicker>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wD7-pe-AUz">
-                                <rect key="frame" x="50" y="490" width="314" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Dm-sC-g2R">
+                                <rect key="frame" x="20" y="490" width="374" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="Vmr-S0-aNP"/>
+                                    <constraint firstAttribute="height" constant="50" id="Z2F-i8-tp0"/>
                                 </constraints>
-                                <state key="normal" title="확인">
+                                <state key="normal" title="설정하기">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="okButtonClicked:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="O6n-Zw-rkm"/>
+                                    <action selector="okButtonClicked:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="en5-4B-UDK"/>
                                 </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="wD7-pe-AUz" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="50" id="Fx3-sZ-ZHi"/>
-                            <constraint firstAttribute="trailing" secondItem="tOk-Np-dzt" secondAttribute="trailing" id="NeP-Ro-IE0"/>
-                            <constraint firstItem="wD7-pe-AUz" firstAttribute="top" secondItem="tOk-Np-dzt" secondAttribute="bottom" constant="30" id="Ns6-fV-3ZE"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="wD7-pe-AUz" secondAttribute="trailing" constant="50" id="PJu-oe-3GD"/>
-                            <constraint firstItem="tOk-Np-dzt" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Q7f-Cc-voq"/>
-                            <constraint firstItem="tOk-Np-dzt" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="200" id="Srt-v7-IBS"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="8Dm-sC-g2R" secondAttribute="trailing" constant="20" id="9w7-iq-FBf"/>
+                            <constraint firstItem="gan-rq-1Cg" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="GnY-rD-sg7"/>
+                            <constraint firstItem="gan-rq-1Cg" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="bLF-dO-ayF"/>
+                            <constraint firstItem="8Dm-sC-g2R" firstAttribute="top" secondItem="gan-rq-1Cg" secondAttribute="bottom" constant="30" id="djg-1J-E18"/>
+                            <constraint firstItem="gan-rq-1Cg" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="200" id="lov-eG-7Qj"/>
+                            <constraint firstItem="8Dm-sC-g2R" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="vwn-tF-EnU"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="okButton" destination="wD7-pe-AUz" id="qt6-x7-1nx"/>
-                        <outlet property="pickerView" destination="tOk-Np-dzt" id="ej7-Ez-j9M"/>
+                        <outlet property="datePicker" destination="gan-rq-1Cg" id="eDO-6f-Sd6"/>
+                        <outlet property="okButton" destination="8Dm-sC-g2R" id="M2U-NH-Dm7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="35" y="98"/>
+            <point key="canvasLocation" x="35" y="53"/>
         </scene>
     </scenes>
     <resources>
