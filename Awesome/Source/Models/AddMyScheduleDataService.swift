@@ -14,7 +14,7 @@ struct PostCalendar: Codable {
     let participantName, comment: String
     let startDate, endDate: Date
     let createdAt: String
-    let isAccept: String?
+    let isAccept: Bool?
 
     enum CodingKeys: String, CodingKey {
         case id, creator
@@ -26,6 +26,6 @@ struct PostCalendar: Codable {
         case endDate = "end_date"
         case createdAt = "created_at"
         case isAccept = "is_accept"
+        
     }
 }
-
