@@ -233,8 +233,8 @@ class CalendarVC: UIViewController {
     }
     
     @IBAction func notScheduleButtonClicked(_ sender: Any) {
-        guard let notVC = UIStoryboard(name: "NoSchedule", bundle: nil).instantiateViewController(identifier: "NoScheduleVC") as? NoScheduleVC else {return}
-        self.present(notVC, animated: true, completion: nil)
+        guard let blockVC = UIStoryboard(name: "BlockSchedule", bundle: nil).instantiateViewController(identifier: "BlockScheduleVC") as? BlockScheduleVC else {return}
+        self.present(blockVC, animated: true, completion: nil)
     }
     
 }
