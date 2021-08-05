@@ -40,7 +40,7 @@ class myScheduleTVC: UITableViewCell {
             isFinishImageView.image = UIImage(named: "finishIcon")
         }
         else{
-            isFinishImageView.image = UIImage(named: "finishIcon")
+            isFinishImageView.image = UIImage(named: "continueIcon")
         }
         nameLabel.text = name
         timeLabel.text = time
