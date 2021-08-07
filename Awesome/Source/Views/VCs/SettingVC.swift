@@ -41,6 +41,8 @@ class SettingVC: UIViewController {
     }
 //MARK: Function
     func setHeaderView(){
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
         appdelegate.shouldSupportAllOrientation = false
         backGroundView.backgroundColor = UIColor.mainGray
         headerView.backgroundColor = UIColor.mainGray
@@ -227,4 +229,10 @@ class SettingVC: UIViewController {
 }
 extension SettingVC: UNUserNotificationCenterDelegate{
     
+}
+
+extension SettingVC: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
 }

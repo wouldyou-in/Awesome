@@ -230,6 +230,7 @@
                             <constraint firstItem="yaO-Jh-HcN" firstAttribute="top" secondItem="Sqq-HF-YlZ" secondAttribute="bottom" constant="10" id="xcx-PP-pSH"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="5Qe-20-Gck"/>
                     <connections>
                         <outlet property="LogoutView" destination="Sqq-HF-YlZ" id="GVU-ie-ftB"/>
                         <outlet property="backGroundView" destination="5EZ-qb-Rvc" id="3tQ-iQ-z6K"/>
@@ -246,7 +247,24 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="35" y="69"/>
+            <point key="canvasLocation" x="944.92753623188412" y="68.973214285714278"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="e9c-er-4Gz">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="NQH-D4-DoF" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qlW-xf-t48">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="rRB-8A-4Qx"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wr2-Hn-zpj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="34.782608695652179" y="68.973214285714278"/>
         </scene>
     </scenes>
     <resources>
