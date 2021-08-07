@@ -84,7 +84,14 @@ class SettingVC: UIViewController {
         let alert = UIAlertController(title: "초대장 공유", message: "초대장을 다른 사람들에게 공유하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
         let okAction = UIAlertAction(title: "확인", style: .default) { (action) in
             let activityVC = UIActivityViewController(activityItems: self.inviteLink, applicationActivities: nil)
-                activityVC.popoverPresentationController?.sourceView = self.view
+            activityVC.popoverPresentationController?.sourceView = self.view
+            
+            if let popoverController = activityVC.popoverPresentationController {
+                popoverController.sourceView = self.view //to set the source of your alert
+                popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0) // you can set this as per your requirement.
+                popoverController.permittedArrowDirections = [] //to hide the arrow of any particular direction
+            }
+            
             self.present(activityVC, animated: true, completion: nil)
         }
         let cancelAction = UIAlertAction(title: "취소", style: .default)
@@ -125,14 +132,24 @@ class SettingVC: UIViewController {
     
     @IBAction func linkShareButtonClicked(_ sender: Any) {
         var objectsToShare = [String]()
-        if let text = shareLabel.text{
-                   objectsToShare.append(text)
-                   print("[INFO] textField's Text : ", text)
-               }
+        objectsToShare.append("나의 어떰 프로필을 공유합니다.")
+//        if let text = shareLabel.text{
+//                   objectsToShare.append(text)
+//                   print("[INFO] textField's Text : ", text)
+//               }
                let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
                activityVC.popoverPresentationController?.sourceView = self.view
                self.present(activityVC, animated: true, completion: nil)
+        
+        if let popoverController = activityVC.popoverPresentationController {
+            popoverController.sourceView = self.view //to set the source of your alert
+            popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0) // you can set this as per your requirement.
+            popoverController.permittedArrowDirections = [] //to hide the arrow of any particular direction
+        }
     }
+    
+    
+    
     @IBAction func logoutButtonClicked(_ sender: Any) {
         guard let resetVC = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(identifier: "LoginVC") as? LoginVC else {return}
         let alert = UIAlertController(title: "로그아웃", message: "로그아웃하여 초기화면으로 이동합니다.", preferredStyle: UIAlertController.Style.alert)

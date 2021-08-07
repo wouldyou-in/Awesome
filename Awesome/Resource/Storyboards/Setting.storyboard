@@ -76,7 +76,7 @@
                                 <rect key="frame" x="30" y="144" width="354" height="80"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IMC-cL-Myf">
-                                        <rect key="frame" x="0.0" y="50" width="354" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="354" height="80"/>
                                         <connections>
                                             <action selector="linkShareButtonClicked:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="d81-SE-D4c"/>
                                         </connections>
@@ -101,6 +101,7 @@
                                     <constraint firstAttribute="bottom" secondItem="IMC-cL-Myf" secondAttribute="bottom" id="T5c-yC-zx6"/>
                                     <constraint firstItem="J0S-IF-uyZ" firstAttribute="top" secondItem="2lG-bo-P3m" secondAttribute="bottom" constant="5" id="UUa-fT-C9H"/>
                                     <constraint firstItem="2lG-bo-P3m" firstAttribute="top" secondItem="gej-ar-IMm" secondAttribute="top" constant="20" id="VNI-yG-trv"/>
+                                    <constraint firstItem="IMC-cL-Myf" firstAttribute="top" secondItem="gej-ar-IMm" secondAttribute="top" id="bQt-n9-CjJ"/>
                                     <constraint firstItem="IMC-cL-Myf" firstAttribute="leading" secondItem="gej-ar-IMm" secondAttribute="leading" id="iCa-Oa-c4c"/>
                                     <constraint firstAttribute="height" constant="80" id="v33-Ll-kdz"/>
                                     <constraint firstItem="2lG-bo-P3m" firstAttribute="leading" secondItem="gej-ar-IMm" secondAttribute="leading" constant="20" id="wH0-w5-qC0"/>
