@@ -93,6 +93,11 @@ class SettingVC: UIViewController {
             }
             
             self.present(activityVC, animated: true, completion: nil)
+            
+            activityVC.completionWithItemsHandler = { (activityType: UIActivity.ActivityType?, completed: Bool, arrayReturnedItems: [Any]?, error: Error?) in if completed { }
+            else { self.deleteInvite() }
+                if let shareError = error { } }
+
         }
         let cancelAction = UIAlertAction(title: "취소", style: .default)
         {(action) in
