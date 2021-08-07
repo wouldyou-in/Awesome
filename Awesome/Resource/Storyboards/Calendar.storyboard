@@ -108,6 +108,7 @@
                     <connections>
                         <outlet property="ScheduleButton" destination="S1U-2P-ECJ" id="e6W-U8-e4e"/>
                         <outlet property="buttonStackView" destination="5SD-HC-0Q5" id="JE5-pW-3rj"/>
+                        <outlet property="calendarConstarint" destination="niN-7T-mQj" id="2PY-sn-FdY"/>
                         <outlet property="calendarView" destination="rbk-hP-Lfz" id="kG8-9E-Wo7"/>
                         <outlet property="headerView" destination="bbx-HG-ZbC" id="KbC-8T-CUl"/>
                         <outlet property="monthLabel" destination="zDS-DJ-nBk" id="ahg-Pf-t40"/>

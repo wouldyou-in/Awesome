@@ -20,6 +20,7 @@ class CalendarVC: UIViewController {
     @IBOutlet weak var plusScheduleButton: UIButton!
     @IBOutlet weak var notScheduleButton: UIButton!
     @IBOutlet weak var ScheduleButton: UIButton!
+    @IBOutlet weak var calendarConstarint: NSLayoutConstraint!
     
 //MARK: Var
     
@@ -49,6 +50,7 @@ class CalendarVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.sendSubviewToBack(tableView)
+        setiPadUI()
         setCell()
         setCalendar()
         setHeaderView()
@@ -59,6 +61,13 @@ class CalendarVC: UIViewController {
         getBlockDateData()
     }
 //MARK: Function
+    func setiPadUI(){
+        print(calendarView.fs_width,UIScreen.main.bounds.width)
+        if UIScreen.main.bounds.width > 500{
+            print(calendarConstarint.constant)
+            calendarConstarint.constant = 200
+        }
+    }
     func setCalendarData(){
         GetCalendarDataService.CalendarData.getRecommendInfo{ (response) in
             switch(response)
