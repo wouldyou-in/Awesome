@@ -29,6 +29,8 @@ class SettingVC: UIViewController {
     var intInviteCount: Int = 0
     var inviteCount: [InviteCountDataModel] = []
     var notiPermission: Bool = false
+    let appdelegate = UIApplication.shared.delegate as! AppDelegate
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +41,7 @@ class SettingVC: UIViewController {
     }
 //MARK: Function
     func setHeaderView(){
+        appdelegate.shouldSupportAllOrientation = false
         backGroundView.backgroundColor = UIColor.mainGray
         headerView.backgroundColor = UIColor.mainGray
         leftInviteLabel.font = UIFont.gmarketSansMediumFont(ofSize: 12)

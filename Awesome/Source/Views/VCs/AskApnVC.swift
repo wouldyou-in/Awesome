@@ -13,6 +13,8 @@ class AskApnVC: UIViewController {
     @IBOutlet weak var accessButton: UIButton!
     @IBOutlet weak var laterButton: UIButton!
     @IBOutlet weak var backGroundView: UIView!
+    let appdelegate = UIApplication.shared.delegate as! AppDelegate
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +22,7 @@ class AskApnVC: UIViewController {
 
     }
     func setLayout(){
+        appdelegate.shouldSupportAllOrientation = false
         accessButton.backgroundColor = UIColor.mainPink
         accessButton.clipsToBounds = true
         accessButton.layer.cornerRadius = 25

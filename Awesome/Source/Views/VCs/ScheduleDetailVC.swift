@@ -29,6 +29,7 @@ class ScheduleDetailVC: UIViewController {
     let width = UIScreen.main.bounds.width
     var scID: Int = 0
     var delegate: tableViewReloadDelegate?
+    let appdelegate = UIApplication.shared.delegate as! AppDelegate
 
     
     override func viewDidLoad() {
@@ -40,6 +41,7 @@ class ScheduleDetailVC: UIViewController {
     }
 //MARK: Function
     func setLabelFont(){
+        appdelegate.shouldSupportAllOrientation = false
         if UIScreen.main.bounds.width > 500{
             headerLabelConstraint.constant = headerLabelConstraint.constant * (width/500)
 

@@ -11,10 +11,12 @@ class SplashVC: UIViewController {
 //MARK: Var
     @IBOutlet weak var splashImageView: UIImageView!
     static var isLoginSucces: Bool = false
+    let appdelegate = UIApplication.shared.delegate as! AppDelegate
 
 //MARK: ViewDidLoad / viewDidAppear
     override func viewDidLoad() {
         super.viewDidLoad()
+        appdelegate.shouldSupportAllOrientation = false
 
     }
     override func viewDidAppear(_ animated: Bool) {

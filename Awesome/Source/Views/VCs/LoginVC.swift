@@ -12,10 +12,13 @@ class LoginVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        appdelegate.shouldSupportAllOrientation = false
     }
     @IBOutlet weak var loginImageView: UIImageView!
     
     var appleToken: String = ""
+    let appdelegate = UIApplication.shared.delegate as! AppDelegate
+
 
 //
 //    func setImage(){

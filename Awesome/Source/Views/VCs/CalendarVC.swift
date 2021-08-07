@@ -39,7 +39,7 @@ class CalendarVC: UIViewController {
     var dayData : String = ""
     var checkDate : String = ""
     var isScheduleFinish: Bool = false
-
+    let appdelegate = UIApplication.shared.delegate as! AppDelegate
     
     var userEventsDetail: [CalendarDataModel] = []
     var scheduleData: [eventCalendarModel] = []
@@ -167,6 +167,7 @@ class CalendarVC: UIViewController {
     }
     
     func setCalendar(){
+        appdelegate.shouldSupportAllOrientation = false
         calendarView.dataSource = self
         calendarView.delegate = self
         calendarView.backgroundColor = .white

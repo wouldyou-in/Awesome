@@ -20,6 +20,8 @@ class DatePickerVC: UIViewController {
     var chooseDate: String = ""
     var startDelegate: dateData?
     var endDelegate: dateData?
+    let appdelegate = UIApplication.shared.delegate as! AppDelegate
+
     @IBOutlet weak var okButton: UIButton!
     
     override func viewDidLoad() {
@@ -33,6 +35,7 @@ class DatePickerVC: UIViewController {
         changed()
     }
     func setLayout(){
+        appdelegate.shouldSupportAllOrientation = false
         okButton.backgroundColor = UIColor.mainPink
         okButton.clipsToBounds = true
         okButton.layer.cornerRadius = 15

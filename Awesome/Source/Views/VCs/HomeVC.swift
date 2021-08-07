@@ -27,6 +27,7 @@ class HomeVC: UIViewController {
     var timeAgo: String = ""
     var isFirstLoginBool: Bool = false
     var isNoCell: Bool = false
+    let appdelegate = UIApplication.shared.delegate as! AppDelegate
 
 //MARK: ViewDidLoad
     override func viewDidLoad() {
@@ -54,6 +55,8 @@ class HomeVC: UIViewController {
     }
     
     func setHeaderUI(){
+        appdelegate.shouldSupportAllOrientation = false
+        
         homeView.backgroundColor = UIColor.mainGray
         headerView.backgroundColor = UIColor.mainGray
         nameLabel.font = UIFont.gmarketSansBoldFont(ofSize: fontReSize(size: 24))

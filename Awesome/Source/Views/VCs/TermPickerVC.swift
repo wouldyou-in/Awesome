@@ -16,6 +16,8 @@ class TermPickerVC: UIViewController {
     var startDelegate: dateData?
     var endDelegate: dateData?
     var chooseDate: String = ""
+    let appdelegate = UIApplication.shared.delegate as! AppDelegate
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +26,7 @@ class TermPickerVC: UIViewController {
     }
 //MARK: func
     func setLayout(){
+        appdelegate.shouldSupportAllOrientation = false
         okButton.clipsToBounds = true
         okButton.layer.cornerRadius = 15
         okButton.backgroundColor = UIColor.mainPink
