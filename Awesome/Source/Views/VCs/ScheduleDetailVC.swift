@@ -40,7 +40,13 @@ class ScheduleDetailVC: UIViewController {
     }
 //MARK: Function
     func setLabelFont(){
+        if UIScreen.main.bounds.width > 500{
+            headerLabelConstraint.constant = headerLabelConstraint.constant * (width/500)
+
+        }
+        else{
         headerLabelConstraint.constant = headerLabelConstraint.constant * (width/428)
+        }
     }
     func setData(time: String , information: String, person: String, scheduleID: Int){
         nameLabel.text = person
