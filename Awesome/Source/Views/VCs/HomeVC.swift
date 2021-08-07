@@ -26,6 +26,7 @@ class HomeVC: UIViewController {
     var finishSchedule: String = ""
     var timeAgo: String = ""
     var isFirstLoginBool: Bool = false
+    var isNoCell: Bool = false
 
 //MARK: ViewDidLoad
     override func viewDidLoad() {
@@ -42,6 +43,8 @@ class HomeVC: UIViewController {
 //MARK: function
     func setIdentifier(){
         tableView.registerCustomXib(xibName: "HomeTVC")
+        tableView.registerCustomXib(xibName: "HomeNotScheduleTVC")
+
     }
     func isFirstLogin(){
         guard let apnVC = UIStoryboard(name: "AskApn", bundle: nil).instantiateViewController(identifier: "AskApnVC") as? AskApnVC else {return}
@@ -90,7 +93,7 @@ class HomeVC: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
-        tableView.backgroundColor = UIColor.mainGray
+        tableView.backgroundColor = .clear
     }
     func setProfile(){
         let defaults = UserDefaults.standard
@@ -144,19 +147,27 @@ class HomeVC: UIViewController {
 //MARK: RefreshTableView
     func initRefresh(){
         let refresh = UIRefreshControl()
+        refresh.fs_height = 200
         refresh.addTarget(self, action: #selector(updateUI(refresh:)), for: .valueChanged)
-        
+//        var refreshImage = UIImage(named: "refreshControl")
+//        var backgroundView = UIImageView(image: refreshImage)
+//        backgroundView.center.x = (UIScreen.main.bounds.width/2) - 34
+//        tableView.backgroundView = UIImageView(image: UIImage(named: "refreshControl"))
+//        refresh.tintColor = .clear
+//        refresh.addSubview(backgroundView)
+        refresh.backgroundColor = .mainGray
         if #available(iOS 10.0, *){
-            tableView.refreshControl = refresh
+            self.tableView.refreshControl = refresh
         }else{
             tableView.addSubview(refresh)
         }
     }
     
     @objc func updateUI(refresh: UIRefreshControl){
-        refresh.endRefreshing()
         tableViewReloadDelegate()
         tableView.reloadData()
+        refresh.endRefreshing()
+
     }
     
 //MARK: GetDataFunction
@@ -198,7 +209,7 @@ class HomeVC: UIViewController {
                 print("serverERR")
             case .networkFail:
                 print("networkFail")
-                    self.tableView.backgroundView = UIImageView(image: UIImage(named: "mainNoSCBackground.png"))
+//                    self.tableView.backgroundView = UIImageView(image: UIImage(named: "mainNoSCBackground.png"))
             }
         }
     }
@@ -226,21 +237,33 @@ extension HomeVC: UITableViewDelegate{
 }
 extension HomeVC: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
         return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: HomeTVC = tableView.dequeueReusableCell(withIdentifier: HomeTVC.identifier) as! HomeTVC
+        let noCell: HomeNotScheduleTVC = tableView.dequeueReusableCell(withIdentifier: HomeNotScheduleTVC.identifier) as! HomeNotScheduleTVC
         cell.clipsToBounds = true
         cell.layer.cornerRadius = 20
+        
+        if isNoCell == true{
+            tableView.isSpringLoaded = true
+            return noCell
+        }
+        else{
         changeDate(start: scheduleData[0].calendars[indexPath.section].startDate, finish: scheduleData[0].calendars[indexPath.section].endDate, upload: scheduleData[0].calendars[indexPath.section].createdAt)
         cell.setData(date: titleSchedule, info: scheduleData[0].calendars[indexPath.section].comment, ago: timeAgo)
         return cell
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if isNoCell == true{
+            return UIScreen.main.bounds.height - 150
+        }
+        else{
         return 110
+        }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -253,26 +276,35 @@ extension HomeVC: UITableViewDataSource{
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         if scheduleData.count == 0{
-            return 0
+            isNoCell = true
+            return 1
         }
         else{
+            isNoCell = false
             return scheduleData[0].calendars.count
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let detailVC = UIStoryboard(name: "ScheduleDetail", bundle: nil).instantiateViewController(identifier: "ScheduleDetailVC") as? ScheduleDetailVC else {return}
+        
+        if isNoCell == false{
         self.present(detailVC, animated: true, completion: nil)
         detailVC.setData(time: scheduleDateString, information: scheduleData[0].calendars[indexPath.section].comment, person: scheduleData[0].calendars[indexPath.section].creatorName, scheduleID: scheduleData[0].calendars[indexPath.section].id)
         detailVC.delegate = self
+        }
+        else{
+            print("없는셀 클릭")
+        }
         
     }
 }
 
 extension HomeVC: tableViewReloadDelegate{
     func tableViewReloadDelegate() {
-        scheduleData = []
-        getScheduleData()
+            scheduleData = []
+        Thread.sleep(forTimeInterval: 0.05)
+            getScheduleData()
         self.tableView.reloadData()
     }
 }
