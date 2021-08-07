@@ -168,6 +168,8 @@ class CalendarVC: UIViewController {
     
     func setCalendar(){
         appdelegate.shouldSupportAllOrientation = false
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
         calendarView.dataSource = self
         calendarView.delegate = self
         calendarView.backgroundColor = .white
@@ -474,5 +476,11 @@ extension CalendarVC: FSCalendarDelegateAppearance{
         else{
             return .none
         }
+    }
+}
+
+extension CalendarVC: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }

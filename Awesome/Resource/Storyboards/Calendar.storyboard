@@ -105,6 +105,7 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="5SD-HC-0Q5" secondAttribute="bottom" id="xiw-Go-Y3L"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="b6j-lN-u4N"/>
                     <connections>
                         <outlet property="ScheduleButton" destination="S1U-2P-ECJ" id="e6W-U8-e4e"/>
                         <outlet property="buttonStackView" destination="5SD-HC-0Q5" id="JE5-pW-3rj"/>
@@ -119,6 +120,23 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1050.7246376811595" y="-13.392857142857142"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="1wT-DU-7nG">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="HqO-cl-8Y1" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="GJ3-To-rew">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="M47-b5-tt0"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uXu-2b-pmA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="140.57971014492756" y="-13.392857142857142"/>
         </scene>
