@@ -91,6 +91,7 @@ class SettingVC: UIViewController {
     }
     
     @IBAction func notificationToggleClicked(_ sender: Any) {
+        UNUserNotificationCenter.current().delegate = self
         if toggle.isOn{
             
             if notiPermission == false{if let appSetting = URL(string: UIApplication.openSettingsURLString){
@@ -157,6 +158,20 @@ class SettingVC: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     @IBAction func withdrawButtonClicked(_ sender: Any) {
+        PostDevieceTokenDataService.shared.AutoLoginService(push_token: UserDefaults.standard.string(forKey: "deviceToken")!) { [self] result in
+            switch result{
+            case .success(let tokenData):
+                print("성공")
+            case .requestErr(let msg):
+                print("requestErr")
+            default :
+                print("ERROR")
+            }
+        }
+        
+        
+        
+        
     }
 //MARK: function
     func append(){
@@ -206,4 +221,7 @@ class SettingVC: UIViewController {
         }
     }
 
+}
+extension SettingVC: UNUserNotificationCenterDelegate{
+    
 }

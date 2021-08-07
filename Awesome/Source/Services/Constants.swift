@@ -24,6 +24,8 @@ struct Constants {
     static var blockDateURL = baseURL + "/calendar/block/"
     /// 4.초대장 URL
     static var inviteURL = baseURL + "/invite/link/"
+    /// 5. APNs URL
+    static var deviceTokenURL = baseURL + "/push/ios/"
     
 
 }
