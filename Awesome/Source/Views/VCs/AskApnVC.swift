@@ -37,6 +37,7 @@ class AskApnVC: UIViewController {
             UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge], completionHandler: {didAllow,Error in
                 UserDefaults.standard.setValue(didAllow, forKey: "noti")
             })
+        UNUserNotificationCenter.current().delegate = self
         self.dismiss(animated: true, completion: nil)
     }
     @IBAction func laterButtonClicked(_ sender: Any) {
@@ -45,4 +46,7 @@ class AskApnVC: UIViewController {
     
 
 
+}
+extension AskApnVC: UNUserNotificationCenterDelegate{
+    
 }
