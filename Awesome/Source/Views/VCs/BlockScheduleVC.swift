@@ -18,6 +18,8 @@ class BlockScheduleVC: UIViewController {
 //MARK: Var
     var startTime: String = "시작기간"
     var endTime: String = "종료기간"
+    let appdelegate = UIApplication.shared.delegate as! AppDelegate
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +27,7 @@ class BlockScheduleVC: UIViewController {
     }
 //MARK: func
     func setLayout(){
+        appdelegate.shouldSupportAllOrientation = false
         startTimeButton.clipsToBounds = true
         startTimeButton.layer.cornerRadius = 15
         endTimeButton.clipsToBounds = true

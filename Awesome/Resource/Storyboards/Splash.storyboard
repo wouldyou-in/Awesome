@@ -30,6 +30,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="zNb-WW-Mf2"/>
+                    <connections>
+                        <outlet property="splashImageView" destination="qoK-Sh-K3P" id="bEm-dW-1be"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

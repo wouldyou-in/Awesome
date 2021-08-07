@@ -23,6 +23,8 @@ class AddScheduleVC: UIViewController {
 
     var startHour: Int = 0
     var finishHour: Int = 0
+    let appdelegate = UIApplication.shared.delegate as! AppDelegate
+
 //MARK: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +33,7 @@ class AddScheduleVC: UIViewController {
     }
 //MARK: func
     func setLayout(){
+        appdelegate.shouldSupportAllOrientation = false
         nameButton.clipsToBounds = true
         nameButton.layer.cornerRadius = 20
         startTimeButton.clipsToBounds = true

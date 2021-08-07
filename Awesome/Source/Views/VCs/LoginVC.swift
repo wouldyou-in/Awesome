@@ -12,11 +12,35 @@ class LoginVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        appdelegate.shouldSupportAllOrientation = false
     }
+    @IBOutlet weak var loginImageView: UIImageView!
     
     var appleToken: String = ""
+    let appdelegate = UIApplication.shared.delegate as! AppDelegate
 
+
+//
+//    func setImage(){
+//        if UIDevice.current.hasNotch {
+//            //... 노치가 있을때....
+//            if UIScreen.main.bounds.width > 500 {
+//                loginImageView.image = UIImage(named: "iPadLogin")
+//            }
+//            else{
+//                loginImageView.image = UIImage(named: "loginBackground")
+//            }
+//        } else {
+//            //... 노치가 없을때...
+//            if UIScreen.main.bounds.width > 500{
+//                loginImageView.image = UIImage(named: "iPadLogin")
+//            }
+//            else{
+//                loginImageView.image = UIImage(named: "iPhone8Login")
+//            }
+//        }
+//    }
+    
     
     //MARK: IBAction
     @IBAction func kakaoLoginButtonClicked(_ sender: Any) {

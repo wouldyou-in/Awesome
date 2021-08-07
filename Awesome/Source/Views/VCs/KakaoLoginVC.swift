@@ -12,6 +12,8 @@ class KakaoLoginVC: UIViewController {
     
     var webView: WKWebView!
     var loginURL : String = ""
+    let appdelegate = UIApplication.shared.delegate as! AppDelegate
+
     
     override func loadView() {
         super.loadView()
@@ -21,6 +23,7 @@ class KakaoLoginVC: UIViewController {
 //MARK: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        appdelegate.shouldSupportAllOrientation = false
         webview()
     }
 //MARK: func

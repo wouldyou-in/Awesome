@@ -27,6 +27,7 @@ class HomeVC: UIViewController {
     var timeAgo: String = ""
     var isFirstLoginBool: Bool = false
     var isNoCell: Bool = false
+    let appdelegate = UIApplication.shared.delegate as! AppDelegate
 
 //MARK: ViewDidLoad
     override func viewDidLoad() {
@@ -53,8 +54,9 @@ class HomeVC: UIViewController {
         }
     }
     
-    
     func setHeaderUI(){
+        appdelegate.shouldSupportAllOrientation = false
+        
         homeView.backgroundColor = UIColor.mainGray
         headerView.backgroundColor = UIColor.mainGray
         nameLabel.font = UIFont.gmarketSansBoldFont(ofSize: fontReSize(size: 24))
@@ -77,15 +79,29 @@ class HomeVC: UIViewController {
     func uiReSize() {
         let screenWith = UIScreen.main.bounds.width
         let scale = screenWith/428
+        let ipadScale = screenWith/600
         let buttonWidth = settingButton.frame.width
         let buttonHeigth = settingButton.frame.width
-        settingButton.frame.size = CGSize(width: buttonWidth * scale, height: buttonHeigth * scale)
+        
+        if screenWith > 500{
+            settingButton.frame.size = CGSize(width: buttonWidth * ipadScale, height: buttonHeigth * ipadScale)
+        }
+        else{
+            settingButton.frame.size = CGSize(width: buttonWidth * scale, height: buttonHeigth * scale)
+        }
+
     }
     
     func fontReSize(size: CGFloat) -> CGFloat{
         let screenWith = UIScreen.main.bounds.width
         let sizeFormatter = size/428
-        let result = screenWith * sizeFormatter
+        var result: CGFloat = 0
+        if screenWith > 500 {
+            result = screenWith * (size/900)
+        }
+        else{
+            result = screenWith * sizeFormatter
+        }
         return result
     }
     

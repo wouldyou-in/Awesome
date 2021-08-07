@@ -9,11 +9,15 @@ import UIKit
 
 class SplashVC: UIViewController {
 //MARK: Var
-   static var isLoginSucces: Bool = false
+    @IBOutlet weak var splashImageView: UIImageView!
+    static var isLoginSucces: Bool = false
+    let appdelegate = UIApplication.shared.delegate as! AppDelegate
 
 //MARK: ViewDidLoad / viewDidAppear
     override func viewDidLoad() {
         super.viewDidLoad()
+        appdelegate.shouldSupportAllOrientation = false
+
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -25,6 +29,9 @@ class SplashVC: UIViewController {
         guard let homeVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "HomeVC") as? HomeVC else {return}
         self.navigationController?.pushViewController(homeVC, animated: true)
     }
+    
+   
+    
     func checkDeviceNetworkStatus() {
         guard let loginVC = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(identifier: "LoginVC") as? LoginVC else {return}
         //네트워크 이상없을때
@@ -64,4 +71,11 @@ class SplashVC: UIViewController {
         }
     }
     
+}
+
+extension UIDevice {
+    var hasNotch: Bool {
+        let bottom = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
+        return bottom > 0
+    }
 }
