@@ -50,6 +50,7 @@
 		363D26EE26B680A4009C2F90 /* DatePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D26ED26B680A4009C2F90 /* DatePickerVC.swift */; };
 		363D26F826B6F86D009C2F90 /* ScheduleDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 363D26F726B6F86D009C2F90 /* ScheduleDetail.storyboard */; };
 		363D26FA26B6F880009C2F90 /* ScheduleDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D26F926B6F880009C2F90 /* ScheduleDetailVC.swift */; };
+		36D7FB9B26BF058B00E97E9E /* DeleteInviteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D7FB9A26BF058B00E97E9E /* DeleteInviteService.swift */; };
 		36FB7F7126B03381001F2C39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FB7F7026B03381001F2C39 /* AppDelegate.swift */; };
 		36FB7F7326B03381001F2C39 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FB7F7226B03381001F2C39 /* SceneDelegate.swift */; };
 		36FB7F7526B03381001F2C39 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FB7F7426B03381001F2C39 /* ViewController.swift */; };
@@ -131,6 +132,7 @@
 		363D26ED26B680A4009C2F90 /* DatePickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerVC.swift; sourceTree = "<group>"; };
 		363D26F726B6F86D009C2F90 /* ScheduleDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ScheduleDetail.storyboard; sourceTree = "<group>"; };
 		363D26F926B6F880009C2F90 /* ScheduleDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDetailVC.swift; sourceTree = "<group>"; };
+		36D7FB9A26BF058B00E97E9E /* DeleteInviteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteInviteService.swift; sourceTree = "<group>"; };
 		36FB7F6D26B03381001F2C39 /* Awesome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Awesome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36FB7F7026B03381001F2C39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		36FB7F7226B03381001F2C39 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				3627E52E26BBF51F0047C9DF /* AppleLoginService.swift */,
 				3627E53226BC0DAD0047C9DF /* GetBlockScheduleDataService.swift */,
 				361DDA7B26BE940B002673C4 /* PostTokenDataService.swift */,
+				36D7FB9A26BF058B00E97E9E /* DeleteInviteService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -551,6 +554,7 @@
 				36FB7FC126B1ABCD001F2C39 /* DeviceConfig.swift in Sources */,
 				36FB7FBB26B18D6B001F2C39 /* KakaoLoginService.swift in Sources */,
 				36FB7FA926B07B7E001F2C39 /* NetworkResult.swift in Sources */,
+				36D7FB9B26BF058B00E97E9E /* DeleteInviteService.swift in Sources */,
 				3627E53326BC0DAD0047C9DF /* GetBlockScheduleDataService.swift in Sources */,
 				363D26EA26B5302B009C2F90 /* AddScheduleVC.swift in Sources */,
 				36FB7F9D26B0496F001F2C39 /* Extension+UIColor.swift in Sources */,

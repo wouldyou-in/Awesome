@@ -88,7 +88,9 @@ class SettingVC: UIViewController {
             self.present(activityVC, animated: true, completion: nil)
         }
         let cancelAction = UIAlertAction(title: "취소", style: .default)
-        {(action) in}
+        {(action) in
+            self.deleteInvite()
+        }
         alert.addAction(okAction)
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
@@ -157,7 +159,8 @@ class SettingVC: UIViewController {
 
         }
         let cancelAction = UIAlertAction(title: "취소", style: .default)
-        {(action) in}
+        {(action) in
+        }
         alert.addAction(okAction)
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
@@ -187,7 +190,7 @@ class SettingVC: UIViewController {
             switch(response)
             {
             case .success(let inviteData):
-                if let response = inviteData as? inviteCountModel{
+                if let response = inviteData as? InviteCountDataModel{
                     let inviteCount = 3 - response.invitations.count
                     self.intInviteCount = inviteCount
                     self.leftInviteLabel.text = "남은 초대장 : \(inviteCount)"
@@ -224,6 +227,21 @@ class SettingVC: UIViewController {
                 print("networkFail")
             }
         }
+    }
+    
+    func deleteInvite(){
+        let inviteToken = invite.components(separatedBy: "/")
+        print(inviteToken)
+        DeleteInviteData.shared.DeleteService(invitation_token: inviteToken[4]) { [self] result in
+                switch result{
+                case .success(let tokenData):
+                    print("삭제 성공")
+                case .requestErr(let msg):
+                    print("requestErr")
+                default :
+                    print("ERROR")
+                }
+            }
     }
 
 }
