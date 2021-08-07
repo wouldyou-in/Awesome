@@ -126,26 +126,36 @@ class CalendarVC: UIViewController {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         
-        for i in 0 ... blockDataDetail[0].block.count-1{
-            let startBlockdate = blockDataDetail[0].block[i].startDate.components(separatedBy: "T")
-            let endBlockdate = blockDataDetail[0].block[i].endDate.components(separatedBy: "T")
-            
-            var start = formatter.date(from: startBlockdate[0])
-            let end = formatter.date(from: endBlockdate[0])
-            
-            let interval = end!.timeIntervalSince(start!)
-            let days = Int(interval / 86400)
-            
-            blockDate.append(start ?? Date())
-            blockDate.append(end ?? Date())
-            
-            for k in 0 ... days-1{
-                var dateComponent = DateComponents(day: 1)
-                var plusDay = calendar.date(byAdding: dateComponent, to: start!)
-                start = plusDay
-            blockDate.append(plusDay!)
+        var blockCount: Int = blockDataDetail[0].block.count
+        var forBlockCount: Int = blockCount
+        
+        if blockCount != 0{
+            for i in 0 ... blockCount-1{
+                let startBlockdate = blockDataDetail[0].block[i].startDate.components(separatedBy: "T")
+                let endBlockdate = blockDataDetail[0].block[i].endDate.components(separatedBy: "T")
+                
+                var start = formatter.date(from: startBlockdate[0])
+                let end = formatter.date(from: endBlockdate[0])
+                
+                let interval = end!.timeIntervalSince(start!)
+                let days = Int(interval / 86400)
+                
+                blockDate.append(start ?? Date())
+                blockDate.append(end ?? Date())
+                
+                for k in 0 ... days-1{
+                    var dateComponent = DateComponents(day: 1)
+                    var plusDay = calendar.date(byAdding: dateComponent, to: start!)
+                    start = plusDay
+                blockDate.append(plusDay!)
+                }
             }
         }
+        else{
+            print("블락 데이터가 없습니다.")
+        }
+        
+        
     }
     
     func setCalendar(){
@@ -211,7 +221,7 @@ class CalendarVC: UIViewController {
         let nowdate = Date()
         let enddate = Calendar.current.date(byAdding: .day, value: 30, to: nowdate)
         let startDate = Calendar.current.date(byAdding: .day, value: -30, to: nowdate)
-    let weekFromNow = Date().advanced(by: 30.0)
+        let weekFromNow = Date().advanced(by: 30.0)
         let predicate = eventStore.predicateForEvents(withStart: startDate!, end: enddate!, calendars: nil)
             let events = eventStore.events(matching: predicate)
             let UpdateFormatter = DateFormatter()
