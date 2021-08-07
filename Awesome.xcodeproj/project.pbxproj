@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		361DDA7A26BE9401002673C4 /* PostTokenDatamodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361DDA7926BE9401002673C4 /* PostTokenDatamodel.swift */; };
+		361DDA7C26BE940B002673C4 /* PostTokenDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361DDA7B26BE940B002673C4 /* PostTokenDataService.swift */; };
 		3627E4FC26B8F13A0047C9DF /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3627E4FB26B8F13A0047C9DF /* UserProfile.swift */; };
 		3627E4FE26B8F1520047C9DF /* GetProfileData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3627E4FD26B8F1520047C9DF /* GetProfileData.swift */; };
 		3627E50026B969DB0047C9DF /* ScheduleNotice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3627E4FF26B969DB0047C9DF /* ScheduleNotice.swift */; };
@@ -85,6 +87,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		361DDA7926BE9401002673C4 /* PostTokenDatamodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTokenDatamodel.swift; sourceTree = "<group>"; };
+		361DDA7B26BE940B002673C4 /* PostTokenDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTokenDataService.swift; sourceTree = "<group>"; };
 		3627E4FB26B8F13A0047C9DF /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		3627E4FD26B8F1520047C9DF /* GetProfileData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetProfileData.swift; sourceTree = "<group>"; };
 		3627E4FF26B969DB0047C9DF /* ScheduleNotice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleNotice.swift; sourceTree = "<group>"; };
@@ -269,6 +273,7 @@
 				3627E52926BBDEC50047C9DF /* PostBlockDataService.swift */,
 				3627E52E26BBF51F0047C9DF /* AppleLoginService.swift */,
 				3627E53226BC0DAD0047C9DF /* GetBlockScheduleDataService.swift */,
+				361DDA7B26BE940B002673C4 /* PostTokenDataService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -290,6 +295,7 @@
 				3627E52726BBDEB80047C9DF /* PostBlockData.swift */,
 				3627E52C26BBF5130047C9DF /* AppleLoginDataModel.swift */,
 				3627E53026BC0D9F0047C9DF /* BlockScheduleDataModel.swift */,
+				361DDA7926BE9401002673C4 /* PostTokenDatamodel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -553,6 +559,7 @@
 				3627E51226B9CAA50047C9DF /* KakaoLogOutService.swift in Sources */,
 				3627E51026B9CA890047C9DF /* KakaoLogoutModel.swift in Sources */,
 				36FB7FA726B07B5C001F2C39 /* HomeDataModel.swift in Sources */,
+				361DDA7A26BE9401002673C4 /* PostTokenDatamodel.swift in Sources */,
 				36FB7FC926B286F6001F2C39 /* GetScheduleDataService.swift in Sources */,
 				3627E50226B969E50047C9DF /* GetScheduleNotice.swift in Sources */,
 				36FB7FA226B076A2001F2C39 /* HomeTVC.swift in Sources */,
@@ -560,6 +567,7 @@
 				36FB7FC326B1B7DA001F2C39 /* UpdateTokenModel.swift in Sources */,
 				3627E50026B969DB0047C9DF /* ScheduleNotice.swift in Sources */,
 				36FB7F9526B04008001F2C39 /* HomeVC.swift in Sources */,
+				361DDA7C26BE940B002673C4 /* PostTokenDataService.swift in Sources */,
 				3627E4FC26B8F13A0047C9DF /* UserProfile.swift in Sources */,
 				362E81BA26BDAB2C0058DAC6 /* HomeNotScheduleTVC.swift in Sources */,
 				36FB7F7126B03381001F2C39 /* AppDelegate.swift in Sources */,
@@ -669,6 +677,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Debug;
 		};
@@ -709,6 +718,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -742,7 +752,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = wouldyouin.dev.Awesome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -765,7 +775,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.5;
 				PRODUCT_BUNDLE_IDENTIFIER = wouldyouin.dev.Awesome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
