@@ -72,7 +72,6 @@ class CalendarVC: UIViewController {
                         self.serverData()
 }
                     self.calendarView.reloadData()
-                    print(self.Userevents)
                 }
             case .requestErr(let message):
                 print("requestERR")
@@ -277,7 +276,6 @@ class CalendarVC: UIViewController {
                 }
                 scheduleData.append(contentsOf:[eventCalendarModel(name: event.title, time: startTime + comma + finishTime, icon: "continueIcon", isFinish: isScheduleFinish)])
                 Userevents.append(event.startDate)
-//                  print("dd", scheduleData)
                 tableView.reloadData()
                   }
             if scheduleData.count != 0{
@@ -304,9 +302,8 @@ class CalendarVC: UIViewController {
                     isScheduleFinish = true
                 }
                 
-                scheduleData.append(contentsOf:[eventCalendarModel(name: userEvents.comment, time: startTime + comma + finishTime, icon: "continueIcon", isFinish: isScheduleFinish)])
+                scheduleData.append(contentsOf:[eventCalendarModel(name: userEvents.creatorName, time: startTime + comma + finishTime, icon: "continueIcon", isFinish: isScheduleFinish)])
 //                  Userevents.append(userEvents.startDate)
-              print("dd", scheduleData)
                 tableView.reloadData()
             }
             if scheduleData.count != 0{
@@ -461,7 +458,6 @@ extension CalendarVC: FSCalendarDataSource{
 }
 extension CalendarVC: FSCalendarDelegateAppearance{
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, borderDefaultColorFor date: Date) -> UIColor? {
-        print(blockDate)
         if blockDate.contains(date){
             return UIColor.mainPinkAlpha
         }
