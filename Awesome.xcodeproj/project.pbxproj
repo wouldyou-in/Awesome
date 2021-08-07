@@ -33,6 +33,8 @@
 		3627E52F26BBF51F0047C9DF /* AppleLoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3627E52E26BBF51F0047C9DF /* AppleLoginService.swift */; };
 		3627E53126BC0D9F0047C9DF /* BlockScheduleDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3627E53026BC0D9F0047C9DF /* BlockScheduleDataModel.swift */; };
 		3627E53326BC0DAD0047C9DF /* GetBlockScheduleDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3627E53226BC0DAD0047C9DF /* GetBlockScheduleDataService.swift */; };
+		362E81BA26BDAB2C0058DAC6 /* HomeNotScheduleTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362E81B826BDAB2C0058DAC6 /* HomeNotScheduleTVC.swift */; };
+		362E81BB26BDAB2C0058DAC6 /* HomeNotScheduleTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 362E81B926BDAB2C0058DAC6 /* HomeNotScheduleTVC.xib */; };
 		363D26DA26B40702009C2F90 /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 363D26D926B40702009C2F90 /* Calendar.storyboard */; };
 		363D26DC26B40718009C2F90 /* CalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D26DB26B40718009C2F90 /* CalendarVC.swift */; };
 		363D26DF26B4169F009C2F90 /* myScheduleTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D26DD26B4169F009C2F90 /* myScheduleTVC.swift */; };
@@ -110,6 +112,8 @@
 		3627E52E26BBF51F0047C9DF /* AppleLoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginService.swift; sourceTree = "<group>"; };
 		3627E53026BC0D9F0047C9DF /* BlockScheduleDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockScheduleDataModel.swift; sourceTree = "<group>"; };
 		3627E53226BC0DAD0047C9DF /* GetBlockScheduleDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBlockScheduleDataService.swift; sourceTree = "<group>"; };
+		362E81B826BDAB2C0058DAC6 /* HomeNotScheduleTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNotScheduleTVC.swift; sourceTree = "<group>"; };
+		362E81B926BDAB2C0058DAC6 /* HomeNotScheduleTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeNotScheduleTVC.xib; sourceTree = "<group>"; };
 		363D26D926B40702009C2F90 /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
 		363D26DB26B40718009C2F90 /* CalendarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarVC.swift; sourceTree = "<group>"; };
 		363D26DD26B4169F009C2F90 /* myScheduleTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myScheduleTVC.swift; sourceTree = "<group>"; };
@@ -304,6 +308,7 @@
 			isa = PBXGroup;
 			children = (
 				36FB7FA126B076A2001F2C39 /* HomeTVC.xib */,
+				362E81B926BDAB2C0058DAC6 /* HomeNotScheduleTVC.xib */,
 				363D26DE26B4169F009C2F90 /* myScheduleTVC.xib */,
 				363D26E226B416BE009C2F90 /* NoScheduleTVC.xib */,
 			);
@@ -367,6 +372,7 @@
 				36FB7FA026B076A2001F2C39 /* HomeTVC.swift */,
 				363D26DD26B4169F009C2F90 /* myScheduleTVC.swift */,
 				363D26E126B416BE009C2F90 /* NoScheduleTVC.swift */,
+				362E81B826BDAB2C0058DAC6 /* HomeNotScheduleTVC.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -471,6 +477,7 @@
 				363D26F826B6F86D009C2F90 /* ScheduleDetail.storyboard in Resources */,
 				363D26E426B416BE009C2F90 /* NoScheduleTVC.xib in Resources */,
 				36FB7F9326B03645001F2C39 /* Home.storyboard in Resources */,
+				362E81BB26BDAB2C0058DAC6 /* HomeNotScheduleTVC.xib in Resources */,
 				36FB7FB126B17C6F001F2C39 /* Login.storyboard in Resources */,
 				36FB7F9A26B0415D001F2C39 /* GmarketSansTTFMedium.ttf in Resources */,
 				363D26DA26B40702009C2F90 /* Calendar.storyboard in Resources */,
@@ -554,6 +561,7 @@
 				3627E50026B969DB0047C9DF /* ScheduleNotice.swift in Sources */,
 				36FB7F9526B04008001F2C39 /* HomeVC.swift in Sources */,
 				3627E4FC26B8F13A0047C9DF /* UserProfile.swift in Sources */,
+				362E81BA26BDAB2C0058DAC6 /* HomeNotScheduleTVC.swift in Sources */,
 				36FB7F7126B03381001F2C39 /* AppDelegate.swift in Sources */,
 				363D26EE26B680A4009C2F90 /* DatePickerVC.swift in Sources */,
 				3627E52D26BBF5130047C9DF /* AppleLoginDataModel.swift in Sources */,
