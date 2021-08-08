@@ -98,7 +98,7 @@ class BlockScheduleVC: UIViewController {
         let startDate = formatter.date(from: startTime)
         let endDate = formatter.date(from: endTime)
         if startTime.contains("시작기간") || endTime.contains("종료기간") {
-            self.makeAlert(title: "오류", message: "기간을 입력하지 않았습니다. 시작기관과 종료기간을 정확히 입력해주세요")
+            self.makeAlert(title: "오류", message: "기간을 입력하지 않았습니다. 시작기간과 종료기간을 정확히 입력해주세요")
         }
         else {
         let judgeMentTime = Int(startDate!.timeIntervalSince(endDate!))
