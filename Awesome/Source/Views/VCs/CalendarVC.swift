@@ -223,7 +223,6 @@ class CalendarVC: UIViewController {
             eventStore.requestAccess(to: .event) { (granted, error) in
                 if granted {
                     DispatchQueue.main.async {
-                        // load events
                     }
                 }
             }
@@ -279,7 +278,7 @@ class CalendarVC: UIViewController {
                   let startTime = startTimeFormatter.string(from: event.startDate)
                   let finishTime = finishTimeFormatter.string(from: event.endDate)
             if checkDate == start{
-                print(days(from: event.endDate),"이게맞냐?")
+//                print(days(from: event.endDate),"이게맞냐?")
                 if days(from: event.endDate) > 0 {
                     isScheduleFinish = true
                 }
