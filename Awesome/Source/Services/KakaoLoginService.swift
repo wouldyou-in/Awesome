@@ -66,12 +66,13 @@ struct GetKakaoLoginTokenService
     func getRecommendInfo(completion : @escaping (NetworkResult<Any>) -> Void)
     {
         
-        let defaults = UserDefaults.standard
-        let code : String = defaults.string(forKey: "userToken") ?? ""
+//        let defaults = UserDefaults.standard
+//        let code : String = defaults.string(forKey: "userToken") ?? ""
         
         // completion 클로저를 @escaping closure로 정의합니다.
 
-        let URL = "https://api.wouldyou.in/user/kakao/callback?code="+code+"&login=true"
+//        let URL = "https://api.wouldyou.in/user/kakao/callback?code="+code+"&login=true"
+        let URL = Constants.loginString + "&login=true"
         let header : HTTPHeaders = ["Content-Type": "application/json"]
 
         
@@ -118,6 +119,9 @@ struct GetKakaoLoginTokenService
         defaults.set(decodedData.accessToken , forKey: "accessToken")
         defaults.set(decodedData.user.name, forKey: "myName")
         defaults.set(decodedData.user.id, forKey: "myKey")
+        defaults.set(true, forKey: "kakaoLoginSucces")
+        defaults.set(true, forKey: "loginBool")
+//        defaults.set(loginData, forKey: "userToken")
         print("리프레시 토큰입니다." , defaults.string(forKey: "refreshToken"))
         print(decodedData.user)
         return .success(decodedData.accessToken)
