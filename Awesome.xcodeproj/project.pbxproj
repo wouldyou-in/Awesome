@@ -50,6 +50,7 @@
 		363D26EE26B680A4009C2F90 /* DatePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D26ED26B680A4009C2F90 /* DatePickerVC.swift */; };
 		363D26F826B6F86D009C2F90 /* ScheduleDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 363D26F726B6F86D009C2F90 /* ScheduleDetail.storyboard */; };
 		363D26FA26B6F880009C2F90 /* ScheduleDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D26F926B6F880009C2F90 /* ScheduleDetailVC.swift */; };
+		366534A726C0043600FE18C8 /* Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366534A626C0043600FE18C8 /* Extension+UIViewController.swift */; };
 		36D7FB9B26BF058B00E97E9E /* DeleteInviteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D7FB9A26BF058B00E97E9E /* DeleteInviteService.swift */; };
 		36FB7F7126B03381001F2C39 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FB7F7026B03381001F2C39 /* AppDelegate.swift */; };
 		36FB7F7326B03381001F2C39 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FB7F7226B03381001F2C39 /* SceneDelegate.swift */; };
@@ -132,6 +133,7 @@
 		363D26ED26B680A4009C2F90 /* DatePickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerVC.swift; sourceTree = "<group>"; };
 		363D26F726B6F86D009C2F90 /* ScheduleDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ScheduleDetail.storyboard; sourceTree = "<group>"; };
 		363D26F926B6F880009C2F90 /* ScheduleDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleDetailVC.swift; sourceTree = "<group>"; };
+		366534A626C0043600FE18C8 /* Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIViewController.swift"; sourceTree = "<group>"; };
 		36D7FB9A26BF058B00E97E9E /* DeleteInviteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteInviteService.swift; sourceTree = "<group>"; };
 		36FB7F6D26B03381001F2C39 /* Awesome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Awesome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36FB7F7026B03381001F2C39 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 				36FB7F9C26B0496F001F2C39 /* Extension+UIColor.swift */,
 				36FB7F9E26B04986001F2C39 /* Extension+UIFont.swift */,
 				36FB7FA426B07A11001F2C39 /* Extension+TableView.swift */,
+				366534A626C0043600FE18C8 /* Extension+UIViewController.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -551,6 +554,7 @@
 				3627E52F26BBF51F0047C9DF /* AppleLoginService.swift in Sources */,
 				363D26DC26B40718009C2F90 /* CalendarVC.swift in Sources */,
 				36FB7FAB26B07B98001F2C39 /* Constants.swift in Sources */,
+				366534A726C0043600FE18C8 /* Extension+UIViewController.swift in Sources */,
 				36FB7FC126B1ABCD001F2C39 /* DeviceConfig.swift in Sources */,
 				36FB7FBB26B18D6B001F2C39 /* KakaoLoginService.swift in Sources */,
 				36FB7FA926B07B7E001F2C39 /* NetworkResult.swift in Sources */,
@@ -756,7 +760,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.6;
+				MARKETING_VERSION = 1.0.7;
 				PRODUCT_BUNDLE_IDENTIFIER = wouldyouin.dev.Awesome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -779,7 +783,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.6;
+				MARKETING_VERSION = 1.0.7;
 				PRODUCT_BUNDLE_IDENTIFIER = wouldyouin.dev.Awesome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
