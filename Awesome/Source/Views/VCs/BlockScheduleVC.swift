@@ -43,28 +43,28 @@ class BlockScheduleVC: UIViewController {
         let startSplitDate = startTime.components(separatedBy: "/")
         let endSplitDate = endTime.components(separatedBy: "/")
         
-        let startYear = startSplitDate[2]
-        var startMonth = startSplitDate[0]
-        if Int(startMonth)! < 10 {
-            startMonth = "0\(startMonth)"
-        }
-        var startMonthDay = startSplitDate[1]
-        if Int(startMonthDay)! < 10{
-            startMonthDay = "0\(startMonthDay)"
-        }
+        let startYear = startSplitDate[0]
+        var startMonth = startSplitDate[1]
+//        if Int(startMonth)! < 10 {
+//            startMonth = "0\(startMonth)"
+//        }
+        var startMonthDay = startSplitDate[2]
+//        if Int(startMonthDay)! < 10{
+//            startMonthDay = "0\(startMonthDay)"
+//        }
         
-        let endYear = endSplitDate[2]
-        var endMonth = endSplitDate[0]
-        if Int(endMonth)! < 10 {
-            endMonth = "0\(endMonth)"
-        }
-        var endMonthDay = endSplitDate[1]
-        if Int(endMonthDay)! < 10{
-            endMonthDay = "0\(endMonthDay)"
-        }
+        let endYear = endSplitDate[0]
+        var endMonth = endSplitDate[1]
+//        if Int(endMonth)! < 10 {
+//            endMonth = "0\(endMonth)"
+//        }
+        var endMonthDay = endSplitDate[2]
+//        if Int(endMonthDay)! < 10{
+//            endMonthDay = "0\(endMonthDay)"
+//        }
         
-        let startDate: String = "20\(startYear)-\(startMonth)-\(startMonthDay) 00:00:00"
-        let endDate: String = "20\(endYear)-\(endMonth)-\(endMonthDay) 23:59:59"
+        let startDate: String = "\(startYear)-\(startMonth)-\(startMonthDay) 00:00:00"
+        let endDate: String = "\(endYear)-\(endMonth)-\(endMonthDay) 23:59:59"
         
         print(startDate, endDate)
         PostBlockDataService.shared.postScheduleService(start_date: startDate, end_date: endDate) { [self] result in
@@ -92,8 +92,25 @@ class BlockScheduleVC: UIViewController {
         endVC.endDelegate = self
     }
     @IBAction func okButtonClicked(_ sender: Any) {
-        setDateData()
-        self.dismiss(animated: true, completion: nil)
+        let calendar = Calendar.current
+        var formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd"
+        let startDate = formatter.date(from: startTime)
+        let endDate = formatter.date(from: endTime)
+        if startTime.contains("시작기간") || endTime.contains("종료기간") {
+            self.makeAlert(title: "오류", message: "기간을 입력하지 않았습니다. 시작기관과 종료기간을 정확히 입력해주세요")
+        }
+        else {
+        let judgeMentTime = Int(startDate!.timeIntervalSince(endDate!))
+        if judgeMentTime > 0 {
+            self.makeAlert(title: "오류", message: "기간이 잘못 입력되었습니다. 다시입력해주세요")
+        }
+        else{
+            setDateData()
+            self.dismiss(animated: true, completion: nil)
+        }
+        }
+       
     }
     
 }
