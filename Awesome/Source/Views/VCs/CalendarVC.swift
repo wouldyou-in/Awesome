@@ -9,6 +9,10 @@ import UIKit
 import FSCalendar
 import EventKit
 
+protocol refreshDelegate {
+    func refreshDelegate()
+}
+
 class CalendarVC: UIViewController {
 //MARK: IBOulet
     @IBOutlet weak var headerView: UIView!
@@ -40,13 +44,19 @@ class CalendarVC: UIViewController {
     var checkDate : String = ""
     var isScheduleFinish: Bool = false
     let appdelegate = UIApplication.shared.delegate as! AppDelegate
+    var beforeCheckDate: String = ""
     
     var userEventsDetail: [CalendarDataModel] = []
     var scheduleData: [eventCalendarModel] = []
     var blockDataDetail: [BlockDataModel] = []
     
 //MARK: viewDidLoad
-    
+    override func viewDidDisappear(_ animated: Bool) {
+        print("viewdiddisapper")
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        print("viewwillapper")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.sendSubviewToBack(tableView)
@@ -76,10 +86,12 @@ class CalendarVC: UIViewController {
                 if let response = loginData as? CalendarDataModel{
                     DispatchQueue.global().sync {
                         self.userEventsDetail.append(response)
+                        print("어펜드 끝")
                     }
                     if response.myCalendar.count != 0{
                         self.serverData()
-}
+                        self.calendarView.reloadData()
+                    }
                     self.calendarView.reloadData()
                 }
             case .requestErr(let message):
@@ -101,7 +113,9 @@ class CalendarVC: UIViewController {
             case .success(let loginData):
                 if let response = loginData as? BlockDataModel{
                     self.blockDataDetail.append(response)
+                    print("어펜드 끝")
                 }
+                self.calendarView.reloadData()
                 self.setBlockData()
             case .requestErr(let message):
                 print("requestERR")
@@ -119,13 +133,22 @@ class CalendarVC: UIViewController {
         let UpdateFormatter = DateFormatter()
         UpdateFormatter.locale = Locale(identifier: "ko_KR")
         UpdateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        if userEventsDetail[0].myCalendar.count == 0{
+            print("없음 ㅠ")
+        }
+        else{
+        
         for i in 0 ... userEventsDetail[0].myCalendar.count - 1{
-            if userEventsDetail[0].myCalendar[i].isAccept == true{
+            if userEventsDetail[0].myCalendar[i].isAccept! == true{
+                print("서버 데이터")
                 let dateData = UpdateFormatter.string(from: userEventsDetail[0].myCalendar[i].startDate)
                 let realData = UpdateFormatter.date(from: dateData)
                 Userevents.append(realData!)
             }
-            
+        }
+            setdate()
+
         }
     }
     func setBlockData(){
@@ -172,6 +195,7 @@ class CalendarVC: UIViewController {
     }
     
     func setCalendar(){
+        let formatter = DateFormatter()
         appdelegate.shouldSupportAllOrientation = false
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         navigationController?.interactivePopGestureRecognizer?.delegate = self
@@ -198,9 +222,10 @@ class CalendarVC: UIViewController {
         calendarView.calendarWeekdayView.weekdayLabels[5].text = "Fr"
         calendarView.calendarWeekdayView.weekdayLabels[6].text = "Sa"
         calendarView.firstWeekday = 1
-        let formatter = DateFormatter()
-        formatter.dateFormat = "YYYY-MM-dd"
+        formatter.dateFormat = "yyyy-MM-dd"
         checkDate = formatter.string(from: Date())
+        print("adsf", checkDate)
+        setdate()
     }
     func setCell(){
         tableView.registerCustomXib(xibName: "myScheduleTVC")
@@ -266,6 +291,7 @@ class CalendarVC: UIViewController {
 //        dateFormatter.dateFormat = "yyyy-mm-DD"
 //        let convertDate = dateFormatter.date(from: checkDate)
         let checkDateConvert = checkDate
+        beforeCheckDate = checkDate
         let nowdate = Date()
         let enddate = Calendar.current.date(byAdding: .day, value: 30, to: nowdate)
         let startDate = Calendar.current.date(byAdding: .day, value: -30, to: nowdate)
@@ -308,13 +334,12 @@ class CalendarVC: UIViewController {
           }
         if userEventsDetail.count != 0{
         for userEvents in userEventsDetail[0].myCalendar{
-            
+            checkDate = beforeCheckDate
             if userEvents.isAccept == true {
             let start = formatter.string(from: userEvents.startDate)
             let startTime = startTimeFormatter.string(from: userEvents.startDate)
             let finishTime = finishTimeFormatter.string(from: userEvents.endDate)
             if checkDate == start{
-                
                 if days(from: userEvents.endDate) < 0 {
                     isScheduleFinish = false
                 }
@@ -324,10 +349,12 @@ class CalendarVC: UIViewController {
                 
                 scheduleData.append(contentsOf:[eventCalendarModel(name: userEvents.creatorName, time: startTime + comma + finishTime, icon: "continueIcon", isFinish: isScheduleFinish)])
 //                  Userevents.append(userEvents.startDate)
+                print("asdfasfasfasfdasfsdfasfsfdfadfa")
                 tableView.reloadData()
             }
             if scheduleData.count != 0{
             isSchedule = true
+                self.tableView.reloadData()
             }
             else{
             isSchedule = false
@@ -378,11 +405,14 @@ class CalendarVC: UIViewController {
     @IBAction func plusScheduleButtonClicked(_ sender: Any) {
         guard let plusVC = UIStoryboard(name: "AddSchedule", bundle: nil).instantiateViewController(identifier: "AddScheduleVC") as? AddScheduleVC else {return}
         self.present(plusVC, animated: true, completion: nil)
+        plusVC.delegate = self
         plusVC.selectDay = checkDate
+        beforeCheckDate = checkDate
     }
     
     @IBAction func notScheduleButtonClicked(_ sender: Any) {
         guard let blockVC = UIStoryboard(name: "BlockSchedule", bundle: nil).instantiateViewController(identifier: "BlockScheduleVC") as? BlockScheduleVC else {return}
+        blockVC.delegate = self
         self.present(blockVC, animated: true, completion: nil)
     }
     
@@ -397,11 +427,11 @@ extension CalendarVC: UITableViewDelegate{
 extension CalendarVC: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isSchedule == true{
-            print(isSchedule,"daf")
+//            print(isSchedule,"daf")
                   return scheduleData.count
               }
         else{
-            print(isSchedule,"daf")
+//            print(isSchedule,"daf")
             return 1
         }
     }
@@ -434,7 +464,6 @@ extension CalendarVC: FSCalendarDelegate{
     
     public func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         tableView.reloadData()
-        
 //        let selectFormatter = DateFormatter()
 //        selectFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
         
@@ -450,7 +479,6 @@ extension CalendarVC: FSCalendarDelegate{
         dayData = dayFormatter.string(from: date)
         
         checkDate = yearData+"-"+monthData+"-"+dayData
-        print(checkDate)
         setdate()
           }
     
@@ -490,5 +518,19 @@ extension CalendarVC: FSCalendarDelegateAppearance{
 extension CalendarVC: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
+    }
+}
+
+extension CalendarVC: refreshDelegate{
+    func refreshDelegate() {
+//        guard let calendarVC = UIStoryboard(name: "Calendar", bundle: nil).instantiateViewController(identifier: "CalendarVC") as? CalendarVC else {return}
+//        self.navigationController?.popViewController(animated: true)
+//        self.navigationController?.pushViewController(calendarVC, animated: false)
+        Userevents = []
+        userEventsDetail = []
+        setCalendarData()
+        setUserEvents()
+        print("dfd", checkDate)
+        tableView.reloadData()
     }
 }
