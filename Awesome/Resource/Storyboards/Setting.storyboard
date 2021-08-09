@@ -76,7 +76,7 @@
                                 <rect key="frame" x="30" y="144" width="354" height="80"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IMC-cL-Myf">
-                                        <rect key="frame" x="0.0" y="50" width="354" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="354" height="80"/>
                                         <connections>
                                             <action selector="linkShareButtonClicked:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="d81-SE-D4c"/>
                                         </connections>
@@ -101,6 +101,7 @@
                                     <constraint firstAttribute="bottom" secondItem="IMC-cL-Myf" secondAttribute="bottom" id="T5c-yC-zx6"/>
                                     <constraint firstItem="J0S-IF-uyZ" firstAttribute="top" secondItem="2lG-bo-P3m" secondAttribute="bottom" constant="5" id="UUa-fT-C9H"/>
                                     <constraint firstItem="2lG-bo-P3m" firstAttribute="top" secondItem="gej-ar-IMm" secondAttribute="top" constant="20" id="VNI-yG-trv"/>
+                                    <constraint firstItem="IMC-cL-Myf" firstAttribute="top" secondItem="gej-ar-IMm" secondAttribute="top" id="bQt-n9-CjJ"/>
                                     <constraint firstItem="IMC-cL-Myf" firstAttribute="leading" secondItem="gej-ar-IMm" secondAttribute="leading" id="iCa-Oa-c4c"/>
                                     <constraint firstAttribute="height" constant="80" id="v33-Ll-kdz"/>
                                     <constraint firstItem="2lG-bo-P3m" firstAttribute="leading" secondItem="gej-ar-IMm" secondAttribute="leading" constant="20" id="wH0-w5-qC0"/>
@@ -230,6 +231,7 @@
                             <constraint firstItem="yaO-Jh-HcN" firstAttribute="top" secondItem="Sqq-HF-YlZ" secondAttribute="bottom" constant="10" id="xcx-PP-pSH"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="5Qe-20-Gck"/>
                     <connections>
                         <outlet property="LogoutView" destination="Sqq-HF-YlZ" id="GVU-ie-ftB"/>
                         <outlet property="backGroundView" destination="5EZ-qb-Rvc" id="3tQ-iQ-z6K"/>
@@ -246,7 +248,24 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="35" y="69"/>
+            <point key="canvasLocation" x="944.92753623188412" y="68.973214285714278"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="e9c-er-4Gz">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="NQH-D4-DoF" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qlW-xf-t48">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="rRB-8A-4Qx"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wr2-Hn-zpj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="34.782608695652179" y="68.973214285714278"/>
         </scene>
     </scenes>
     <resources>

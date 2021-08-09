@@ -41,6 +41,8 @@ class SettingVC: UIViewController {
     }
 //MARK: Function
     func setHeaderView(){
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = true
+        navigationController?.interactivePopGestureRecognizer?.delegate = self
         appdelegate.shouldSupportAllOrientation = false
         backGroundView.backgroundColor = UIColor.mainGray
         headerView.backgroundColor = UIColor.mainGray
@@ -82,11 +84,25 @@ class SettingVC: UIViewController {
         let alert = UIAlertController(title: "초대장 공유", message: "초대장을 다른 사람들에게 공유하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
         let okAction = UIAlertAction(title: "확인", style: .default) { (action) in
             let activityVC = UIActivityViewController(activityItems: self.inviteLink, applicationActivities: nil)
-                activityVC.popoverPresentationController?.sourceView = self.view
+            activityVC.popoverPresentationController?.sourceView = self.view
+            
+            if let popoverController = activityVC.popoverPresentationController {
+                popoverController.sourceView = self.view //to set the source of your alert
+                popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0) // you can set this as per your requirement.
+                popoverController.permittedArrowDirections = [] //to hide the arrow of any particular direction
+            }
+            
             self.present(activityVC, animated: true, completion: nil)
+            
+            activityVC.completionWithItemsHandler = { (activityType: UIActivity.ActivityType?, completed: Bool, arrayReturnedItems: [Any]?, error: Error?) in if completed { }
+            else { self.deleteInvite() }
+                if let shareError = error { } }
+
         }
         let cancelAction = UIAlertAction(title: "취소", style: .default)
-        {(action) in}
+        {(action) in
+            self.deleteInvite()
+        }
         alert.addAction(okAction)
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
@@ -121,14 +137,24 @@ class SettingVC: UIViewController {
     
     @IBAction func linkShareButtonClicked(_ sender: Any) {
         var objectsToShare = [String]()
-        if let text = shareLabel.text{
-                   objectsToShare.append(text)
-                   print("[INFO] textField's Text : ", text)
-               }
+        objectsToShare.append("나의 어떰 프로필을 공유합니다.")
+//        if let text = shareLabel.text{
+//                   objectsToShare.append(text)
+//                   print("[INFO] textField's Text : ", text)
+//               }
                let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
                activityVC.popoverPresentationController?.sourceView = self.view
                self.present(activityVC, animated: true, completion: nil)
+        
+        if let popoverController = activityVC.popoverPresentationController {
+            popoverController.sourceView = self.view //to set the source of your alert
+            popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0) // you can set this as per your requirement.
+            popoverController.permittedArrowDirections = [] //to hide the arrow of any particular direction
+        }
     }
+    
+    
+    
     @IBAction func logoutButtonClicked(_ sender: Any) {
         guard let resetVC = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(identifier: "LoginVC") as? LoginVC else {return}
         let alert = UIAlertController(title: "로그아웃", message: "로그아웃하여 초기화면으로 이동합니다.", preferredStyle: UIAlertController.Style.alert)
@@ -155,7 +181,8 @@ class SettingVC: UIViewController {
 
         }
         let cancelAction = UIAlertAction(title: "취소", style: .default)
-        {(action) in}
+        {(action) in
+        }
         alert.addAction(okAction)
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
@@ -185,7 +212,7 @@ class SettingVC: UIViewController {
             switch(response)
             {
             case .success(let inviteData):
-                if let response = inviteData as? inviteCountModel{
+                if let response = inviteData as? InviteCountDataModel{
                     let inviteCount = 3 - response.invitations.count
                     self.intInviteCount = inviteCount
                     self.leftInviteLabel.text = "남은 초대장 : \(inviteCount)"
@@ -223,8 +250,29 @@ class SettingVC: UIViewController {
             }
         }
     }
+    
+    func deleteInvite(){
+        let inviteToken = invite.components(separatedBy: "/")
+        print(inviteToken)
+        DeleteInviteData.shared.DeleteService(invitation_token: inviteToken[4]) { [self] result in
+                switch result{
+                case .success(let tokenData):
+                    print("삭제 성공")
+                case .requestErr(let msg):
+                    print("requestErr")
+                default :
+                    print("ERROR")
+                }
+            }
+    }
 
 }
 extension SettingVC: UNUserNotificationCenterDelegate{
     
+}
+
+extension SettingVC: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
 }

@@ -23,7 +23,6 @@ struct GetCalendarDataService
             case .success:
                 guard let statusCode = dataResponse.response?.statusCode else {return}
                 guard let value = dataResponse.value else {return}
-                print("dd", statusCode)
                 let networkResult = self.judgeStatus(by: statusCode, value)
                 completion(networkResult)
             
@@ -43,14 +42,14 @@ struct GetCalendarDataService
         }
     }
     
-    private func isValidData(data : Data) -> NetworkResult<Any> {
-        
+    private func isValidData(data : Data) -> NetworkResult<Any> {        
         let defaults = UserDefaults.standard
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
         guard let decodedData = try? decoder.decode(CalendarDataModel.self, from: data)
+        
         else {return .pathErr}
-    
+        print("통신끝남", decodedData.myCalendar)
         return .success(decodedData)
 
     }
