@@ -20,6 +20,7 @@ class AddScheduleVC: UIViewController {
     var nameText : String = "이름"
     var startTime : String = "시작시간"
     var finishTime : String = "종료시간"
+    var delegate: refreshDelegate?
 
     var startHour: Int = 0
     var finishHour: Int = 0
@@ -52,6 +53,7 @@ class AddScheduleVC: UIViewController {
             switch result{
             case .success(let tokenData):
                 print("수락 혹은 거절 성공")
+                delegate?.refreshDelegate()
             case .requestErr(let msg):
                 print("requestErr")
             default :
@@ -80,7 +82,6 @@ class AddScheduleVC: UIViewController {
     
   
     @IBAction func okButtonClicked(_ sender: Any) {
-        
 //
 //
 //        let calendar = Calendar.current
