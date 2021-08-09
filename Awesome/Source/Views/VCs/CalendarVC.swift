@@ -151,11 +151,16 @@ class CalendarVC: UIViewController {
                 blockDate.append(start ?? Date())
                 blockDate.append(end ?? Date())
                 
+                if days == 0{
+                    print("하루임 ㅋ")
+                }
+                else{
                 for k in 0 ... days-1{
                     var dateComponent = DateComponents(day: 1)
                     var plusDay = calendar.date(byAdding: dateComponent, to: start!)
                     start = plusDay
                 blockDate.append(plusDay!)
+                }
                 }
             }
         }
@@ -223,6 +228,8 @@ class CalendarVC: UIViewController {
             eventStore.requestAccess(to: .event) { (granted, error) in
                 if granted {
                     DispatchQueue.main.async {
+                        self.setUserEvents()
+                        self.calendarView.reloadData()
                     }
                 }
             }
