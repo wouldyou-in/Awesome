@@ -60,6 +60,7 @@ class CalendarVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.sendSubviewToBack(tableView)
+        self.view.sendSubviewToBack(calendarView)
         setiPadUI()
         setCell()
         setCalendar()
