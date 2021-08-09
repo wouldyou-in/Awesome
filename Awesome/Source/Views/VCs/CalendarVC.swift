@@ -528,8 +528,12 @@ extension CalendarVC: refreshDelegate{
 //        self.navigationController?.pushViewController(calendarVC, animated: false)
         Userevents = []
         userEventsDetail = []
+        blockDate = []
+        blockDateString = []
+        blockDataDetail = []
         setCalendarData()
         setUserEvents()
+        getBlockDateData()
         print("dfd", checkDate)
         tableView.reloadData()
     }

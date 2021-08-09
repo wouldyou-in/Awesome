@@ -19,6 +19,7 @@ class BlockScheduleVC: UIViewController {
     var startTime: String = "시작기간"
     var endTime: String = "종료기간"
     let appdelegate = UIApplication.shared.delegate as! AppDelegate
+    var delegate: refreshDelegate?
 
     
     override func viewDidLoad() {
@@ -107,6 +108,7 @@ class BlockScheduleVC: UIViewController {
         }
         else{
             setDateData()
+            delegate?.refreshDelegate()
             self.dismiss(animated: true, completion: nil)
         }
         }
