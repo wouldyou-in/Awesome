@@ -228,7 +228,9 @@ class CalendarVC: UIViewController {
             eventStore.requestAccess(to: .event) { (granted, error) in
                 if granted {
                     DispatchQueue.main.async {
+                        self.eventStore.reset()
                         self.setUserEvents()
+                        self.setdate()
                         self.calendarView.reloadData()
                     }
                 }
