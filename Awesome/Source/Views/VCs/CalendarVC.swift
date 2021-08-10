@@ -26,6 +26,7 @@ class CalendarVC: UIViewController {
     @IBOutlet weak var ScheduleButton: UIButton!
     @IBOutlet weak var calendarConstarint: NSLayoutConstraint!
     
+    
 //MARK: Var
     
     lazy var scheduleButtons: [UIButton] = [self.plusScheduleButton, self.notScheduleButton]
@@ -70,6 +71,7 @@ class CalendarVC: UIViewController {
         setdate()
         setCalendarData()
         getBlockDateData()
+        appdelegate.shouldSupportAllOrientation = false
     }
 //MARK: Function
     func setiPadUI(){
@@ -223,6 +225,7 @@ class CalendarVC: UIViewController {
         calendarView.calendarWeekdayView.weekdayLabels[5].text = "Fr"
         calendarView.calendarWeekdayView.weekdayLabels[6].text = "Sa"
         calendarView.firstWeekday = 1
+        calendarView.appearance.titleFont = UIFont.gmarketSansMediumFont(ofSize: 13)
         formatter.dateFormat = "yyyy-MM-dd"
         checkDate = formatter.string(from: Date())
         print("adsf", checkDate)
@@ -506,16 +509,50 @@ extension CalendarVC: FSCalendarDataSource{
     }
 }
 extension CalendarVC: FSCalendarDelegateAppearance{
-    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, borderDefaultColorFor date: Date) -> UIColor? {
+//
+//    func calendar(_ calendar: FSCalendar, titleFor date: Date) -> String? {
+//        let formatter = DateFormatter()
+//        formatter.dateFormat = "d"
+//        var dateStr = formatter.string(from: date)
+//        if blockDate.contains(date){
+//            return dateStr
+//        }
+//        else{
+//            return dateStr
+//        }
+//    }
+
+    
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
         if blockDate.contains(date){
-            return UIColor.mainPinkAlpha
+        return UIColor.gray
+        }
+        else{
+            return .black
+        }
+    }
+    func calendar(_ calendar: FSCalendar, subtitleFor date: Date) -> String? {
+        if blockDate.contains(date){
+            return "😴"
         }
         else{
             return .none
         }
     }
+//    func calendar(_ calendar: FSCalendar, imageFor date: Date) -> UIImage? {
+//        if blockDate.contains(date){
+//            return UIImage(named: "line")
+//        }
+//        else{
+//            return .none
+//        }
+//    }
+//    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, imageOffsetFor date: Date) -> CGPoint {
+//        print(calendarView.collectionView.fs_height)
+//        return CGPoint(x:20, y: 20)
+//    }
 }
-
+    
 extension CalendarVC: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
@@ -538,4 +575,10 @@ extension CalendarVC: refreshDelegate{
         print("dfd", checkDate)
         tableView.reloadData()
     }
+}
+
+extension String { // 취소선 긋기
+    func strikeThrough() -> NSAttributedString { let attributeString = NSMutableAttributedString(string: self)
+        attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: NSUnderlineStyle.single.rawValue, range: NSMakeRange(0,attributeString.length))
+        return attributeString }
 }

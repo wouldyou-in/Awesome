@@ -31,6 +31,7 @@
 	<string>사용자의 일정을 불러오기 위해 필요한 권한입니다.</string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>BPtypewriteStrikethrough.ttf</string>
 		<string>GmarketSansTTFBold.ttf</string>
 		<string>GmarketSansTTFMedium.ttf</string>
 		<string>GmarketSansTTFLight.ttf</string>

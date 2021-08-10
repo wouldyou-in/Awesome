@@ -74,6 +74,8 @@ class HomeVC: UIViewController {
         settingButton.layer.borderColor = UIColor.clear.cgColor
         settingButton.layer.cornerRadius = settingButton.frame.height/2
         
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        
     }
     
     func uiReSize() {
