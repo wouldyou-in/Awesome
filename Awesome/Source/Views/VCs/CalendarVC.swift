@@ -26,6 +26,7 @@ class CalendarVC: UIViewController {
     @IBOutlet weak var ScheduleButton: UIButton!
     @IBOutlet weak var calendarConstarint: NSLayoutConstraint!
     
+    
 //MARK: Var
     
     lazy var scheduleButtons: [UIButton] = [self.plusScheduleButton, self.notScheduleButton]
@@ -70,6 +71,7 @@ class CalendarVC: UIViewController {
         setdate()
         setCalendarData()
         getBlockDateData()
+        appdelegate.shouldSupportAllOrientation = false
     }
 //MARK: Function
     func setiPadUI(){
