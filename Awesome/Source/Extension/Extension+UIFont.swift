@@ -19,4 +19,6 @@ extension UIFont{
     @objc class func gmarketSansMediumFont(ofSize size: CGFloat) -> UIFont {
         return UIFont(name: AppFontName.medium, size: size)!
     }
+ 
+    
 }
