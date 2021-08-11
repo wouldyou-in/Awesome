@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AuthenticationServices
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
@@ -20,8 +21,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             return UIInterfaceOrientationMask.portrait
         }
     }
+    func isAppleLogout(){
+            if #available(iOS 13.0, *) {
+                        let appleIDProvider = ASAuthorizationAppleIDProvider()
+                appleIDProvider.getCredentialState(forUserID: UserDefaults.standard.string(forKey: "userID")!) { (credentialState, error) in
+                            switch credentialState {
+                            case .authorized:
+                                print("애플인증성공상태")
+                            case .revoked:
+                                print("애플인증만료")
+                                let defaults = UserDefaults.standard
+                                let refresh = defaults.string(forKey: "refreshToken")
+                                GetLogoutService.shared.AutoLoginService(refresh_token: refresh!) { [self] result in
+                                    switch result{
+                                    case .success(let tokenData):
+                                        print("로그아웃 성공")
+                                        defaults.removeObject(forKey: "refreshToken")
+                                        defaults.removeObject(forKey: "accessToken")
+                                        defaults.removeObject(forKey: "name")
+                                        defaults.removeObject(forKey: "profile")
+                                        defaults.removeObject(forKey: "kakaoLoginSucces")
+                                        defaults.removeObject(forKey: "appleLoginSuccess")
+                                        defaults.setValue(false, forKey: "loginBool")
+                                    case .requestErr(let msg):
+                                        print("requestErr")
+                                    default :
+                                        print("ERROR")
+                                    }
+                                }                                //인증만료 상태
+                            default:
+                                print("에러")
+                                //.notFound 등 이외 상태
+                            }
+                        }
+                }
+            
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        isAppleLogout()
         application.registerForRemoteNotifications()
         UNUserNotificationCenter.current().delegate = self
         print(UserDefaults.standard.bool(forKey: "loginBool"))
