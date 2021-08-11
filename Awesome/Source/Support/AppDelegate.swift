@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func isAppleLogout(){
             if #available(iOS 13.0, *) {
                         let appleIDProvider = ASAuthorizationAppleIDProvider()
-                appleIDProvider.getCredentialState(forUserID: UserDefaults.standard.string(forKey: "userID")!) { (credentialState, error) in
+                appleIDProvider.getCredentialState(forUserID: UserDefaults.standard.string(forKey: "userID") ?? "") { (credentialState, error) in
                             switch credentialState {
                             case .authorized:
                                 print("애플인증성공상태")
@@ -59,7 +59,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        isAppleLogout()
         application.registerForRemoteNotifications()
         UNUserNotificationCenter.current().delegate = self
         print(UserDefaults.standard.bool(forKey: "loginBool"))
