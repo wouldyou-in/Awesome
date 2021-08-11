@@ -28,7 +28,7 @@
 		<true/>
 	</dict>
 	<key>NSCalendarsUsageDescription</key>
-	<string>사용자의 일정을 불러오기 위해 필요한 권한입니다.</string>
+	<string>사용자의 캘린더에서 일정을 불러옵니다. 원하지 않을경우 거부하셔도 문제가 없습니다. </string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>BPtypewriteStrikethrough.ttf</string>
