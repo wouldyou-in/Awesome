@@ -40,8 +40,12 @@ class HomeVC: UIViewController {
         initRefresh()
         isFirstLogin()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
     
 //MARK: function
+
     func setIdentifier(){
         tableView.registerCustomXib(xibName: "HomeTVC")
         tableView.registerCustomXib(xibName: "HomeNotScheduleTVC")
@@ -55,6 +59,9 @@ class HomeVC: UIViewController {
     }
     
     func setHeaderUI(){
+//        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+//        navigationController?.interactivePopGestureRecognizer?.delegate = self
+        
         appdelegate.shouldSupportAllOrientation = false
         
         homeView.backgroundColor = UIColor.mainGray
@@ -74,8 +81,7 @@ class HomeVC: UIViewController {
         settingButton.layer.borderColor = UIColor.clear.cgColor
         settingButton.layer.cornerRadius = settingButton.frame.height/2
         
-        navigationController?.interactivePopGestureRecognizer?.isEnabled = false
-        
+      
     }
     
     func uiReSize() {
@@ -168,8 +174,6 @@ class HomeVC: UIViewController {
         }
         
     }
-    
-
     
 //MARK: RefreshTableView
     func initRefresh(){
@@ -335,3 +339,6 @@ extension HomeVC: tableViewReloadDelegate{
         self.tableView.reloadData()
     }
 }
+
+
+

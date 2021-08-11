@@ -106,10 +106,10 @@
             </objects>
             <point key="canvasLocation" x="1077.5999999999999" y="118.29085457271366"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Home Navigation Controller-->
         <scene sceneID="FCf-IP-dLY">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="ma8-S7-MpJ" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="HomeNavigationController" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="ma8-S7-MpJ" customClass="HomeNavigationController" customModule="Awesome" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="s3t-s0-JGl">
                         <autoresizingMask key="autoresizingMask"/>
