@@ -7,3 +7,9 @@ struct eventCalendarModel {
     var icon: String
     var isFinish: Bool
 }
+
+struct detailCalendarModel{
+    var maker: String
+    var time: String
+    var detail: String
+}
