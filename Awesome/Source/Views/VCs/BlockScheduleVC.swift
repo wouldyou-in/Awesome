@@ -114,6 +114,9 @@ class BlockScheduleVC: UIViewController {
         }
        
     }
+    @IBAction func tapButtonClicked(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
 }
 //MARK: Extension

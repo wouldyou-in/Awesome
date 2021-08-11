@@ -87,7 +87,10 @@ class ScheduleDetailVC: UIViewController {
         delegate?.tableViewReloadDelegate()
         self.dismiss(animated: true, completion: nil)
     }
-//MARK: function
+    @IBAction func tapButtonClicked(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    //MARK: function
     func postAccessDenine(bool: Bool){
         PostAccessDenineDataService.shared.AutoLoginService(calendar_id: scID, is_accept: bool) { [self] result in
             switch result{

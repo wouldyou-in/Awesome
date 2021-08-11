@@ -78,6 +78,9 @@ class AddScheduleVC: UIViewController {
         present(nameAlert, animated: true, completion: nil)
     }
     
+    @IBAction func tapButtonClicked(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     
   

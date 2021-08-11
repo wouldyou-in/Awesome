@@ -163,13 +163,23 @@
                                     <constraint firstAttribute="trailing" secondItem="2Az-Lm-ukn" secondAttribute="trailing" constant="40" id="zIo-Ua-6kB"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jUN-7w-S6x">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="344"/>
+                                <connections>
+                                    <action selector="tapButtonClicked:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="BoC-WC-nkT"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="KNB-DS-tbM" secondAttribute="bottom" id="19m-zY-FKr"/>
                             <constraint firstItem="KNB-DS-tbM" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="B3Q-YV-mOX"/>
+                            <constraint firstItem="KNB-DS-tbM" firstAttribute="top" secondItem="jUN-7w-S6x" secondAttribute="bottom" id="PgE-yN-MI1"/>
+                            <constraint firstItem="jUN-7w-S6x" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="VNj-iT-bMD"/>
+                            <constraint firstItem="jUN-7w-S6x" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="Ytd-fV-RNp"/>
                             <constraint firstAttribute="trailing" secondItem="KNB-DS-tbM" secondAttribute="trailing" id="Z4K-Os-fCg"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="jUN-7w-S6x" secondAttribute="trailing" id="Zzn-pC-99B"/>
                             <constraint firstItem="KNB-DS-tbM" firstAttribute="width" secondItem="KNB-DS-tbM" secondAttribute="height" multiplier="3:4" id="oPF-aj-oTN"/>
                         </constraints>
                     </view>
@@ -189,7 +199,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="35" y="53"/>
+            <point key="canvasLocation" x="34.782608695652179" y="52.901785714285715"/>
         </scene>
     </scenes>
     <resources>
