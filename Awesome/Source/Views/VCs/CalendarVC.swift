@@ -50,6 +50,7 @@ class CalendarVC: UIViewController {
     var userEventsDetail: [CalendarDataModel] = []
     var scheduleData: [eventCalendarModel] = []
     var blockDataDetail: [BlockDataModel] = []
+    var detailCalendar: [detailCalendarModel] = []
     
 //MARK: viewDidLoad
     override func viewDidDisappear(_ animated: Bool) {
@@ -302,12 +303,18 @@ class CalendarVC: UIViewController {
         let weekFromNow = Date().advanced(by: 30.0)
               let predicate = eventStore.predicateForEvents(withStart: startDate!, end: enddate!, calendars: nil)
             scheduleData = []
+        detailCalendar = []
               let events = eventStore.events(matching: predicate)
               let formatter = DateFormatter()
+        let detailFormatter = DateFormatter()
               let startTimeFormatter = DateFormatter()
               let finishTimeFormatter = DateFormatter()
               formatter.locale = Locale(identifier: "ko_KR")
               formatter.dateFormat = "yyyy-MM-dd"
+        detailFormatter.locale = Locale(identifier: "ko_KR")
+        detailFormatter.dateFormat = "MM월 d일"
+        var ckDate = detailFormatter.date(from: checkDate ?? "")
+        var ckDateMD = detailFormatter.string(from: ckDate ?? Date())
               startTimeFormatter.dateFormat = "HH:mm"
               finishTimeFormatter.dateFormat = "HH:mm"
               let comma : String = " ~ "
@@ -325,6 +332,7 @@ class CalendarVC: UIViewController {
                     isScheduleFinish = false
                 }
                 scheduleData.append(contentsOf:[eventCalendarModel(name: event.title, time: startTime + comma + finishTime, icon: "continueIcon", isFinish: isScheduleFinish)])
+                detailCalendar.append(contentsOf: [detailCalendarModel(maker: event.organizer?.name ?? "없음" , time: ckDateMD + startTime + comma + finishTime, detail: event.title)])
                 Userevents.append(event.startDate)
                 tableView.reloadData()
                   }
@@ -352,8 +360,9 @@ class CalendarVC: UIViewController {
                 }
                 
                 scheduleData.append(contentsOf:[eventCalendarModel(name: userEvents.creatorName, time: startTime + comma + finishTime, icon: "continueIcon", isFinish: isScheduleFinish)])
+                detailCalendar.append(contentsOf: [detailCalendarModel(maker: userEvents.creatorName , time: ckDateMD + startTime + comma + finishTime, detail: userEvents.comment)])
 //                  Userevents.append(userEvents.startDate)
-                print("asdfasfasfasfdasfsdfasfsfdfadfa")
+//                print("asdfasfasfasfdasfsdfasfsfdfadfa")
                 tableView.reloadData()
             }
             if scheduleData.count != 0{
@@ -426,6 +435,13 @@ class CalendarVC: UIViewController {
 extension CalendarVC: UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let detailVC = UIStoryboard(name: "DetailCalendar", bundle: nil).instantiateViewController(identifier: "DetailCalendarVC") as? DetailCalendarVC else {return}
+        self.present(detailVC, animated: true, completion: nil)
+        detailVC.setData(name: detailCalendar[indexPath.row].maker, time: detailCalendar[indexPath.row].time, detail: detailCalendar[indexPath.row].detail)
+
     }
 }
 extension CalendarVC: UITableViewDataSource{
