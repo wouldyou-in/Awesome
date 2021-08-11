@@ -36,7 +36,7 @@ class SplashVC: UIViewController {
         guard let loginVC = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(identifier: "LoginVC") as? LoginVC else {return}
         //네트워크 이상없을때
         if(DeviceManager.shared.networkStatus) {
-            if UserDefaults.standard.bool(forKey: "kakaoLoginSucces") == true {
+            if UserDefaults.standard.bool(forKey: "kakaoLoginSucces") == true || UserDefaults.standard.bool(forKey: "appleLoginSuccess") == true {
                 if SplashVC.isLoginSucces == true{
                     setPushView()
                 }

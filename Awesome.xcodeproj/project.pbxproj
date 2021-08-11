@@ -31,7 +31,6 @@
 		3627E52426BBD9E80047C9DF /* TermPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3627E52326BBD9E80047C9DF /* TermPickerVC.swift */; };
 		3627E52826BBDEB80047C9DF /* PostBlockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3627E52726BBDEB80047C9DF /* PostBlockData.swift */; };
 		3627E52A26BBDEC50047C9DF /* PostBlockDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3627E52926BBDEC50047C9DF /* PostBlockDataService.swift */; };
-		3627E52D26BBF5130047C9DF /* AppleLoginDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3627E52C26BBF5130047C9DF /* AppleLoginDataModel.swift */; };
 		3627E52F26BBF51F0047C9DF /* AppleLoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3627E52E26BBF51F0047C9DF /* AppleLoginService.swift */; };
 		3627E53126BC0D9F0047C9DF /* BlockScheduleDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3627E53026BC0D9F0047C9DF /* BlockScheduleDataModel.swift */; };
 		3627E53326BC0DAD0047C9DF /* GetBlockScheduleDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3627E53226BC0DAD0047C9DF /* GetBlockScheduleDataService.swift */; };
@@ -114,7 +113,6 @@
 		3627E52726BBDEB80047C9DF /* PostBlockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostBlockData.swift; sourceTree = "<group>"; };
 		3627E52926BBDEC50047C9DF /* PostBlockDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostBlockDataService.swift; sourceTree = "<group>"; };
 		3627E52B26BBF1B90047C9DF /* Awesome.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Awesome.entitlements; sourceTree = "<group>"; };
-		3627E52C26BBF5130047C9DF /* AppleLoginDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginDataModel.swift; sourceTree = "<group>"; };
 		3627E52E26BBF51F0047C9DF /* AppleLoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleLoginService.swift; sourceTree = "<group>"; };
 		3627E53026BC0D9F0047C9DF /* BlockScheduleDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockScheduleDataModel.swift; sourceTree = "<group>"; };
 		3627E53226BC0DAD0047C9DF /* GetBlockScheduleDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBlockScheduleDataService.swift; sourceTree = "<group>"; };
@@ -299,7 +297,6 @@
 				3627E50F26B9CA890047C9DF /* KakaoLogoutModel.swift */,
 				3627E51926BBCFF00047C9DF /* AddMyScheduleDataService.swift */,
 				3627E52726BBDEB80047C9DF /* PostBlockData.swift */,
-				3627E52C26BBF5130047C9DF /* AppleLoginDataModel.swift */,
 				3627E53026BC0D9F0047C9DF /* BlockScheduleDataModel.swift */,
 				361DDA7926BE9401002673C4 /* PostTokenDatamodel.swift */,
 			);
@@ -580,7 +577,6 @@
 				362E81BA26BDAB2C0058DAC6 /* HomeNotScheduleTVC.swift in Sources */,
 				36FB7F7126B03381001F2C39 /* AppDelegate.swift in Sources */,
 				363D26EE26B680A4009C2F90 /* DatePickerVC.swift in Sources */,
-				3627E52D26BBF5130047C9DF /* AppleLoginDataModel.swift in Sources */,
 				363D26DF26B4169F009C2F90 /* myScheduleTVC.swift in Sources */,
 				3627E51626BBB77D0047C9DF /* AskApnVC.swift in Sources */,
 				36FB7FB926B18CE8001F2C39 /* KakaoLoginDataModel.swift in Sources */,

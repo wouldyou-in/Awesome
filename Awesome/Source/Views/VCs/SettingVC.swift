@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import AuthenticationServices
+
 
 class SettingVC: UIViewController {
 //MARK: IBOulet
@@ -156,28 +158,42 @@ class SettingVC: UIViewController {
     
     
     @IBAction func logoutButtonClicked(_ sender: Any) {
-        guard let resetVC = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(identifier: "LoginVC") as? LoginVC else {return}
         let alert = UIAlertController(title: "로그아웃", message: "로그아웃하여 초기화면으로 이동합니다.", preferredStyle: UIAlertController.Style.alert)
         let okAction = UIAlertAction(title: "확인", style: .default) { (action) in
-            let defaults = UserDefaults.standard
-            let refresh = defaults.string(forKey: "refreshToken")
-            GetLogoutService.shared.AutoLoginService(refresh_token: refresh!) { [self] result in
-                switch result{
-                case .success(let tokenData):
-                    print("로그아웃 성공")
-                    defaults.removeObject(forKey: "refreshToken")
-                    defaults.removeObject(forKey: "accessToken")
-                    defaults.removeObject(forKey: "name")
-                    defaults.removeObject(forKey: "profile")
-                    defaults.removeObject(forKey: "kakaoLoginSucces")
-                    defaults.setValue(false, forKey: "loginBool")
-                    self.navigationController?.pushViewController(resetVC, animated: true)
-                case .requestErr(let msg):
-                    print("requestErr")
-                default :
-                    print("ERROR")
+            
+            
+            if UserDefaults.standard.bool(forKey: "appleLoginSuccess") == true{
+                if #available(iOS 13.0, *) {
+                            let appleIDProvider = ASAuthorizationAppleIDProvider()
+                    appleIDProvider.getCredentialState(forUserID: UserDefaults.standard.string(forKey: "userID")!) { (credentialState, error) in
+                                switch credentialState {
+                                case .authorized:
+                                    print("인증성공상태")
+                                    DispatchQueue.main.async {
+                                        self.makeAlert(title: "로그아웃 실패", message: "내 설정에서 로그아웃을 해주세요.")
+                                    }
+//                                    if let appSetting = URL(string: UIApplication.openSettingsURLString){
+//                                        UIApplication.shared.open(appSetting, options: [:], completionHandler: nil)
+//                                    }
+                                    
+                                    //인증성공 상태
+                                case .revoked:
+                                    print("인증만료")
+                                    self.logOutFunction()
+                                    //인증만료 상태
+                                default:
+                                    print("에러")
+                                    //.notFound 등 이외 상태
+                                }
+                            }
+                    }
                 }
+            //애플로그인 아닐때
+            else{
+                self.logOutFunction()
             }
+
+
 
         }
         let cancelAction = UIAlertAction(title: "취소", style: .default)
@@ -204,6 +220,32 @@ class SettingVC: UIViewController {
         
     }
 //MARK: function
+    func logOutFunction(){
+        guard let resetVC = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(identifier: "LoginVC") as? LoginVC else {return}
+        let defaults = UserDefaults.standard
+        let refresh = defaults.string(forKey: "refreshToken")
+        GetLogoutService.shared.AutoLoginService(refresh_token: refresh!) { [self] result in
+            switch result{
+            case .success(let tokenData):
+                print("로그아웃 성공")
+                defaults.removeObject(forKey: "refreshToken")
+                defaults.removeObject(forKey: "accessToken")
+                defaults.removeObject(forKey: "name")
+                defaults.removeObject(forKey: "profile")
+                defaults.removeObject(forKey: "kakaoLoginSucces")
+                defaults.removeObject(forKey: "appleLoginSuccess")
+                defaults.setValue(false, forKey: "loginBool")
+                self.navigationController?.pushViewController(resetVC, animated: true)
+            case .requestErr(let msg):
+                print("requestErr")
+            default :
+                print("ERROR")
+            }
+        }
+    }
+    
+    
+    
     func append(){
         inviteLink.append("📩 \(UserDefaults.standard.string(forKey: "name")!)님께서 '어떰'의 초대장을 보내셨습니다!\n\n '어떰'은 개인링크로 일정📅을 공유해 간편하게 약속을 잡을 수 있는 서비스입니다.\n\n ✉ 초대링크: \(invite) \n\n😝잉여 시간에 약속신청 받고 놀러가자😝")
     }

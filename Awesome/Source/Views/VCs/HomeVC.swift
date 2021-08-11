@@ -117,9 +117,15 @@ class HomeVC: UIViewController {
         let defaults = UserDefaults.standard
         profileName = defaults.string(forKey: "name") ?? "none"
         nameLabel.text = "HI, \(profileName)"
-        let url = URL(string: defaults.string(forKey: "profile")!)
-            DispatchQueue.global().async { let data = try? Data(contentsOf: url!)
-                DispatchQueue.main.async { self.settingButton.setImage(UIImage(data: data!), for: .normal)}}
+        
+        if defaults.bool(forKey: "appleLoginSuccess") == true{
+            print("애플로그인은 프사가 없읍니다..")
+        }
+        else {
+            let url = URL(string: defaults.string(forKey: "profile")!)
+                DispatchQueue.global().async { let data = try? Data(contentsOf: url!)
+                    DispatchQueue.main.async { self.settingButton.setImage(UIImage(data: data!), for: .normal)}}
+        }
     }
     
     func changeDate(start: Date, finish: Date, upload: String){
@@ -162,6 +168,9 @@ class HomeVC: UIViewController {
         }
         
     }
+    
+
+    
 //MARK: RefreshTableView
     func initRefresh(){
         let refresh = UIRefreshControl()

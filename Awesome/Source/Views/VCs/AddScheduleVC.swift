@@ -46,7 +46,7 @@ class AddScheduleVC: UIViewController {
         backGroundView2.backgroundColor = .none
         okButton.clipsToBounds = true
         okButton.layer.cornerRadius = 20
-        self.view.backgroundColor = .none
+        self.view.backgroundColor = .clear
     }
     func setIsAccess(){
         PostAccessDenineDataService.shared.AutoLoginService(calendar_id: UserDefaults.standard.integer(forKey: "postID"), is_accept: true) { [self] result in
