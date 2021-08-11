@@ -18,7 +18,7 @@ class LoginVC: UIViewController {
     
     var appleToken: String = ""
     let appdelegate = UIApplication.shared.delegate as! AppDelegate
-
+    var appleName: String = ""
 
 //
 //    func setImage(){
@@ -77,26 +77,32 @@ extension LoginVC: ASAuthorizationControllerDelegate{
                 print("호호", codeStr)
 
                 let user = credential.fullName
-                print(user?.givenName)
+                let userIdentifier = credential.user
+                UserDefaults.standard.setValue(userIdentifier, forKey: "userID")
+                var familyName = user?.familyName ?? ""
+                var givenName = user?.givenName ?? ""
+                appleName = familyName + givenName
+                UserDefaults.standard.setValue(appleName, forKey: "appleName")
                 self.dismiss(animated: true, completion: nil)
-//              delegate?.isAppleLogin(data: true, name: user?.givenName ?? "")
+                
+                    AppleLoginService.shared.postScheduleService(code: appleToken, name: UserDefaults.standard.string(forKey: "appleName") ?? "") { [self] result in
+                        switch result{
+                        case .success(let tokenData):
+                            guard let homeVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(identifier: "HomeVC") as? HomeVC else {return}
+                            self.navigationController?.pushViewController(homeVC, animated: true)
+                            print("성공")
+                        case .requestErr(let msg):
+                            print("requestErr")
+                        default :
+                            print("ERROR")
+                        }
+                    }
+
 
             }
-            
-            AppleLoginService.shared.postScheduleService(code: appleToken) { [self] result in
-                switch result{
-                case .success(let tokenData):
-                    print("성공")
-                case .requestErr(let msg):
-                    print("requestErr")
-                default :
-                    print("ERROR")
-                }
-            }
-            
             
         }
-
+    
         // 실패 후 동작
         func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
             print("error")
