@@ -169,10 +169,12 @@ class SettingVC: UIViewController {
                                 switch credentialState {
                                 case .authorized:
                                     print("인증성공상태")
-                                    self.makeAlert(title: "로그아웃 실패", message: "설정에서 먼저 로그아웃을 해주세요.")
-                                    if let appSetting = URL(string: UIApplication.openSettingsURLString){
-                                        UIApplication.shared.open(appSetting, options: [:], completionHandler: nil)
+                                    DispatchQueue.main.async {
+                                        self.makeAlert(title: "로그아웃 실패", message: "내 설정에서 로그아웃을 해주세요.")
                                     }
+//                                    if let appSetting = URL(string: UIApplication.openSettingsURLString){
+//                                        UIApplication.shared.open(appSetting, options: [:], completionHandler: nil)
+//                                    }
                                     
                                     //인증성공 상태
                                 case .revoked:
