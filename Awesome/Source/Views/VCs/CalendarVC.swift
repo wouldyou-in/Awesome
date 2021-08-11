@@ -143,7 +143,7 @@ class CalendarVC: UIViewController {
         else{
         
         for i in 0 ... userEventsDetail[0].myCalendar.count - 1{
-            if userEventsDetail[0].myCalendar[i].isAccept! == true{
+            if userEventsDetail[0].myCalendar[i].isAccept ?? false == true{
                 print("서버 데이터")
                 let dateData = UpdateFormatter.string(from: userEventsDetail[0].myCalendar[i].startDate)
                 let realData = UpdateFormatter.date(from: dateData)
