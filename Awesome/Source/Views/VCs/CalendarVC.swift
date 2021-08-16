@@ -438,9 +438,15 @@ extension CalendarVC: UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if isSchedule == false{
+            self.makeAlert(title: "약속없음", message: "해당날에 약속이 없어요")
+        }
+        else{
         guard let detailVC = UIStoryboard(name: "DetailCalendar", bundle: nil).instantiateViewController(identifier: "DetailCalendarVC") as? DetailCalendarVC else {return}
         self.present(detailVC, animated: true, completion: nil)
         detailVC.setData(name: detailCalendar[indexPath.row].maker, time: detailCalendar[indexPath.row].time, detail: detailCalendar[indexPath.row].detail)
+        }
 
     }
 }
