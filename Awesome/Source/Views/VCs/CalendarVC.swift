@@ -10,7 +10,7 @@ import FSCalendar
 import EventKit
 
 protocol refreshDelegate {
-    func refreshDelegate()
+    func refreshDelegate(isDelete: Bool)
 }
 
 class CalendarVC: UIViewController {
@@ -332,7 +332,7 @@ class CalendarVC: UIViewController {
                     isScheduleFinish = false
                 }
                 scheduleData.append(contentsOf:[eventCalendarModel(name: event.title, time: startTime + comma + finishTime, icon: "continueIcon", isFinish: isScheduleFinish)])
-                detailCalendar.append(contentsOf: [detailCalendarModel(maker: event.organizer?.name ?? "없음" , time: ckDateMD + startTime + comma + finishTime, detail: event.title)])
+                detailCalendar.append(contentsOf: [detailCalendarModel(maker: event.organizer?.name ?? "없음" , time: ckDateMD + startTime + comma + finishTime, detail: event.title, id: 0, participant: 0)])
                 Userevents.append(event.startDate)
                 tableView.reloadData()
                   }
@@ -360,7 +360,7 @@ class CalendarVC: UIViewController {
                 }
                 
                 scheduleData.append(contentsOf:[eventCalendarModel(name: userEvents.creatorName, time: startTime + comma + finishTime, icon: "continueIcon", isFinish: isScheduleFinish)])
-                detailCalendar.append(contentsOf: [detailCalendarModel(maker: userEvents.creatorName , time: ckDateMD + startTime + comma + finishTime, detail: userEvents.comment)])
+                detailCalendar.append(contentsOf: [detailCalendarModel(maker: userEvents.creatorName , time: ckDateMD + startTime + comma + finishTime, detail: userEvents.comment, id: userEvents.id, participant: userEvents.participant)])
 //                  Userevents.append(userEvents.startDate)
 //                print("asdfasfasfasfdasfsdfasfsfdfadfa")
                 tableView.reloadData()
@@ -445,7 +445,9 @@ extension CalendarVC: UITableViewDelegate{
         else{
         guard let detailVC = UIStoryboard(name: "DetailCalendar", bundle: nil).instantiateViewController(identifier: "DetailCalendarVC") as? DetailCalendarVC else {return}
         self.present(detailVC, animated: true, completion: nil)
-        detailVC.setData(name: detailCalendar[indexPath.row].maker, time: detailCalendar[indexPath.row].time, detail: detailCalendar[indexPath.row].detail)
+            detailVC.setData(name: detailCalendar[indexPath.row].maker, time: detailCalendar[indexPath.row].time, detail: detailCalendar[indexPath.row].detail, id: detailCalendar[indexPath.row].id, participant: detailCalendar[indexPath.row].participant)
+            detailVC.delegate = self
+            tableView.reloadData()
         }
 
     }
@@ -582,25 +584,29 @@ extension CalendarVC: UIGestureRecognizerDelegate {
 }
 
 extension CalendarVC: refreshDelegate{
-    func refreshDelegate() {
-//        guard let calendarVC = UIStoryboard(name: "Calendar", bundle: nil).instantiateViewController(identifier: "CalendarVC") as? CalendarVC else {return}
-//        self.navigationController?.popViewController(animated: true)
-//        self.navigationController?.pushViewController(calendarVC, animated: false)
-        Userevents = []
-        userEventsDetail = []
-        blockDate = []
-        blockDateString = []
-        blockDataDetail = []
-        setCalendarData()
-        setUserEvents()
-        getBlockDateData()
-        print("dfd", checkDate)
-        tableView.reloadData()
+    func refreshDelegate(isDelete: Bool) {
+        if isDelete == true{
+            Userevents = []
+            userEventsDetail = []
+            blockDate = []
+            blockDateString = []
+            blockDataDetail = []
+            setCalendarData()
+            setUserEvents()
+            getBlockDateData()
+            isSchedule = false
+            tableView.reloadData()
+        }
+        else{
+            Userevents = []
+            userEventsDetail = []
+            blockDate = []
+            blockDateString = []
+            blockDataDetail = []
+            setCalendarData()
+            setUserEvents()
+            getBlockDateData()
+            tableView.reloadData()
+        }
     }
-}
-
-extension String { // 취소선 긋기
-    func strikeThrough() -> NSAttributedString { let attributeString = NSMutableAttributedString(string: self)
-        attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: NSUnderlineStyle.single.rawValue, range: NSMakeRange(0,attributeString.length))
-        return attributeString }
 }
