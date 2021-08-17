@@ -108,7 +108,7 @@ class BlockScheduleVC: UIViewController {
         }
         else{
             setDateData()
-            delegate?.refreshDelegate()
+            delegate?.refreshDelegate(isDelete: false)
             self.dismiss(animated: true, completion: nil)
         }
         }

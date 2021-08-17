@@ -53,7 +53,7 @@ class AddScheduleVC: UIViewController {
             switch result{
             case .success(let tokenData):
                 print("수락 혹은 거절 성공")
-                delegate?.refreshDelegate()
+                delegate?.refreshDelegate(isDelete: false)
             case .requestErr(let msg):
                 print("requestErr")
             default :

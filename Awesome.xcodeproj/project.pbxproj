@@ -36,6 +36,7 @@
 		3627E53326BC0DAD0047C9DF /* GetBlockScheduleDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3627E53226BC0DAD0047C9DF /* GetBlockScheduleDataService.swift */; };
 		362E81BA26BDAB2C0058DAC6 /* HomeNotScheduleTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362E81B826BDAB2C0058DAC6 /* HomeNotScheduleTVC.swift */; };
 		362E81BB26BDAB2C0058DAC6 /* HomeNotScheduleTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 362E81B926BDAB2C0058DAC6 /* HomeNotScheduleTVC.xib */; };
+		36331C3826CB868A0074C572 /* DeleteScheduleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36331C3726CB868A0074C572 /* DeleteScheduleService.swift */; };
 		363D26DA26B40702009C2F90 /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 363D26D926B40702009C2F90 /* Calendar.storyboard */; };
 		363D26DC26B40718009C2F90 /* CalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D26DB26B40718009C2F90 /* CalendarVC.swift */; };
 		363D26DF26B4169F009C2F90 /* myScheduleTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D26DD26B4169F009C2F90 /* myScheduleTVC.swift */; };
@@ -121,6 +122,7 @@
 		3627E53226BC0DAD0047C9DF /* GetBlockScheduleDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBlockScheduleDataService.swift; sourceTree = "<group>"; };
 		362E81B826BDAB2C0058DAC6 /* HomeNotScheduleTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNotScheduleTVC.swift; sourceTree = "<group>"; };
 		362E81B926BDAB2C0058DAC6 /* HomeNotScheduleTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeNotScheduleTVC.xib; sourceTree = "<group>"; };
+		36331C3726CB868A0074C572 /* DeleteScheduleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteScheduleService.swift; sourceTree = "<group>"; };
 		363D26D926B40702009C2F90 /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
 		363D26DB26B40718009C2F90 /* CalendarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarVC.swift; sourceTree = "<group>"; };
 		363D26DD26B4169F009C2F90 /* myScheduleTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myScheduleTVC.swift; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 				3627E53226BC0DAD0047C9DF /* GetBlockScheduleDataService.swift */,
 				361DDA7B26BE940B002673C4 /* PostTokenDataService.swift */,
 				36D7FB9A26BF058B00E97E9E /* DeleteInviteService.swift */,
+				36331C3726CB868A0074C572 /* DeleteScheduleService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -596,6 +599,7 @@
 				3627E50A26B9B2C60047C9DF /* GetInviteDataService.swift in Sources */,
 				3627E50826B9B2B90047C9DF /* InviteDataModel.swift in Sources */,
 				36FB7FBF26B1A8B5001F2C39 /* SplashVC.swift in Sources */,
+				36331C3826CB868A0074C572 /* DeleteScheduleService.swift in Sources */,
 				367F23B026C44D440054AE99 /* HomeNavigationController.swift in Sources */,
 				36FB7F9F26B04986001F2C39 /* Extension+UIFont.swift in Sources */,
 				3627E50426B9A0AF0047C9DF /* AccesDenineDataModel.swift in Sources */,
@@ -759,7 +763,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
 				CODE_SIGN_ENTITLEMENTS = Awesome/Awesome.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
@@ -784,7 +787,6 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ALLOW_ENTITLEMENTS_MODIFICATION = YES;
 				CODE_SIGN_ENTITLEMENTS = Awesome/Awesome.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
