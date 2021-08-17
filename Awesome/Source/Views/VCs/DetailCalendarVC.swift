@@ -20,11 +20,16 @@ class DetailCalendarVC: UIViewController {
     @IBOutlet weak var nameLabelView: UIView!
     @IBOutlet weak var timeLabelView: UIView!
     @IBOutlet weak var detailLabelView: UIView!
+    @IBOutlet weak var deleteButton: UIButton!
     //MARK: Var
     let appdelegate = UIApplication.shared.delegate as! AppDelegate
     let width = UIScreen.main.bounds.width
-
-
+    
+    var scheduleID: Int = 0
+    var participantNum: Int = 0
+    var detailText: String = ""
+    
+    var delegate: refreshDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,11 +43,14 @@ class DetailCalendarVC: UIViewController {
         detailLabel.lineBreakStrategy = .hangulWordPriority
         detailLabel.numberOfLines = 5
     }
-    func setData(name: String, time: String, detail: String){
+    func setData(name: String, time: String, detail: String, id: Int, participant: Int){
         print(name, time, detail)
         nameLabel.text = name
         timeLabel.text = time
         detailLabel.text = detail
+        detailText = detail
+        participantNum = participant
+        scheduleID = id
     }
     func setLayout(){
         nameLabelView.clipsToBounds = true
@@ -55,6 +63,8 @@ class DetailCalendarVC: UIViewController {
         backgroundView.layer.cornerRadius = 20
         okButton.clipsToBounds = true
         okButton.layer.cornerRadius = 20
+        deleteButton.clipsToBounds = true
+        deleteButton.layer.cornerRadius = 20
         self.view.backgroundColor = .clear
 
     }
@@ -68,6 +78,19 @@ class DetailCalendarVC: UIViewController {
             headerLabelConstraint.constant = headerLabelConstraint.constant * (width/428)
         }
     }
+    func deleteSchedule(){
+        DeleteScheduleService.shared.DeleteService(id: scheduleID, comment: detailText, participant: participantNum) { [self] result in
+                switch result{
+                case .success(let tokenData):
+                    print("삭제 성공")
+                    delegate?.refreshDelegate(isDelete: true)
+                case .requestErr(let msg):
+                    print("requestErr")
+                default :
+                    print("ERROR")
+                }
+            }
+    }
     
 //MARK: IBAction
     @IBAction func okbuttonClicked(_ sender: Any) {
@@ -75,6 +98,15 @@ class DetailCalendarVC: UIViewController {
     }
     @IBAction func tapButtonClicked(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+    @IBAction func deleteScheduleButtonClicked(_ sender: Any) {
+        self.makeRequestAlert(title: "약속삭제", message: "정말 약속을 삭제하시겠습니까?",
+                              okAction: {_ in
+                                self.deleteSchedule()
+                                self.dismiss(animated: true, completion: nil)
+                              },
+                              cancelAction: nil,
+                              completion: nil)
     }
     
 
