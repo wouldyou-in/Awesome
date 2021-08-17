@@ -119,9 +119,24 @@
                                             <action selector="okbuttonClicked:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="oY1-JE-G9k"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7ZP-iH-QAE">
+                                        <rect key="frame" x="57" y="401.5" width="300" height="50"/>
+                                        <color key="backgroundColor" red="0.94901961089999998" green="0.94901961089999998" blue="0.94901961089999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="ghQ-yb-IOh"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="GmarketSansTTFMedium" family="Gmarket Sans TTF" pointSize="18"/>
+                                        <state key="normal" title="약속삭제">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="deleteScheduleButtonClicked:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="G7U-Bq-W1y"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstItem="7ZP-iH-QAE" firstAttribute="leading" secondItem="f7h-71-8jY" secondAttribute="leading" id="1Tm-DZ-YoI"/>
                                     <constraint firstItem="nTS-cK-2Es" firstAttribute="trailing" secondItem="f7h-71-8jY" secondAttribute="trailing" id="BTJ-Yg-S1I"/>
                                     <constraint firstAttribute="width" secondItem="ix1-oy-f6O" secondAttribute="height" multiplier="3:4" id="Cr9-PK-3tK"/>
                                     <constraint firstItem="kfp-ZN-IDv" firstAttribute="leading" secondItem="f7h-71-8jY" secondAttribute="leading" id="FH8-wm-AH6"/>
@@ -129,6 +144,7 @@
                                     <constraint firstItem="nTS-cK-2Es" firstAttribute="top" secondItem="MLJ-2Y-GPC" secondAttribute="bottom" constant="5" id="GeN-BP-yRb"/>
                                     <constraint firstItem="sKY-19-CuI" firstAttribute="leading" secondItem="f7h-71-8jY" secondAttribute="leading" id="GwE-W1-0eY"/>
                                     <constraint firstItem="kfp-ZN-IDv" firstAttribute="trailing" secondItem="f7h-71-8jY" secondAttribute="trailing" id="HF7-bj-ghq"/>
+                                    <constraint firstItem="7ZP-iH-QAE" firstAttribute="top" secondItem="sKY-19-CuI" secondAttribute="bottom" constant="10" id="HG6-UV-qgc"/>
                                     <constraint firstItem="Ine-YV-akz" firstAttribute="top" secondItem="MLJ-2Y-GPC" secondAttribute="bottom" constant="5" id="IGw-fi-GRU"/>
                                     <constraint firstItem="f7h-71-8jY" firstAttribute="top" secondItem="ix1-oy-f6O" secondAttribute="top" constant="20" id="IsJ-Am-Lrs"/>
                                     <constraint firstItem="sKY-19-CuI" firstAttribute="trailing" secondItem="f7h-71-8jY" secondAttribute="trailing" id="LBS-xY-RWR"/>
@@ -144,6 +160,7 @@
                                     <constraint firstItem="MLJ-2Y-GPC" firstAttribute="top" secondItem="f7h-71-8jY" secondAttribute="bottom" constant="5" id="w1e-mb-gZl"/>
                                     <constraint firstItem="kfp-ZN-IDv" firstAttribute="width" secondItem="f7h-71-8jY" secondAttribute="width" id="wlO-Es-agn"/>
                                     <constraint firstItem="Qa5-YF-7dI" firstAttribute="trailing" secondItem="f7h-71-8jY" secondAttribute="trailing" id="zAm-xi-0GE"/>
+                                    <constraint firstItem="7ZP-iH-QAE" firstAttribute="trailing" secondItem="f7h-71-8jY" secondAttribute="trailing" id="zp5-ev-Rpm"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ak-YN-LVn">
@@ -167,6 +184,7 @@
                     </view>
                     <connections>
                         <outlet property="backgroundView" destination="ix1-oy-f6O" id="lc0-vl-tGd"/>
+                        <outlet property="deleteButton" destination="7ZP-iH-QAE" id="0EC-vJ-DWg"/>
                         <outlet property="detailLabel" destination="c8F-eX-Ojy" id="lTS-zG-M0z"/>
                         <outlet property="detailLabelView" destination="kfp-ZN-IDv" id="OQw-wV-Kbo"/>
                         <outlet property="headerLabel" destination="f7h-71-8jY" id="n3S-M7-ztQ"/>
