@@ -243,6 +243,9 @@ class HomeVC: UIViewController {
 //                    self.tableView.backgroundView = UIImageView(image: UIImage(named: "mainNoSCBackground.png"))
             }
         }
+        func deleteBlockSchedule(){
+        
+        }
     }
     
 //MARK: IBOutletFunction
