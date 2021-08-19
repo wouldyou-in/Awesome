@@ -36,7 +36,7 @@ class CalendarVC: UIViewController {
     var Userevents : [Date] = []
     var blockDateString: [String] = []
     var blockDate: [Date] = []
-    var blockDateID: [Int] = []
+    var blockDateID: [Date : Int] = [:]
     
     let eventStore = EKEventStore()
     
@@ -47,6 +47,7 @@ class CalendarVC: UIViewController {
     var isScheduleFinish: Bool = false
     let appdelegate = UIApplication.shared.delegate as! AppDelegate
     var beforeCheckDate: String = ""
+    var blockCheckDate: Date = Date()
     
     var userEventsDetail: [CalendarDataModel] = []
     var scheduleData: [eventCalendarModel] = []
@@ -182,7 +183,9 @@ class CalendarVC: UIViewController {
                 
                 blockDate.append(start ?? Date())
                 blockDate.append(end ?? Date())
-                blockDateID.append(blockDataDetail[0].block[i].id)
+                blockDateID.updateValue(blockDataDetail[0].block[i].id, forKey: start!)
+                blockDateID.updateValue(blockDataDetail[0].block[i].id, forKey: end!)
+
                 
                 if days == 0{
                     print("하루임 ㅋ")
@@ -193,7 +196,7 @@ class CalendarVC: UIViewController {
                     var plusDay = calendar.date(byAdding: dateComponent, to: start!)
                     start = plusDay
                 blockDate.append(plusDay!)
-                blockDateID.append(blockDataDetail[0].block[i].id)
+                    blockDateID.updateValue(blockDataDetail[0].block[i].id, forKey: plusDay!)
                 }
                 }
             }
@@ -389,6 +392,21 @@ class CalendarVC: UIViewController {
         
     }
     
+    func deleteSchedule(){
+        DeleteBlockScheduleService.shared.DeleteService(id: blockDateID[blockCheckDate ?? Date()]!) { [self] result in
+                switch result{
+                case .success(let tokenData):
+                    print("삭제 성공")
+                    refreshDelegate(isDelete: true)
+                case .requestErr(let msg):
+                    print("requestErr")
+                default :
+                    print("ERROR")
+                }
+            }
+        
+    }
+    
 //MARK: IBAction
     @IBAction func backButtonClicked(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
@@ -493,7 +511,13 @@ extension CalendarVC: UITableViewDataSource{
     }
     
     @objc func blockButtonClicked(_ sender: UIButton){
-            self.makeAlert(title: "dd", message: "dd")
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        blockCheckDate = formatter.date(from: checkDate)!
+        
+        self.makeRequestAlert(title: "약속 안받는기간 삭제", message: "약속 안받는 기간을 삭제하시겠습니까?",
+                              okAction: {_ in self.deleteSchedule()},
+                              cancelAction: nil, completion: nil)
         print(blockDateID)
     }
        
