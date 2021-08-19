@@ -492,8 +492,6 @@ extension CalendarVC: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let scheduleCell: myScheduleTVC = tableView.dequeueReusableCell(withIdentifier: myScheduleTVC.identifier) as! myScheduleTVC
         let noScheduleCell: NoScheduleTVC = tableView.dequeueReusableCell(withIdentifier: NoScheduleTVC.identifier) as! NoScheduleTVC
-        let blockCell: BlockTVC = tableView.dequeueReusableCell(withIdentifier: BlockTVC.identifier) as! BlockTVC
-       
         
         if isSchedule == true{
             print("셀실행")
@@ -629,7 +627,7 @@ extension CalendarVC: FSCalendarDelegateAppearance{
         return UIColor.gray
         }
         else{
-            return .black
+            return .none
         }
     }
     func calendar(_ calendar: FSCalendar, subtitleFor date: Date) -> String? {
