@@ -83,11 +83,16 @@ class ScheduleDetailVC: UIViewController {
         
     }
     @IBAction func denineButtonClicked(_ sender: Any) {
-        postAccessDenine(bool: false)
-        delegate?.tableViewReloadDelegate()
+        self.makeRequestAlert(title: "약속거적", message: "정말 약속을 거절하시겠습니까?",
+                              okAction: {_ in self.postAccessDenine(bool: false)
+                                self.delegate?.tableViewReloadDelegate()
+                                self.dismiss(animated: true, completion: nil)
+                              }, cancelAction: nil, completion: nil)
+    }
+    @IBAction func tapButtonClicked(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
-//MARK: function
+    //MARK: function
     func postAccessDenine(bool: Bool){
         PostAccessDenineDataService.shared.AutoLoginService(calendar_id: scID, is_accept: bool) { [self] result in
             switch result{

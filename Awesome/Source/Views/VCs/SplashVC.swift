@@ -24,10 +24,14 @@ class SplashVC: UIViewController {
         checkDeviceNetworkStatus()
     }
     
+
 //MARK: func
     func setPushView(){
-        guard let homeVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "HomeVC") as? HomeVC else {return}
-        self.navigationController?.pushViewController(homeVC, animated: true)
+//        guard let homeVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "HomeVC") as? HomeVC else {return}
+        guard let homeVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "HomeNavigationController") as? HomeNavigationController else {return}
+        (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(homeVC, animated: false)
+//        self.navigationController?.pushViewController(homeVC, animated: true)
+        
     }
     
    
@@ -79,3 +83,4 @@ extension UIDevice {
         return bottom > 0
     }
 }
+

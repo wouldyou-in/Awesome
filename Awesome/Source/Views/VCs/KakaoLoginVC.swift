@@ -75,13 +75,18 @@ class KakaoLoginVC: UIViewController {
                 self.pushHome()
             case .requestErr(let message) :
                 print("requestERR")
+                print(Constants.loginString)
             case .pathErr :
                 print("auth 토큰 못받아옴")
+                print(Constants.loginString)
                 print("pathERR")
             case .serverErr:
                 print("serverERR")
+                print(Constants.loginString)
             case .networkFail:
                 print("networkFail")
+                print(Constants.loginString)
+
             }
         }
     }
@@ -103,7 +108,7 @@ extension KakaoLoginVC: WKNavigationDelegate {
         webView.load(request)
         self.webView.navigationDelegate = self
         self.webView.uiDelegate = self
-        webView.customUserAgent = "Mozilla(iPod; U; CPU iPhone OSlike Mac OS X; ja-jp) AppleWebKit/533.17.9 (KHTML, like Gecko) Version Mobile/8J2 Safari/6533.18.5";
+        webView.customUserAgent = "Mozilla(iPhone; U; CPU iPhone OSlike Mac OS X; ja-jp) AppleWebKit/604.4.7 (KHTML, like Gecko) Version Mobile/8J2 Safari/6533.18.5";
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {

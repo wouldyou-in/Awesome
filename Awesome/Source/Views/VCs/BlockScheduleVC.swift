@@ -20,11 +20,17 @@ class BlockScheduleVC: UIViewController {
     var endTime: String = "종료기간"
     let appdelegate = UIApplication.shared.delegate as! AppDelegate
     var delegate: refreshDelegate?
+    var blockDataDetail: [BlockDataModel] = []
+    var blockDate: [String] = []
+    
+    var startDate: String = ""
+    var endDate: String = ""
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setLayout()
+        judgeBlockTime()
     }
 //MARK: func
     func setLayout(){
@@ -80,9 +86,49 @@ class BlockScheduleVC: UIViewController {
         }
         
     }
+    
+    func judgeBlockTime(){
+        GetBlockScheduleService.blockData.getRecommendInfo{ (response) in
+            switch(response)
+            {
+            case .success(let loginData):
+                if let response = loginData as? BlockDataModel{
+                    self.blockDataDetail.append(response)
+                    print("어펜드 끝")
+                }
+            case .requestErr(let message):
+                print("requestERR")
+            case .pathErr :
+                print("pathERR")
+            case .serverErr:
+                print("serverERR")
+            case .networkFail:
+                print("networkFail")
+            }
+        }
+    }
+    func getBlockTime(){
+        if blockDataDetail[0].block.count == 0 {
+            print("blockdata is nil")
+        }
+        else{
+        for i in blockDataDetail[0].block{
+            var start = i.startDate.components(separatedBy: "T")
+            var end = i.endDate.components(separatedBy: "T")
+            var stDate = start[0].components(separatedBy: "-")
+            var edDate = start[0].components(separatedBy: "-")
+            var startDate = stDate[0] + "/" + stDate[1] + "/" + stDate[2]
+            var endDate = edDate[0] + "/" + edDate[1] + "/" + edDate[2]
+            blockDate.append(startDate)
+            blockDate.append(endDate)
+            print(startDate, endDate)
+        }
+        }
+    }
 //MARK: IBAction
     
     @IBAction func startTimeButtonClicked(_ sender: Any) {
+        getBlockTime()
         guard let startVC = UIStoryboard(name: "TermPicker", bundle: nil).instantiateViewController(identifier: "TermPickerVC") as? TermPickerVC else {return}
         self.present(startVC, animated: true, completion: nil)
         startVC.startDelegate = self
@@ -107,12 +153,21 @@ class BlockScheduleVC: UIViewController {
             self.makeAlert(title: "오류", message: "기간이 잘못 입력되었습니다. 다시입력해주세요")
         }
         else{
-            setDateData()
-            delegate?.refreshDelegate()
-            self.dismiss(animated: true, completion: nil)
+            print("dfadf", blockDate)
+            if blockDate.contains(startTime) || blockDate.contains(endTime){
+                self.makeAlert(title: "오류", message: "받지 않는 기간중 겹치는 기간이 있습니다.")
+            }
+            else {
+                setDateData()
+                delegate?.refreshDelegate(isDelete: false)
+                self.dismiss(animated: true, completion: nil)
+            }
         }
         }
        
+    }
+    @IBAction func tapButtonClicked(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     
 }

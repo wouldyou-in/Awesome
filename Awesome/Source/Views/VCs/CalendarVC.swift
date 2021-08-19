@@ -10,7 +10,7 @@ import FSCalendar
 import EventKit
 
 protocol refreshDelegate {
-    func refreshDelegate()
+    func refreshDelegate(isDelete: Bool)
 }
 
 class CalendarVC: UIViewController {
@@ -36,6 +36,7 @@ class CalendarVC: UIViewController {
     var Userevents : [Date] = []
     var blockDateString: [String] = []
     var blockDate: [Date] = []
+    var blockDateID: [Date : Int] = [:]
     
     let eventStore = EKEventStore()
     
@@ -46,10 +47,14 @@ class CalendarVC: UIViewController {
     var isScheduleFinish: Bool = false
     let appdelegate = UIApplication.shared.delegate as! AppDelegate
     var beforeCheckDate: String = ""
+    var blockCheckDate: Date = Date()
     
     var userEventsDetail: [CalendarDataModel] = []
     var scheduleData: [eventCalendarModel] = []
     var blockDataDetail: [BlockDataModel] = []
+    var detailCalendar: [detailCalendarModel] = []
+    
+    var isBlockData: Bool = false
     
 //MARK: viewDidLoad
     override func viewDidDisappear(_ animated: Bool) {
@@ -72,6 +77,8 @@ class CalendarVC: UIViewController {
         setCalendarData()
         getBlockDateData()
         appdelegate.shouldSupportAllOrientation = false
+//        let gesture = UITapGestureRecognizer(target: self, action: #selector(self.viewTapped(_:)))
+//        self.tableView.addGestureRecognizer(gesture)
     }
 //MARK: Function
     func setiPadUI(){
@@ -143,7 +150,7 @@ class CalendarVC: UIViewController {
         else{
         
         for i in 0 ... userEventsDetail[0].myCalendar.count - 1{
-            if userEventsDetail[0].myCalendar[i].isAccept! == true{
+            if userEventsDetail[0].myCalendar[i].isAccept ?? false == true{
                 print("서버 데이터")
                 let dateData = UpdateFormatter.string(from: userEventsDetail[0].myCalendar[i].startDate)
                 let realData = UpdateFormatter.date(from: dateData)
@@ -176,6 +183,9 @@ class CalendarVC: UIViewController {
                 
                 blockDate.append(start ?? Date())
                 blockDate.append(end ?? Date())
+                blockDateID.updateValue(blockDataDetail[0].block[i].id, forKey: start!)
+                blockDateID.updateValue(blockDataDetail[0].block[i].id, forKey: end!)
+
                 
                 if days == 0{
                     print("하루임 ㅋ")
@@ -186,6 +196,7 @@ class CalendarVC: UIViewController {
                     var plusDay = calendar.date(byAdding: dateComponent, to: start!)
                     start = plusDay
                 blockDate.append(plusDay!)
+                    blockDateID.updateValue(blockDataDetail[0].block[i].id, forKey: plusDay!)
                 }
                 }
             }
@@ -234,6 +245,7 @@ class CalendarVC: UIViewController {
     func setCell(){
         tableView.registerCustomXib(xibName: "myScheduleTVC")
         tableView.registerCustomXib(xibName: "NoScheduleTVC")
+        tableView.registerCustomXib(xibName: "BlockTVC")
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
@@ -302,12 +314,18 @@ class CalendarVC: UIViewController {
         let weekFromNow = Date().advanced(by: 30.0)
               let predicate = eventStore.predicateForEvents(withStart: startDate!, end: enddate!, calendars: nil)
             scheduleData = []
+        detailCalendar = []
               let events = eventStore.events(matching: predicate)
               let formatter = DateFormatter()
+        let detailFormatter = DateFormatter()
               let startTimeFormatter = DateFormatter()
               let finishTimeFormatter = DateFormatter()
               formatter.locale = Locale(identifier: "ko_KR")
               formatter.dateFormat = "yyyy-MM-dd"
+        detailFormatter.locale = Locale(identifier: "ko_KR")
+        detailFormatter.dateFormat = "MM월 d일"
+        var ckDate = detailFormatter.date(from: checkDate ?? "")
+        var ckDateMD = detailFormatter.string(from: ckDate ?? Date())
               startTimeFormatter.dateFormat = "HH:mm"
               finishTimeFormatter.dateFormat = "HH:mm"
               let comma : String = " ~ "
@@ -325,6 +343,7 @@ class CalendarVC: UIViewController {
                     isScheduleFinish = false
                 }
                 scheduleData.append(contentsOf:[eventCalendarModel(name: event.title, time: startTime + comma + finishTime, icon: "continueIcon", isFinish: isScheduleFinish)])
+                detailCalendar.append(contentsOf: [detailCalendarModel(maker: event.organizer?.name ?? "없음" , time: ckDateMD + startTime + comma + finishTime, detail: event.title, id: 0, participant: 0)])
                 Userevents.append(event.startDate)
                 tableView.reloadData()
                   }
@@ -352,8 +371,9 @@ class CalendarVC: UIViewController {
                 }
                 
                 scheduleData.append(contentsOf:[eventCalendarModel(name: userEvents.creatorName, time: startTime + comma + finishTime, icon: "continueIcon", isFinish: isScheduleFinish)])
+                detailCalendar.append(contentsOf: [detailCalendarModel(maker: userEvents.creatorName , time: ckDateMD + " " + startTime + comma + finishTime, detail: userEvents.comment, id: userEvents.id, participant: userEvents.participant)])
 //                  Userevents.append(userEvents.startDate)
-                print("asdfasfasfasfdasfsdfasfsfdfadfa")
+//                print("asdfasfasfasfdasfsdfasfsfdfadfa")
                 tableView.reloadData()
             }
             if scheduleData.count != 0{
@@ -369,6 +389,21 @@ class CalendarVC: UIViewController {
         }
         }
         
+        
+    }
+    
+    func deleteSchedule(){
+        DeleteBlockScheduleService.shared.DeleteService(id: blockDateID[blockCheckDate ?? Date()]!) { [self] result in
+                switch result{
+                case .success(let tokenData):
+                    print("삭제 성공")
+                    refreshDelegate(isDelete: true)
+                case .requestErr(let msg):
+                    print("requestErr")
+                default :
+                    print("ERROR")
+                }
+            }
         
     }
     
@@ -427,11 +462,25 @@ extension CalendarVC: UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if isSchedule == false{
+            self.makeAlert(title: "약속없음", message: "해당날에 약속이 없어요")
+        }
+        else{
+        guard let detailVC = UIStoryboard(name: "DetailCalendar", bundle: nil).instantiateViewController(identifier: "DetailCalendarVC") as? DetailCalendarVC else {return}
+        self.present(detailVC, animated: true, completion: nil)
+            detailVC.setData(name: detailCalendar[indexPath.row].maker, time: detailCalendar[indexPath.row].time, detail: detailCalendar[indexPath.row].detail, id: detailCalendar[indexPath.row].id, participant: detailCalendar[indexPath.row].participant)
+            detailVC.delegate = self
+            tableView.reloadData()
+        }
+
+    }
 }
 extension CalendarVC: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isSchedule == true{
-//            print(isSchedule,"daf")
                   return scheduleData.count
               }
         else{
@@ -444,24 +493,74 @@ extension CalendarVC: UITableViewDataSource{
         let scheduleCell: myScheduleTVC = tableView.dequeueReusableCell(withIdentifier: myScheduleTVC.identifier) as! myScheduleTVC
         let noScheduleCell: NoScheduleTVC = tableView.dequeueReusableCell(withIdentifier: NoScheduleTVC.identifier) as! NoScheduleTVC
         
-        
-        
         if isSchedule == true{
             print("셀실행")
+            print(indexPath)
             print(scheduleData[indexPath.row].time)
             scheduleCell.setData(name: scheduleData[indexPath.row].name, time: scheduleData[indexPath.row].time, isFinish: scheduleData[indexPath.row].isFinish)
-        
             return scheduleCell
         }
         if isSchedule == false{
             print("없는셀 실행")
+            print(indexPath)
             return noScheduleCell
         }
         return UITableViewCell()
     }
     
-    
-    
+    @objc func blockButtonClicked(_ sender: UIButton){
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        blockCheckDate = formatter.date(from: checkDate)!
+        
+        self.makeRequestAlert(title: "약속 안받는기간 삭제", message: "약속 안받는 기간을 삭제하시겠습니까?",
+                              okAction: {_ in self.deleteSchedule()},
+                              cancelAction: nil, completion: nil)
+        print(blockDateID)
+    }
+       
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        var blockDateData = formatter.date(from: checkDate)
+        var view = UIView()
+        var nonView = UIView()
+        var blockButton = UIButton()
+        var noneButton = UIButton()
+        
+        blockButton.tag = 1
+        nonView.tag = 2
+        
+        blockButton.addTarget(self, action: #selector(blockButtonClicked(_ :)), for: .touchUpInside)
+        
+    blockButton.setTitle("😥 약속을 받을 수 없는 기간이에요 😥", for: .normal)
+        blockButton.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 30)
+        blockButton.setTitleColor(UIColor.black, for: .normal)
+        blockButton.backgroundColor = UIColor.mainGray
+        blockButton.titleLabel?.font = UIFont.gmarketSansMediumFont(ofSize: 16)
+        view.addSubview(blockButton)
+
+        
+        noneButton.setTitle("😝 내 프로필을 공유해봐요! 😝", for: .normal)
+        noneButton.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 30)
+        noneButton.setTitleColor(UIColor.black, for: .normal)
+        noneButton.backgroundColor = UIColor.mainGray
+        noneButton.titleLabel?.font = UIFont.gmarketSansMediumFont(ofSize: 16)
+        nonView.addSubview(noneButton)
+        
+        view.backgroundColor = UIColor.mainGray
+        nonView.backgroundColor = UIColor.mainGray
+
+
+        
+        if blockDate.contains(blockDateData ?? Date()){
+            return view
+        }
+        else{
+            return nonView
+        }
+    }
+
 }
 
 extension CalendarVC: FSCalendarDelegate{
@@ -528,7 +627,7 @@ extension CalendarVC: FSCalendarDelegateAppearance{
         return UIColor.gray
         }
         else{
-            return .black
+            return .none
         }
     }
     func calendar(_ calendar: FSCalendar, subtitleFor date: Date) -> String? {
@@ -560,25 +659,29 @@ extension CalendarVC: UIGestureRecognizerDelegate {
 }
 
 extension CalendarVC: refreshDelegate{
-    func refreshDelegate() {
-//        guard let calendarVC = UIStoryboard(name: "Calendar", bundle: nil).instantiateViewController(identifier: "CalendarVC") as? CalendarVC else {return}
-//        self.navigationController?.popViewController(animated: true)
-//        self.navigationController?.pushViewController(calendarVC, animated: false)
-        Userevents = []
-        userEventsDetail = []
-        blockDate = []
-        blockDateString = []
-        blockDataDetail = []
-        setCalendarData()
-        setUserEvents()
-        getBlockDateData()
-        print("dfd", checkDate)
-        tableView.reloadData()
+    func refreshDelegate(isDelete: Bool) {
+        if isDelete == true{
+            Userevents = []
+            userEventsDetail = []
+            blockDate = []
+            blockDateString = []
+            blockDataDetail = []
+            setCalendarData()
+            setUserEvents()
+            getBlockDateData()
+            isSchedule = false
+            tableView.reloadData()
+        }
+        else{
+            Userevents = []
+            userEventsDetail = []
+            blockDate = []
+            blockDateString = []
+            blockDataDetail = []
+            setCalendarData()
+            setUserEvents()
+            getBlockDateData()
+            tableView.reloadData()
+        }
     }
-}
-
-extension String { // 취소선 긋기
-    func strikeThrough() -> NSAttributedString { let attributeString = NSMutableAttributedString(string: self)
-        attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: NSUnderlineStyle.single.rawValue, range: NSMakeRange(0,attributeString.length))
-        return attributeString }
 }

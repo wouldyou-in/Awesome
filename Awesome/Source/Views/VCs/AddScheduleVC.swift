@@ -53,7 +53,7 @@ class AddScheduleVC: UIViewController {
             switch result{
             case .success(let tokenData):
                 print("수락 혹은 거절 성공")
-                delegate?.refreshDelegate()
+                delegate?.refreshDelegate(isDelete: false)
             case .requestErr(let msg):
                 print("requestErr")
             default :
@@ -78,6 +78,9 @@ class AddScheduleVC: UIViewController {
         present(nameAlert, animated: true, completion: nil)
     }
     
+    @IBAction func tapButtonClicked(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     
   

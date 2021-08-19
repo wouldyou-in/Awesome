@@ -25,7 +25,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="66f-PS-UuL">
-                                <rect key="frame" x="0.0" y="465.5" width="414" height="396.5"/>
+                                <rect key="frame" x="0.0" y="499.5" width="414" height="396.5"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noScheduleImage" translatesAutoresizingMaskIntoConstraints="NO" id="AqB-yR-rhj">
                                         <rect key="frame" x="30" y="47" width="354" height="177"/>
@@ -103,14 +103,24 @@
                                     <constraint firstItem="yZ3-wj-0iu" firstAttribute="top" secondItem="66f-PS-UuL" secondAttribute="top" constant="25" id="zWY-Rs-25j"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jnz-Ki-VRx">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="499.5"/>
+                                <connections>
+                                    <action selector="tapButtonClicked:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="3sK-Vt-wVB"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Jnz-Ki-VRx" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="0PY-Oj-pED"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Jnz-Ki-VRx" secondAttribute="trailing" id="4Sx-FV-qT9"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="66f-PS-UuL" secondAttribute="trailing" id="N9F-pN-uSJ"/>
                             <constraint firstItem="66f-PS-UuL" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="WRK-K4-866"/>
+                            <constraint firstItem="66f-PS-UuL" firstAttribute="top" secondItem="Jnz-Ki-VRx" secondAttribute="bottom" id="bX2-uV-18m"/>
+                            <constraint firstItem="Jnz-Ki-VRx" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="lLY-PW-UeU"/>
                             <constraint firstItem="66f-PS-UuL" firstAttribute="width" secondItem="66f-PS-UuL" secondAttribute="height" multiplier="7:6.7" id="ulx-iK-yR3"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="66f-PS-UuL" secondAttribute="bottom" id="znP-QA-PbG"/>
+                            <constraint firstAttribute="bottom" secondItem="66f-PS-UuL" secondAttribute="bottom" id="znP-QA-PbG"/>
                         </constraints>
                     </view>
                     <connections>
@@ -122,7 +132,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="35" y="53"/>
+            <point key="canvasLocation" x="34.782608695652179" y="52.901785714285715"/>
         </scene>
     </scenes>
     <resources>
