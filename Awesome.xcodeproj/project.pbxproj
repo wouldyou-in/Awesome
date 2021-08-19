@@ -37,6 +37,7 @@
 		362E81BA26BDAB2C0058DAC6 /* HomeNotScheduleTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362E81B826BDAB2C0058DAC6 /* HomeNotScheduleTVC.swift */; };
 		362E81BB26BDAB2C0058DAC6 /* HomeNotScheduleTVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 362E81B926BDAB2C0058DAC6 /* HomeNotScheduleTVC.xib */; };
 		36331C3826CB868A0074C572 /* DeleteScheduleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36331C3726CB868A0074C572 /* DeleteScheduleService.swift */; };
+		36331C3E26CC0F840074C572 /* DeleteBlockSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36331C3D26CC0F840074C572 /* DeleteBlockSchedule.swift */; };
 		363D26DA26B40702009C2F90 /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 363D26D926B40702009C2F90 /* Calendar.storyboard */; };
 		363D26DC26B40718009C2F90 /* CalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D26DB26B40718009C2F90 /* CalendarVC.swift */; };
 		363D26DF26B4169F009C2F90 /* myScheduleTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D26DD26B4169F009C2F90 /* myScheduleTVC.swift */; };
@@ -123,6 +124,7 @@
 		362E81B826BDAB2C0058DAC6 /* HomeNotScheduleTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNotScheduleTVC.swift; sourceTree = "<group>"; };
 		362E81B926BDAB2C0058DAC6 /* HomeNotScheduleTVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeNotScheduleTVC.xib; sourceTree = "<group>"; };
 		36331C3726CB868A0074C572 /* DeleteScheduleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteScheduleService.swift; sourceTree = "<group>"; };
+		36331C3D26CC0F840074C572 /* DeleteBlockSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteBlockSchedule.swift; sourceTree = "<group>"; };
 		363D26D926B40702009C2F90 /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
 		363D26DB26B40718009C2F90 /* CalendarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarVC.swift; sourceTree = "<group>"; };
 		363D26DD26B4169F009C2F90 /* myScheduleTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = myScheduleTVC.swift; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 				361DDA7B26BE940B002673C4 /* PostTokenDataService.swift */,
 				36D7FB9A26BF058B00E97E9E /* DeleteInviteService.swift */,
 				36331C3726CB868A0074C572 /* DeleteScheduleService.swift */,
+				36331C3D26CC0F840074C572 /* DeleteBlockSchedule.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -614,6 +617,7 @@
 				36FB7FC526B1B7FB001F2C39 /* GetNewTokenService.swift in Sources */,
 				3627E50E26B9C0D90047C9DF /* GetInviteCountService.swift in Sources */,
 				367F23AE26C43D410054AE99 /* DetailCalendarVC.swift in Sources */,
+				36331C3E26CC0F840074C572 /* DeleteBlockSchedule.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
