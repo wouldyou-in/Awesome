@@ -1,5 +1,5 @@
 # 어떰 (Awesome)
-<img src = ![awesome](https://user-images.githubusercontent.com/73978827/130244769-b26dc083-d30b-4657-8c20-abc455628e8b.png)>  <br>
+<img src = ![awesome](https://user-images.githubusercontent.com/73978827/130244769-b26dc083-d30b-4657-8c20-abc455628e8b.png)><br>
 > 상대방과 나를 연결해주는 방명록(Guest Book)형태의 마이크로블로그(Micro-blog) <br>
 # Awesome Contributors
 > Manzi: 이민규 (기획)<br>
