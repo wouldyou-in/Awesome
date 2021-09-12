@@ -14,11 +14,12 @@ struct CalendarDataModel: Codable {
 
 // MARK: - Calendar
 struct MyCalendar: Codable {
-    let creatorName: String
+    let creatorName: String?
     let participantName: String
-    let id, creator, participant: Int
+    let creator: Int?
+    let id,participant: Int
     let comment: String
-    let startDate, endDate: Date
+    let startDate, endDate: String
     let createdAt: String
     let isAccept: Bool?
 
