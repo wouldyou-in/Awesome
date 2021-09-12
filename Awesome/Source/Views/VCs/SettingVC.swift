@@ -141,7 +141,8 @@ class SettingVC: UIViewController {
     
     @IBAction func linkShareButtonClicked(_ sender: Any) {
         var objectsToShare = [String]()
-        objectsToShare.append("나의 어떰 프로필을 공유합니다.")
+        let myID = UserDefaults.standard.string(forKey: "myKey")
+        objectsToShare.append("https://react.wouldyou.in/apply/" + myID!)
 //        if let text = shareLabel.text{
 //                   objectsToShare.append(text)
 //                   print("[INFO] textField's Text : ", text)
