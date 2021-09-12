@@ -207,20 +207,33 @@ class SettingVC: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     @IBAction func withdrawButtonClicked(_ sender: Any) {
-        PostDevieceTokenDataService.shared.AutoLoginService(push_token: UserDefaults.standard.string(forKey: "deviceToken")!) { [self] result in
-            switch result{
-            case .success(let tokenData):
-                print("성공")
-            case .requestErr(let msg):
-                print("requestErr")
-            default :
-                print("ERROR")
+        guard let resetVC = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(identifier: "LoginVC") as? LoginVC else {return}
+        let defaults = UserDefaults.standard
+        makeRequestAlert(title: "탈퇴", message: "정말 탈퇴하시겠습니까?", okAction: {_ in
+            GetWithDrawDataService.withdraw.getRecommendInfo{ (response) in
+                switch(response)
+                {
+                case .success(let inviteData):
+                    print("탈퇴 성공")
+                    defaults.removeObject(forKey: "refreshToken")
+                    defaults.removeObject(forKey: "accessToken")
+                    defaults.removeObject(forKey: "name")
+                    defaults.removeObject(forKey: "profile")
+                    defaults.removeObject(forKey: "kakaoLoginSucces")
+                    defaults.removeObject(forKey: "appleLoginSuccess")
+                    defaults.setValue(false, forKey: "loginBool")
+                    self.navigationController?.pushViewController(resetVC, animated: true)
+                case .requestErr(let message):
+                    print("requestERR")
+                case .pathErr :
+                    print("pathERR")
+                case .serverErr:
+                    print("serverERR")
+                case .networkFail:
+                    print("networkFail")
+                }
             }
-        }
-        
-        
-        
-        
+        }, cancelAction: nil, completion: nil)
     }
 //MARK: function
     func logOutFunction(){
