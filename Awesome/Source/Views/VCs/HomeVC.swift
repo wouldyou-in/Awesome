@@ -134,13 +134,18 @@ class HomeVC: UIViewController {
         }
     }
     
-    func changeDate(start: Date, finish: Date, upload: String){
+    func changeDate(start: String, finish: String, upload: String){
         let startFormatter = DateFormatter()
         let titleFormatter = DateFormatter()
         let finishFormatter = DateFormatter()
         let agoFormatter = DateFormatter()
+        let sfFormatter = DateFormatter(
+        )
         var nowDate = Date()
         
+       
+        sfFormatter.locale = Locale(identifier: "ko_KR")
+        sfFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
         startFormatter.locale = Locale(identifier: "ko_KR")
         startFormatter.dateFormat = "MM월 dd일 HH:mm"
         finishFormatter.locale = Locale(identifier: "ko_KR")
@@ -149,13 +154,19 @@ class HomeVC: UIViewController {
         agoFormatter.locale = Locale(identifier: "ko_KR")
         agoFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
 
-        print(upload)
+        var startDay = sfFormatter.date(from: start)
+        var endDay = sfFormatter.date(from: finish)
         var startUpload = agoFormatter.date(from: upload)
-        let distanceSecond = Calendar.current.dateComponents([.minute], from: startUpload ?? Date(), to: nowDate).minute
-        titleSchedule = titleFormatter.string(from: start)
-        finishSchedule = finishFormatter.string(from: start)
         
-        scheduleDateString = startFormatter.string(from: start) + "~" + finishFormatter.string(from: finish)
+        print(startDay, endDay, startUpload)
+
+        let distanceSecond = Calendar.current.dateComponents([.minute], from: startUpload ?? Date(), to: nowDate).minute
+        
+        
+        titleSchedule = titleFormatter.string(from: startDay ?? Date())
+        finishSchedule = finishFormatter.string(from: endDay ?? Date())
+        
+        scheduleDateString = startFormatter.string(from: startDay ?? Date()) + "~" + finishFormatter.string(from: endDay ?? Date())
         
         if distanceSecond! < 1{
             timeAgo = "1m ago"
@@ -324,7 +335,7 @@ extension HomeVC: UITableViewDataSource{
         
         if isNoCell == false{
         self.present(detailVC, animated: true, completion: nil)
-        detailVC.setData(time: scheduleDateString, information: scheduleData[0].calendars[indexPath.section].comment, person: scheduleData[0].calendars[indexPath.section].creatorName, scheduleID: scheduleData[0].calendars[indexPath.section].id)
+        detailVC.setData(time: scheduleDateString, information: scheduleData[0].calendars[indexPath.section].comment, person: "dd", scheduleID: scheduleData[0].calendars[indexPath.section].id)
         detailVC.delegate = self
         }
         else{
