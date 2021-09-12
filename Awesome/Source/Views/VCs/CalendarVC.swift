@@ -140,10 +140,15 @@ class CalendarVC: UIViewController {
     }
     
     func serverData(){
+        let dateFormatter = DateFormatter()
+        let subDateFormatter = DateFormatter()
         let UpdateFormatter = DateFormatter()
         UpdateFormatter.locale = Locale(identifier: "ko_KR")
-        UpdateFormatter.dateFormat = "yyyy-MM-dd"
-        
+        UpdateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+        dateFormatter.locale = Locale(identifier: "ko_KR")
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        subDateFormatter.locale = Locale(identifier: "ko_KR")
+        subDateFormatter.dateFormat = "yyyy-MM-dd"
         if userEventsDetail[0].myCalendar.count == 0{
             print("없음 ㅠ")
         }
@@ -152,9 +157,12 @@ class CalendarVC: UIViewController {
         for i in 0 ... userEventsDetail[0].myCalendar.count - 1{
             if userEventsDetail[0].myCalendar[i].isAccept ?? false == true{
                 print("서버 데이터")
-                let dateData = UpdateFormatter.string(from: userEventsDetail[0].myCalendar[i].startDate)
+                let dateData = userEventsDetail[0].myCalendar[i].startDate
                 let realData = UpdateFormatter.date(from: dateData)
-                Userevents.append(realData!)
+                let data = subDateFormatter.string(from: realData ?? Date())
+                let rData = dateFormatter.date(from: data)
+                print(rData, "ada")
+                Userevents.append(rData!)
             }
         }
             setdate()
@@ -303,9 +311,8 @@ class CalendarVC: UIViewController {
 
 //MARK: dataConnection
     func setdate(){
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "yyyy-mm-DD"
-//        let convertDate = dateFormatter.date(from: checkDate)
+        let sfFormatter = DateFormatter()
+        sfFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
         let checkDateConvert = checkDate
         beforeCheckDate = checkDate
         let nowdate = Date()
@@ -359,19 +366,31 @@ class CalendarVC: UIViewController {
         for userEvents in userEventsDetail[0].myCalendar{
             checkDate = beforeCheckDate
             if userEvents.isAccept == true {
-            let start = formatter.string(from: userEvents.startDate)
-            let startTime = startTimeFormatter.string(from: userEvents.startDate)
-            let finishTime = finishTimeFormatter.string(from: userEvents.endDate)
-            if checkDate == start{
-                if days(from: userEvents.endDate) < 0 {
+                let dateformatter = DateFormatter()
+                dateformatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+                let subDateFormatter = DateFormatter()
+                subDateFormatter.dateFormat = "yyyy-MM-dd"
+                let printDateFormatter = DateFormatter()
+                printDateFormatter.dateFormat = "HH:mm"
+                let start = dateformatter.date(from: userEvents.startDate)
+                let startDay = subDateFormatter.string(from: start ?? Date())
+                let startTime = printDateFormatter.string(from: start ?? Date())
+                let finishDay = dateformatter.date(from: userEvents.endDate)
+                let finishTime = printDateFormatter.string(from: finishDay ?? Date())
+            let endDate = dateformatter.date(from: userEvents.endDate)
+                let date = dateformatter.string(from: endDate ?? Date())
+                let rDate = dateformatter.date(from: date)
+                print(rDate, userEvents.startDate,"sfdgsfdg")
+            if checkDate == startDay{
+                if days(from: rDate!) < 0 {
                     isScheduleFinish = false
                 }
                 else{
                     isScheduleFinish = true
                 }
                 
-                scheduleData.append(contentsOf:[eventCalendarModel(name: userEvents.creatorName, time: startTime + comma + finishTime, icon: "continueIcon", isFinish: isScheduleFinish)])
-                detailCalendar.append(contentsOf: [detailCalendarModel(maker: userEvents.creatorName , time: ckDateMD + " " + startTime + comma + finishTime, detail: userEvents.comment, id: userEvents.id, participant: userEvents.participant)])
+                scheduleData.append(contentsOf:[eventCalendarModel(name: userEvents.creatorName ?? "dd", time: startTime + comma + finishTime, icon: "continueIcon", isFinish: isScheduleFinish)])
+                detailCalendar.append(contentsOf: [detailCalendarModel(maker: userEvents.creatorName ?? "dd", time: ckDateMD + " " + startTime + comma + finishTime, detail: userEvents.comment, id: userEvents.id, participant: userEvents.participant)])
 //                  Userevents.append(userEvents.startDate)
 //                print("asdfasfasfasfdasfsdfasfsfdfadfa")
                 tableView.reloadData()
