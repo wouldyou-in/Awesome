@@ -145,7 +145,7 @@ class HomeVC: UIViewController {
         
        
         sfFormatter.locale = Locale(identifier: "ko_KR")
-        sfFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+        sfFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
         startFormatter.locale = Locale(identifier: "ko_KR")
         startFormatter.dateFormat = "MM월 dd일 HH:mm"
         finishFormatter.locale = Locale(identifier: "ko_KR")
@@ -335,7 +335,7 @@ extension HomeVC: UITableViewDataSource{
         
         if isNoCell == false{
         self.present(detailVC, animated: true, completion: nil)
-        detailVC.setData(time: scheduleDateString, information: scheduleData[0].calendars[indexPath.section].comment, person: "dd", scheduleID: scheduleData[0].calendars[indexPath.section].id)
+            detailVC.setData(time: scheduleDateString, information: scheduleData[0].calendars[indexPath.section].comment, person: scheduleData[0].calendars[indexPath.section].creatorName, scheduleID: scheduleData[0].calendars[indexPath.section].id)
         detailVC.delegate = self
         }
         else{
