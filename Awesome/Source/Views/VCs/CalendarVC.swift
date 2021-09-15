@@ -384,7 +384,6 @@ class CalendarVC: UIViewController {
                 let date = dateformatter.string(from: endDate ?? Date())
                 let rDate = dateformatter.date(from: date)
                 
-                print(rDate, start,"sfdgsfdg")
             
                 if checkDate == startDay{
                 if days(from: rDate!) < 0 {
