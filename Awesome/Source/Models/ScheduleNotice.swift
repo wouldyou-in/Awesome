@@ -14,6 +14,7 @@ struct ScheduleNoticeDataModel: Codable {
        let id: Int
        let creator: Int?
        let participant: Int
+       let creatorName, creatorEmail: String
        let participantName, comment: String
        let startDate, endDate: String
        let createdAt: String
@@ -21,6 +22,8 @@ struct ScheduleNoticeDataModel: Codable {
 
        enum CodingKeys: String, CodingKey {
            case id, creator, participant
+           case creatorName = "creator_name"
+           case creatorEmail = "creator_email"
            case participantName = "participant_name"
            case comment
            case startDate = "start_date"
