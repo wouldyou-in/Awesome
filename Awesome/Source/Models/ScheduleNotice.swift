@@ -14,7 +14,8 @@ struct ScheduleNoticeDataModel: Codable {
        let id: Int
        let creator: Int?
        let participant: Int
-       let creatorName, creatorEmail: String
+       let creatorName: String
+       let creatorEmail: String?
        let participantName, comment: String
        let startDate, endDate: String
        let createdAt: String

@@ -127,11 +127,13 @@ class AddScheduleVC: UIViewController {
         }
         print(startHour, start[1])
         
-        let startString:String = "\(selectDay)T\(startTime):00+09:00"
-        let finishString:String = "\(selectDay)T\(finishTime):00+09:00"
+        let startString:String = "\(selectDay)T\(startTime):00.000000+09:00"
+        let finishString:String = "\(selectDay)T\(finishTime):00.000000+09:00"
         
         print(startString, finishString)
-            var formatter = ISO8601DateFormatter()
+//            var formatter = ISO8601DateFormatter()
+            var formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
             let startDate = formatter.date(from: startString)
             let endDate = formatter.date(from: finishString)
             print(startDate, endDate)

@@ -45,7 +45,7 @@ struct GetScheduleNoticeDataService
     private func isValidData(data : Data) -> NetworkResult<Any> {
         
         let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
+//        decoder.dateDecodingStrategy = .secondsSince1970
         guard let decodedData = try? decoder.decode(ScheduleNoticeModel.self, from: data)
         else {return .pathErr}
     

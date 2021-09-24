@@ -98,7 +98,7 @@ class CalendarVC: UIViewController {
                         self.userEventsDetail.append(response)
                         print("어펜드 끝")
                     }
-                    if response.myCalendar.count != 0{
+                    if response.calendar.count != 0{
                         self.serverData()
                         self.calendarView.reloadData()
                     }
@@ -149,15 +149,15 @@ class CalendarVC: UIViewController {
         dateFormatter.dateFormat = "yyyy-MM-dd"
         subDateFormatter.locale = Locale(identifier: "ko_KR")
         subDateFormatter.dateFormat = "yyyy-MM-dd"
-        if userEventsDetail[0].myCalendar.count == 0{
+        if userEventsDetail[0].calendar.count == 0{
             print("없음 ㅠ")
         }
         else{
         
-        for i in 0 ... userEventsDetail[0].myCalendar.count - 1{
-            if userEventsDetail[0].myCalendar[i].isAccept ?? false == true{
+        for i in 0 ... userEventsDetail[0].calendar.count - 1{
+            if userEventsDetail[0].calendar[i].isAccept ?? false == true{
                 print("서버 데이터")
-                let dateData = userEventsDetail[0].myCalendar[i].startDate
+                let dateData = userEventsDetail[0].calendar[i].startDate
                 let realData = UpdateFormatter.date(from: dateData)
                 let data = subDateFormatter.string(from: realData ?? Date())
                 let rData = dateFormatter.date(from: data)
@@ -342,7 +342,6 @@ class CalendarVC: UIViewController {
                   let startTime = startTimeFormatter.string(from: event.startDate)
                   let finishTime = finishTimeFormatter.string(from: event.endDate)
             if checkDate == start{
-//                print(days(from: event.endDate),"이게맞냐?")
                 if days(from: event.endDate) > 0 {
                     isScheduleFinish = true
                 }
@@ -363,7 +362,7 @@ class CalendarVC: UIViewController {
             }
           }
         if userEventsDetail.count != 0{
-        for userEvents in userEventsDetail[0].myCalendar{
+            for userEvents in userEventsDetail[0].calendar{
             checkDate = beforeCheckDate
             if userEvents.isAccept == true {
                 let dateformatter = DateFormatter()
@@ -395,8 +394,7 @@ class CalendarVC: UIViewController {
                 
                 scheduleData.append(contentsOf:[eventCalendarModel(name: userEvents.creatorName, time: startTime + comma + finishTime, icon: "continueIcon", isFinish: isScheduleFinish)])
                 detailCalendar.append(contentsOf: [detailCalendarModel(maker: userEvents.creatorName, time: ckDateMD + " " + startTime + comma + finishTime, detail: userEvents.comment, id: userEvents.id, participant: userEvents.participant)])
-//                  Userevents.append(userEvents.startDate)
-//                print("asdfasfasfasfdasfsdfasfsfdfadfa")
+
                 tableView.reloadData()
             }
             if scheduleData.count != 0{
@@ -631,20 +629,7 @@ extension CalendarVC: FSCalendarDataSource{
     }
 }
 extension CalendarVC: FSCalendarDelegateAppearance{
-//
-//    func calendar(_ calendar: FSCalendar, titleFor date: Date) -> String? {
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "d"
-//        var dateStr = formatter.string(from: date)
-//        if blockDate.contains(date){
-//            return dateStr
-//        }
-//        else{
-//            return dateStr
-//        }
-//    }
 
-    
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
         if blockDate.contains(date){
         return UIColor.gray
@@ -661,18 +646,7 @@ extension CalendarVC: FSCalendarDelegateAppearance{
             return .none
         }
     }
-//    func calendar(_ calendar: FSCalendar, imageFor date: Date) -> UIImage? {
-//        if blockDate.contains(date){
-//            return UIImage(named: "line")
-//        }
-//        else{
-//            return .none
-//        }
-//    }
-//    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, imageOffsetFor date: Date) -> CGPoint {
-//        print(calendarView.collectionView.fs_height)
-//        return CGPoint(x:20, y: 20)
-//    }
+
 }
     
 extension CalendarVC: UIGestureRecognizerDelegate {

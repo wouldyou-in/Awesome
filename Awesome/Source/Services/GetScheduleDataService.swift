@@ -10,7 +10,6 @@ struct GetCalendarDataService
     func getRecommendInfo(completion : @escaping (NetworkResult<Any>) -> Void)
     {
         print("유저 토큰", userToken)
-        
         // completion 클로저를 @escaping closure로 정의합니다.
         let URL = Constants.calendarURL
         let header : HTTPHeaders = ["Authorization": "Bearer " + userToken]
@@ -32,6 +31,8 @@ struct GetCalendarDataService
                 
             }
         }
+        
+        dump(dataRequest)
     }
     private func judgeStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
         switch statusCode {
