@@ -10,15 +10,17 @@ struct PostCalendarDataModel: Codable {
 struct PostCalendar: Codable {
     let id, creator: Int
     let creatorName: String
+    let creatorEmail: String?
     let participant: Int
     let participantName, comment: String
-    let startDate, endDate: Date
+    let startDate, endDate: String
     let createdAt: String
     let isAccept: Bool?
 
     enum CodingKeys: String, CodingKey {
         case id, creator
         case creatorName = "creator_name"
+        case creatorEmail = "creator_email"
         case participant
         case participantName = "participant_name"
         case comment

@@ -14,7 +14,8 @@ struct CalendarDataModel: Codable {
 
 // MARK: - Calendar
 struct MyCalendar: Codable {
-    let creatorName, creatorEmail: String
+    let creatorName: String
+    let creatorEmail: String?
     let participantName: String
     let creator: Int?
     let id,participant: Int

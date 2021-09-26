@@ -14,4 +14,5 @@ struct detailCalendarModel{
     var detail: String
     var id: Int
     var participant: Int
+    var userSc: Bool
 }
