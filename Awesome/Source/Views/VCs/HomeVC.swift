@@ -39,12 +39,27 @@ class HomeVC: UIViewController {
         setIdentifier()
         initRefresh()
         isFirstLogin()
+        postDeviceToken()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
     
 //MARK: function
+    func postDeviceToken(){
+        if UserDefaults.standard.bool(forKey: "noti") == true{
+        PostDevieceTokenDataService.shared.AutoLoginService(push_token: UserDefaults.standard.string(forKey: "deviceToken")!) { [self] result in
+                    switch result{
+                    case .success(let tokenData):
+                        print("성공")
+                    case .requestErr(let msg):
+                        print("requestErr")
+                    default :
+                        print("ERROR")
+                    }
+        }
+        }
+    }
 
     func setIdentifier(){
         tableView.registerCustomXib(xibName: "HomeTVC")
@@ -145,14 +160,14 @@ class HomeVC: UIViewController {
         
        
         sfFormatter.locale = Locale(identifier: "ko_KR")
-        sfFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+        sfFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS"
         startFormatter.locale = Locale(identifier: "ko_KR")
         startFormatter.dateFormat = "MM월 dd일 HH:mm"
         finishFormatter.locale = Locale(identifier: "ko_KR")
         finishFormatter.dateFormat = "HH:mm"
         titleFormatter.dateFormat = "yyyy년 MM월 dd일"
         agoFormatter.locale = Locale(identifier: "ko_KR")
-        agoFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+        agoFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS"
 
         var startDay = sfFormatter.date(from: start)
         var endDay = sfFormatter.date(from: finish)
@@ -165,9 +180,8 @@ class HomeVC: UIViewController {
         
         titleSchedule = titleFormatter.string(from: startDay ?? Date())
         finishSchedule = finishFormatter.string(from: endDay ?? Date())
-        
+        print(startFormatter.string(from: startDay!))
         scheduleDateString = startFormatter.string(from: startDay ?? Date()) + "~" + finishFormatter.string(from: endDay ?? Date())
-        
         if distanceSecond! < 1{
             timeAgo = "1m ago"
         }
@@ -317,7 +331,7 @@ extension HomeVC: UITableViewDataSource{
         return headerView
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 10
+        return 0.5
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         if scheduleData.count == 0{
@@ -335,8 +349,10 @@ extension HomeVC: UITableViewDataSource{
         
         if isNoCell == false{
         self.present(detailVC, animated: true, completion: nil)
+            changeDate(start: scheduleData[0].calendars[indexPath.section].startDate, finish: scheduleData[0].calendars[indexPath.section].endDate, upload: scheduleData[0].calendars[indexPath.section].createdAt)
             detailVC.setData(time: scheduleDateString, information: scheduleData[0].calendars[indexPath.section].comment, person: scheduleData[0].calendars[indexPath.section].creatorName, scheduleID: scheduleData[0].calendars[indexPath.section].id)
         detailVC.delegate = self
+            print(indexPath.section)
         }
         else{
             print("없는셀 클릭")
