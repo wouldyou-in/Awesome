@@ -96,6 +96,7 @@ class CalendarVC: UIViewController {
                 if let response = loginData as? CalendarDataModel{
                     DispatchQueue.global().sync {
                         self.userEventsDetail.append(response)
+                        print(response)
                         print("어펜드 끝")
                     }
                     if response.calendar.count != 0{
@@ -144,7 +145,7 @@ class CalendarVC: UIViewController {
         let subDateFormatter = DateFormatter()
         let UpdateFormatter = DateFormatter()
         UpdateFormatter.locale = Locale(identifier: "ko_KR")
-        UpdateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+        UpdateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS"
         dateFormatter.locale = Locale(identifier: "ko_KR")
         dateFormatter.dateFormat = "yyyy-MM-dd"
         subDateFormatter.locale = Locale(identifier: "ko_KR")
@@ -154,14 +155,14 @@ class CalendarVC: UIViewController {
         }
         else{
         
-        for i in 0 ... userEventsDetail[0].calendar.count - 1{
-            if userEventsDetail[0].calendar[i].isAccept ?? false == true{
+        for i in 0 ... userEventsDetail[0].myCalendar.count - 1{
+            if userEventsDetail[0].myCalendar[i].isAccept ?? false == true{
                 print("서버 데이터")
-                let dateData = userEventsDetail[0].calendar[i].startDate
+                let dateData = userEventsDetail[0].myCalendar[i].startDate
                 let realData = UpdateFormatter.date(from: dateData)
                 let data = subDateFormatter.string(from: realData ?? Date())
                 let rData = dateFormatter.date(from: data)
-                print(rData, "ada")
+                print("이것",rData)
                 Userevents.append(rData!)
             }
         }
@@ -349,7 +350,7 @@ class CalendarVC: UIViewController {
                     isScheduleFinish = false
                 }
                 scheduleData.append(contentsOf:[eventCalendarModel(name: event.title, time: startTime + comma + finishTime, icon: "continueIcon", isFinish: isScheduleFinish)])
-                detailCalendar.append(contentsOf: [detailCalendarModel(maker: event.organizer?.name ?? "없음" , time: ckDateMD + startTime + comma + finishTime, detail: event.title, id: 0, participant: 0)])
+                detailCalendar.append(contentsOf: [detailCalendarModel(maker: event.organizer?.name ?? "없음" , time: ckDateMD + startTime + comma + finishTime, detail: event.title, id: 0, participant: 0, userSc: false)])
                 Userevents.append(event.startDate)
                 tableView.reloadData()
                   }
@@ -362,15 +363,20 @@ class CalendarVC: UIViewController {
             }
           }
         if userEventsDetail.count != 0{
-            for userEvents in userEventsDetail[0].calendar{
+            for userEvents in userEventsDetail[0].myCalendar{
             checkDate = beforeCheckDate
             if userEvents.isAccept == true {
+                var usersc: Bool = false
                 let dateformatter = DateFormatter()
-                dateformatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+                dateformatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS"
+                dateformatter.locale = Locale(identifier: "ko_KR")
                 let subDateFormatter = DateFormatter()
                 subDateFormatter.dateFormat = "yyyy-MM-dd"
+                subDateFormatter.locale = Locale(identifier: "ko_KR")
                 let printDateFormatter = DateFormatter()
                 printDateFormatter.dateFormat = "HH:mm"
+                printDateFormatter.locale = Locale(identifier: "ko_KR")
+
                 
                 let start = dateformatter.date(from: userEvents.startDate)
                 let startDay = subDateFormatter.string(from: start ?? Date())
@@ -393,7 +399,12 @@ class CalendarVC: UIViewController {
                 }
                 
                 scheduleData.append(contentsOf:[eventCalendarModel(name: userEvents.creatorName, time: startTime + comma + finishTime, icon: "continueIcon", isFinish: isScheduleFinish)])
-                detailCalendar.append(contentsOf: [detailCalendarModel(maker: userEvents.creatorName, time: ckDateMD + " " + startTime + comma + finishTime, detail: userEvents.comment, id: userEvents.id, participant: userEvents.participant)])
+                    print(userEvents.creatorEmail , "ggggggg")
+                    if userEvents.creatorEmail == nil{
+                        usersc = true
+                    }
+                
+                detailCalendar.append(contentsOf: [detailCalendarModel(maker: userEvents.creatorName, time: ckDateMD + " " + startTime + comma + finishTime, detail: userEvents.comment, id: userEvents.id, participant: userEvents.participant, userSc: usersc)])
 
                 tableView.reloadData()
             }
@@ -492,7 +503,7 @@ extension CalendarVC: UITableViewDelegate{
         else{
         guard let detailVC = UIStoryboard(name: "DetailCalendar", bundle: nil).instantiateViewController(identifier: "DetailCalendarVC") as? DetailCalendarVC else {return}
         self.present(detailVC, animated: true, completion: nil)
-            detailVC.setData(name: detailCalendar[indexPath.row].maker, time: detailCalendar[indexPath.row].time, detail: detailCalendar[indexPath.row].detail, id: detailCalendar[indexPath.row].id, participant: detailCalendar[indexPath.row].participant)
+            detailVC.setData(name: detailCalendar[indexPath.row].maker, time: detailCalendar[indexPath.row].time, detail: detailCalendar[indexPath.row].detail, id: detailCalendar[indexPath.row].id, participant: detailCalendar[indexPath.row].participant, userSchedule: detailCalendar[indexPath.row].userSc)
             detailVC.delegate = self
             tableView.reloadData()
         }
