@@ -83,7 +83,7 @@ class ScheduleDetailVC: UIViewController {
         
     }
     @IBAction func denineButtonClicked(_ sender: Any) {
-        self.makeRequestAlert(title: "약속거적", message: "정말 약속을 거절하시겠습니까?",
+        self.makeRequestAlert(title: "약속거절", message: "정말 약속을 거절하시겠습니까?",
                               okAction: {_ in self.postAccessDenine(bool: false)
                                 self.delegate?.tableViewReloadDelegate()
                                 self.dismiss(animated: true, completion: nil)
