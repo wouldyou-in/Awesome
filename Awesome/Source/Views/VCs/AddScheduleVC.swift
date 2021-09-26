@@ -85,29 +85,6 @@ class AddScheduleVC: UIViewController {
     
   
     @IBAction func okButtonClicked(_ sender: Any) {
-//
-//
-//        let calendar = Calendar.current
-//        var formatter = DateFormatter()
-//        formatter.dateFormat = "yyyy/MM/dd"
-//        let startDate = formatter.date(from: startTime)
-//        let endDate = formatter.date(from: endTime)
-//        if startTime.contains("시작기간") || endTime.contains("종료기간") {
-//            self.makeAlert(title: "오류", message: "기간을 입력하지 않았습니다. 시작기관과 종료기간을 정확히 입력해주세요")
-//        }
-//        else {
-//        let judgeMentTime = Int(startDate!.timeIntervalSince(endDate!))
-//        if judgeMentTime > 0 {
-//            self.makeAlert(title: "오류", message: "기간이 잘못 입력되었습니다. 다시입력해주세요")
-//        }
-//        else{
-//            setDateData()
-//            self.dismiss(animated: true, completion: nil)
-//        }
-//        }
-//
-//
-        
         
         if startTime.contains("시작시간") || finishTime.contains("종료시간") || nameText.contains("이름") {
             self.makeAlert(title: "오류", message: "시간을 입력하지 않았습니다. 시작시간과 종료시간을 정확히 입력해주세요")
@@ -129,6 +106,7 @@ class AddScheduleVC: UIViewController {
         
         let startString:String = "\(selectDay)T\(startTime):00.000000+09:00"
         let finishString:String = "\(selectDay)T\(finishTime):00.000000+09:00"
+            print(startString)
         
         print(startString, finishString)
 //            var formatter = ISO8601DateFormatter()
