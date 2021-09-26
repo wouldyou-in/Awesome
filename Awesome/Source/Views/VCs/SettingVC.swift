@@ -40,6 +40,13 @@ class SettingVC: UIViewController {
         setButtonView()
         getInviteCount()
         isToggleOn()
+        isNoti()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("viewwillappear")
+        isNoti()
+        isToggleOn()
     }
 //MARK: Function
     func setHeaderView(){
@@ -64,9 +71,14 @@ class SettingVC: UIViewController {
         withdrawView.layer.cornerRadius = 15
     }
     func isToggleOn(){
-        if UserDefaults.standard.bool(forKey: "noti") == true{
-            toggle.setOn(true, animated: true)
-        }
+        isNoti()
+        toggle.setOn(UserDefaults.standard.bool(forKey: "noti"), animated: true)
+    }
+    func isNoti(){
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge], completionHandler: {didAllow,Error in UserDefaults.standard.setValue(didAllow, forKey: "noti"); print(didAllow)}
+        )
+        print("noti" , UserDefaults.standard.bool(forKey: "noti"))
+        
     }
 //MARK: IBAction
     @IBAction func backButtonClicked(_ sender: Any) {
@@ -115,8 +127,8 @@ class SettingVC: UIViewController {
     
     @IBAction func notificationToggleClicked(_ sender: Any) {
         UNUserNotificationCenter.current().delegate = self
+        isNoti()
         if toggle.isOn{
-            
             if notiPermission == false{if let appSetting = URL(string: UIApplication.openSettingsURLString){
                 UIApplication.shared.open(appSetting, options: [:], completionHandler: nil)
                 UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge], completionHandler: {didAllow,Error in
@@ -136,6 +148,7 @@ class SettingVC: UIViewController {
                 UserDefaults.standard.setValue(notiPermission, forKey: "noti")
             }
         }
+        self.view.reloadInputViews()
     }
     
     
