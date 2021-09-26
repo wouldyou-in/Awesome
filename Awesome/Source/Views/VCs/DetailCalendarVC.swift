@@ -28,6 +28,7 @@ class DetailCalendarVC: UIViewController {
     var scheduleID: Int = 0
     var participantNum: Int = 0
     var detailText: String = ""
+    var userSc: Bool = false
     
     var delegate: refreshDelegate?
     
@@ -43,7 +44,7 @@ class DetailCalendarVC: UIViewController {
         detailLabel.lineBreakStrategy = .hangulWordPriority
         detailLabel.numberOfLines = 5
     }
-    func setData(name: String, time: String, detail: String, id: Int, participant: Int){
+    func setData(name: String, time: String, detail: String, id: Int, participant: Int, userSchedule: Bool){
         print(name, time, detail)
         nameLabel.text = name
         timeLabel.text = time
@@ -51,6 +52,7 @@ class DetailCalendarVC: UIViewController {
         detailText = detail
         participantNum = participant
         scheduleID = id
+        userSc = userSchedule
     }
     func setLayout(){
         nameLabelView.clipsToBounds = true
@@ -102,8 +104,13 @@ class DetailCalendarVC: UIViewController {
     @IBAction func deleteScheduleButtonClicked(_ sender: Any) {
         self.makeRequestAlert(title: "약속삭제", message: "정말 약속을 삭제하시겠습니까?",
                               okAction: {_ in
+            if(self.userSc == false){
+                self.makeAlert(title: "삭제불가", message: "삭제할 수 없는 약속입니다.", okAction: nil, completion: nil)
+            }
+            else{
                                 self.deleteSchedule()
                                 self.dismiss(animated: true, completion: nil)
+            }
                               },
                               cancelAction: nil,
                               completion: nil)
