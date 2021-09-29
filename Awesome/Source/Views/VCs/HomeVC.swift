@@ -28,6 +28,7 @@ class HomeVC: UIViewController {
     var isFirstLoginBool: Bool = false
     var isNoCell: Bool = false
     let appdelegate = UIApplication.shared.delegate as! AppDelegate
+    var cnt = 99;
 
 //MARK: ViewDidLoad
     override func viewDidLoad() {
@@ -40,10 +41,14 @@ class HomeVC: UIViewController {
         initRefresh()
         isFirstLogin()
         postDeviceToken()
+        if UserDefaults.standard.bool(forKey: "beta") != true{
+            self.makeAlert(title: "알림", message: "초대장이 없으면 프로필이 보이지 않고 기능을 사용할 수 없어요😢 초대장을 받아 앱의 모든 기능을 이용해봐요!", okAction: nil, completion: nil)
+        }
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
+   
     
 //MARK: function
     func postDeviceToken(){
@@ -66,6 +71,7 @@ class HomeVC: UIViewController {
         tableView.registerCustomXib(xibName: "HomeNotScheduleTVC")
 
     }
+    
     func isFirstLogin(){
         guard let apnVC = UIStoryboard(name: "AskApn", bundle: nil).instantiateViewController(identifier: "AskApnVC") as? AskApnVC else {return}
         if isFirstLoginBool == true {
@@ -225,7 +231,8 @@ class HomeVC: UIViewController {
         refresh.endRefreshing()
 
     }
-    
+
+
 //MARK: GetDataFunction
     func uppdateProfile(){
         GetProfileDataService.ProfileData.getRecommendInfo{ (response) in
@@ -233,6 +240,7 @@ class HomeVC: UIViewController {
             {
             case .success(let loginData):
                 self.setProfile()
+                UserDefaults.standard.setValue(true, forKey: "beta")
             case .requestErr(let message):
                 print("requestERR")
             case .pathErr :
@@ -240,6 +248,7 @@ class HomeVC: UIViewController {
             case .serverErr:
                 print("serverERR")
             case .networkFail:
+                UserDefaults.standard.setValue(false, forKey: "beta")
                 print("networkFail")
             }
         }

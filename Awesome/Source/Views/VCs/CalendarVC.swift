@@ -328,17 +328,20 @@ class CalendarVC: UIViewController {
         let detailFormatter = DateFormatter()
               let startTimeFormatter = DateFormatter()
               let finishTimeFormatter = DateFormatter()
+        var ckDateMD: String = ""
               formatter.locale = Locale(identifier: "ko_KR")
               formatter.dateFormat = "yyyy-MM-dd"
         detailFormatter.locale = Locale(identifier: "ko_KR")
         detailFormatter.dateFormat = "MM월 d일"
-        var ckDate = detailFormatter.date(from: checkDate ?? "")
-        var ckDateMD = detailFormatter.string(from: ckDate ?? Date())
+      
               startTimeFormatter.dateFormat = "HH:mm"
               finishTimeFormatter.dateFormat = "HH:mm"
               let comma : String = " ~ "
             
         for event in events {
+            var ckDate = detailFormatter.string(from: event.startDate)
+           ckDateMD = detailFormatter.string(from: event.startDate)
+            print(ckDate, "ckdate")
                   let start = formatter.string(from: event.startDate)
                   let startTime = startTimeFormatter.string(from: event.startDate)
                   let finishTime = finishTimeFormatter.string(from: event.endDate)
@@ -365,8 +368,11 @@ class CalendarVC: UIViewController {
         if userEventsDetail.count != 0{
             for userEvents in userEventsDetail[0].myCalendar{
             checkDate = beforeCheckDate
+                var startDateday: Date = Date()
             if userEvents.isAccept == true {
                 var usersc: Bool = false
+                let checkFormatter = DateFormatter()
+                checkFormatter.dateFormat = "MM월 d일"
                 let dateformatter = DateFormatter()
                 dateformatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS"
                 dateformatter.locale = Locale(identifier: "ko_KR")
@@ -376,7 +382,9 @@ class CalendarVC: UIViewController {
                 let printDateFormatter = DateFormatter()
                 printDateFormatter.dateFormat = "HH:mm"
                 printDateFormatter.locale = Locale(identifier: "ko_KR")
-
+                startDateday = dateformatter.date(from: userEvents.startDate ) ?? Date()
+                ckDateMD = checkFormatter.string(from: startDateday)
+                
                 
                 let start = dateformatter.date(from: userEvents.startDate)
                 let startDay = subDateFormatter.string(from: start ?? Date())
@@ -405,7 +413,7 @@ class CalendarVC: UIViewController {
                     }
                 
                 detailCalendar.append(contentsOf: [detailCalendarModel(maker: userEvents.creatorName, time: ckDateMD + " " + startTime + comma + finishTime, detail: userEvents.comment, id: userEvents.id, participant: userEvents.participant, userSc: usersc)])
-
+                    print(ckDateMD, "asg")
                 tableView.reloadData()
             }
             if scheduleData.count != 0{
@@ -528,7 +536,7 @@ extension CalendarVC: UITableViewDataSource{
         if isSchedule == true{
             print("셀실행")
             print(indexPath)
-            print(scheduleData[indexPath.row].time)
+            print(scheduleData[indexPath.row].time ,"dasf")
             scheduleCell.setData(name: scheduleData[indexPath.row].name, time: scheduleData[indexPath.row].time, isFinish: scheduleData[indexPath.row].isFinish)
             return scheduleCell
         }

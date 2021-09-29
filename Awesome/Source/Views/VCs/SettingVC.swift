@@ -7,7 +7,7 @@
 
 import UIKit
 import AuthenticationServices
-
+import WebKit
 
 class SettingVC: UIViewController {
 //MARK: IBOulet
@@ -228,6 +228,14 @@ class SettingVC: UIViewController {
                 {
                 case .success(let inviteData):
                     print("탈퇴 성공")
+                    WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes(), completionHandler: {
+                        (records) -> Void in
+                        for record in records{
+                            WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {})
+                           //remove callback
+                        }
+                    })
+                    defaults.removeObject(forKey: "beta")
                     defaults.removeObject(forKey: "refreshToken")
                     defaults.removeObject(forKey: "accessToken")
                     defaults.removeObject(forKey: "name")
@@ -257,6 +265,7 @@ class SettingVC: UIViewController {
             switch result{
             case .success(let tokenData):
                 print("로그아웃 성공")
+                defaults.removeObject(forKey: "beta")
                 defaults.removeObject(forKey: "refreshToken")
                 defaults.removeObject(forKey: "accessToken")
                 defaults.removeObject(forKey: "name")
@@ -264,6 +273,14 @@ class SettingVC: UIViewController {
                 defaults.removeObject(forKey: "kakaoLoginSucces")
                 defaults.removeObject(forKey: "appleLoginSuccess")
                 defaults.setValue(false, forKey: "loginBool")
+                WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes(), completionHandler: {
+                    (records) -> Void in
+                    for record in records{
+                        WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {})
+                       //remove callback
+                    }
+                })
+                
                 self.navigationController?.pushViewController(resetVC, animated: true)
             case .requestErr(let msg):
                 print("requestErr")

@@ -37,7 +37,7 @@ class AskApnVC: UIViewController {
     }
     
     func postDeviceToken(){
-        PostDevieceTokenDataService.shared.AutoLoginService(push_token: UserDefaults.standard.string(forKey: "deviceToken")!) { [self] result in
+        PostDevieceTokenDataService.shared.AutoLoginService(push_token: UserDefaults.standard.string(forKey: "deviceToken") ?? "none" ) { [self] result in
                     switch result{
                     case .success(let tokenData):
                         print("성공")
