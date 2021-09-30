@@ -7,7 +7,7 @@
 
 import UIKit
 import AuthenticationServices
-
+import WebKit
 
 class SettingVC: UIViewController {
 //MARK: IBOulet
@@ -40,6 +40,13 @@ class SettingVC: UIViewController {
         setButtonView()
         getInviteCount()
         isToggleOn()
+        isNoti()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("viewwillappear")
+        isNoti()
+        isToggleOn()
     }
 //MARK: Function
     func setHeaderView(){
@@ -64,9 +71,14 @@ class SettingVC: UIViewController {
         withdrawView.layer.cornerRadius = 15
     }
     func isToggleOn(){
-        if UserDefaults.standard.bool(forKey: "noti") == true{
-            toggle.setOn(true, animated: true)
-        }
+        isNoti()
+        toggle.setOn(UserDefaults.standard.bool(forKey: "noti"), animated: true)
+    }
+    func isNoti(){
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge], completionHandler: {didAllow,Error in UserDefaults.standard.setValue(didAllow, forKey: "noti"); print(didAllow)}
+        )
+        print("noti" , UserDefaults.standard.bool(forKey: "noti"))
+        
     }
 //MARK: IBAction
     @IBAction func backButtonClicked(_ sender: Any) {
@@ -115,8 +127,8 @@ class SettingVC: UIViewController {
     
     @IBAction func notificationToggleClicked(_ sender: Any) {
         UNUserNotificationCenter.current().delegate = self
+        isNoti()
         if toggle.isOn{
-            
             if notiPermission == false{if let appSetting = URL(string: UIApplication.openSettingsURLString){
                 UIApplication.shared.open(appSetting, options: [:], completionHandler: nil)
                 UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge], completionHandler: {didAllow,Error in
@@ -136,12 +148,14 @@ class SettingVC: UIViewController {
                 UserDefaults.standard.setValue(notiPermission, forKey: "noti")
             }
         }
+        self.view.reloadInputViews()
     }
     
     
     @IBAction func linkShareButtonClicked(_ sender: Any) {
         var objectsToShare = [String]()
-        objectsToShare.append("나의 어떰 프로필을 공유합니다.")
+        let myID = UserDefaults.standard.string(forKey: "myKey")
+        objectsToShare.append("https://react.wouldyou.in/apply/" + myID!)
 //        if let text = shareLabel.text{
 //                   objectsToShare.append(text)
 //                   print("[INFO] textField's Text : ", text)
@@ -206,20 +220,41 @@ class SettingVC: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     @IBAction func withdrawButtonClicked(_ sender: Any) {
-        PostDevieceTokenDataService.shared.AutoLoginService(push_token: UserDefaults.standard.string(forKey: "deviceToken")!) { [self] result in
-            switch result{
-            case .success(let tokenData):
-                print("성공")
-            case .requestErr(let msg):
-                print("requestErr")
-            default :
-                print("ERROR")
+        guard let resetVC = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(identifier: "LoginVC") as? LoginVC else {return}
+        let defaults = UserDefaults.standard
+        makeRequestAlert(title: "탈퇴", message: "정말 탈퇴하시겠습니까?", okAction: {_ in
+            GetWithDrawDataService.withdraw.getRecommendInfo{ (response) in
+                switch(response)
+                {
+                case .success(let inviteData):
+                    print("탈퇴 성공")
+                    WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes(), completionHandler: {
+                        (records) -> Void in
+                        for record in records{
+                            WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {})
+                           //remove callback
+                        }
+                    })
+                    defaults.removeObject(forKey: "beta")
+                    defaults.removeObject(forKey: "refreshToken")
+                    defaults.removeObject(forKey: "accessToken")
+                    defaults.removeObject(forKey: "name")
+                    defaults.removeObject(forKey: "profile")
+                    defaults.removeObject(forKey: "kakaoLoginSucces")
+                    defaults.removeObject(forKey: "appleLoginSuccess")
+                    defaults.setValue(false, forKey: "loginBool")
+                    self.navigationController?.pushViewController(resetVC, animated: true)
+                case .requestErr(let message):
+                    print("requestERR")
+                case .pathErr :
+                    print("pathERR")
+                case .serverErr:
+                    print("serverERR")
+                case .networkFail:
+                    print("networkFail")
+                }
             }
-        }
-        
-        
-        
-        
+        }, cancelAction: nil, completion: nil)
     }
 //MARK: function
     func logOutFunction(){
@@ -230,6 +265,7 @@ class SettingVC: UIViewController {
             switch result{
             case .success(let tokenData):
                 print("로그아웃 성공")
+                defaults.removeObject(forKey: "beta")
                 defaults.removeObject(forKey: "refreshToken")
                 defaults.removeObject(forKey: "accessToken")
                 defaults.removeObject(forKey: "name")
@@ -237,6 +273,14 @@ class SettingVC: UIViewController {
                 defaults.removeObject(forKey: "kakaoLoginSucces")
                 defaults.removeObject(forKey: "appleLoginSuccess")
                 defaults.setValue(false, forKey: "loginBool")
+                WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes(), completionHandler: {
+                    (records) -> Void in
+                    for record in records{
+                        WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {})
+                       //remove callback
+                    }
+                })
+                
                 self.navigationController?.pushViewController(resetVC, animated: true)
             case .requestErr(let msg):
                 print("requestErr")

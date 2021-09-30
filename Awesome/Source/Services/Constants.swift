@@ -14,6 +14,7 @@ struct Constants {
     static var updateLoginToken = baseURL + "/user/refresh/"
     static var logoutURL = baseURL + "/user/logout/"
     static var appleLogin = baseURL + "/user/apple/login/"
+    static var withdraw = baseURL + "/user/quit/"
     /// 2.프로필 리스트 URL
     static var profileDataURL = baseURL + "/user/me/"
     /// 3.약속 리스트 URL

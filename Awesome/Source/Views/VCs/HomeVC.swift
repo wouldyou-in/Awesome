@@ -28,6 +28,7 @@ class HomeVC: UIViewController {
     var isFirstLoginBool: Bool = false
     var isNoCell: Bool = false
     let appdelegate = UIApplication.shared.delegate as! AppDelegate
+    var cnt = 99;
 
 //MARK: ViewDidLoad
     override func viewDidLoad() {
@@ -39,18 +40,38 @@ class HomeVC: UIViewController {
         setIdentifier()
         initRefresh()
         isFirstLogin()
+        postDeviceToken()
+        if UserDefaults.standard.bool(forKey: "beta") != true{
+            self.makeAlert(title: "알림", message: "초대장이 없으면 프로필이 보이지 않고 기능을 사용할 수 없어요😢 초대장을 받아 앱의 모든 기능을 이용해봐요!", okAction: nil, completion: nil)
+        }
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
+   
     
 //MARK: function
+    func postDeviceToken(){
+        if UserDefaults.standard.bool(forKey: "noti") == true{
+        PostDevieceTokenDataService.shared.AutoLoginService(push_token: UserDefaults.standard.string(forKey: "deviceToken")!) { [self] result in
+                    switch result{
+                    case .success(let tokenData):
+                        print("성공")
+                    case .requestErr(let msg):
+                        print("requestErr")
+                    default :
+                        print("ERROR")
+                    }
+        }
+        }
+    }
 
     func setIdentifier(){
         tableView.registerCustomXib(xibName: "HomeTVC")
         tableView.registerCustomXib(xibName: "HomeNotScheduleTVC")
 
     }
+    
     func isFirstLogin(){
         guard let apnVC = UIStoryboard(name: "AskApn", bundle: nil).instantiateViewController(identifier: "AskApnVC") as? AskApnVC else {return}
         if isFirstLoginBool == true {
@@ -134,29 +155,39 @@ class HomeVC: UIViewController {
         }
     }
     
-    func changeDate(start: Date, finish: Date, upload: String){
+    func changeDate(start: String, finish: String, upload: String){
         let startFormatter = DateFormatter()
         let titleFormatter = DateFormatter()
         let finishFormatter = DateFormatter()
         let agoFormatter = DateFormatter()
+        let sfFormatter = DateFormatter(
+        )
         var nowDate = Date()
         
+       
+        sfFormatter.locale = Locale(identifier: "ko_KR")
+        sfFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS"
         startFormatter.locale = Locale(identifier: "ko_KR")
         startFormatter.dateFormat = "MM월 dd일 HH:mm"
         finishFormatter.locale = Locale(identifier: "ko_KR")
         finishFormatter.dateFormat = "HH:mm"
         titleFormatter.dateFormat = "yyyy년 MM월 dd일"
         agoFormatter.locale = Locale(identifier: "ko_KR")
-        agoFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"
+        agoFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS"
 
-        print(upload)
+        var startDay = sfFormatter.date(from: start)
+        var endDay = sfFormatter.date(from: finish)
         var startUpload = agoFormatter.date(from: upload)
+        
+        print(startDay, endDay, startUpload)
+
         let distanceSecond = Calendar.current.dateComponents([.minute], from: startUpload ?? Date(), to: nowDate).minute
-        titleSchedule = titleFormatter.string(from: start)
-        finishSchedule = finishFormatter.string(from: start)
         
-        scheduleDateString = startFormatter.string(from: start) + "~" + finishFormatter.string(from: finish)
         
+        titleSchedule = titleFormatter.string(from: startDay ?? Date())
+        finishSchedule = finishFormatter.string(from: endDay ?? Date())
+        print(startFormatter.string(from: startDay!))
+        scheduleDateString = startFormatter.string(from: startDay ?? Date()) + "~" + finishFormatter.string(from: endDay ?? Date())
         if distanceSecond! < 1{
             timeAgo = "1m ago"
         }
@@ -200,7 +231,8 @@ class HomeVC: UIViewController {
         refresh.endRefreshing()
 
     }
-    
+
+
 //MARK: GetDataFunction
     func uppdateProfile(){
         GetProfileDataService.ProfileData.getRecommendInfo{ (response) in
@@ -208,6 +240,7 @@ class HomeVC: UIViewController {
             {
             case .success(let loginData):
                 self.setProfile()
+                UserDefaults.standard.setValue(true, forKey: "beta")
             case .requestErr(let message):
                 print("requestERR")
             case .pathErr :
@@ -215,6 +248,7 @@ class HomeVC: UIViewController {
             case .serverErr:
                 print("serverERR")
             case .networkFail:
+                UserDefaults.standard.setValue(false, forKey: "beta")
                 print("networkFail")
             }
         }
@@ -306,7 +340,7 @@ extension HomeVC: UITableViewDataSource{
         return headerView
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 10
+        return 0.5
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         if scheduleData.count == 0{
@@ -316,6 +350,7 @@ extension HomeVC: UITableViewDataSource{
         else{
             isNoCell = false
             return scheduleData[0].calendars.count
+            
         }
     }
     
@@ -324,8 +359,10 @@ extension HomeVC: UITableViewDataSource{
         
         if isNoCell == false{
         self.present(detailVC, animated: true, completion: nil)
-        detailVC.setData(time: scheduleDateString, information: scheduleData[0].calendars[indexPath.section].comment, person: scheduleData[0].calendars[indexPath.section].creatorName, scheduleID: scheduleData[0].calendars[indexPath.section].id)
+            changeDate(start: scheduleData[0].calendars[indexPath.section].startDate, finish: scheduleData[0].calendars[indexPath.section].endDate, upload: scheduleData[0].calendars[indexPath.section].createdAt)
+            detailVC.setData(time: scheduleDateString, information: scheduleData[0].calendars[indexPath.section].comment, person: scheduleData[0].calendars[indexPath.section].creatorName, scheduleID: scheduleData[0].calendars[indexPath.section].id)
         detailVC.delegate = self
+            print(indexPath.section)
         }
         else{
             print("없는셀 클릭")

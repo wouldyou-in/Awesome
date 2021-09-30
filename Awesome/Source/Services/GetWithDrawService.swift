@@ -3,18 +3,18 @@ import Foundation
 
 
 
-struct GetScheduleNoticeDataService
+struct GetWithDrawDataService
 {
-    static let scheduleData = GetScheduleNoticeDataService()
+    static let withdraw = GetWithDrawDataService()
     let userToken = UserDefaults.standard.string(forKey: "accessToken") ?? ""
     
     func getRecommendInfo(completion : @escaping (NetworkResult<Any>) -> Void)
     {
         // completion 클로저를 @escaping closure로 정의합니다.
-        let URL = Constants.calendarAcceptURL
+        let URL = Constants.withdraw
         let header : HTTPHeaders = ["Authorization": "Bearer " + userToken]
         let dataRequest = AF.request(URL,
-                                     method: .get,
+                                     method: .delete,
                                      encoding: JSONEncoding.default,
                                      headers: header)
         dataRequest.responseData { dataResponse in
@@ -22,7 +22,6 @@ struct GetScheduleNoticeDataService
             case .success:
                 guard let statusCode = dataResponse.response?.statusCode else {return}
                 guard let value = dataResponse.value else {return}
-                print("ㅁㄴㅇㄹ", statusCode)
                 let networkResult = self.judgeStatus(by: statusCode, value)
                 completion(networkResult)
 
@@ -45,8 +44,8 @@ struct GetScheduleNoticeDataService
     private func isValidData(data : Data) -> NetworkResult<Any> {
         
         let decoder = JSONDecoder()
-//        decoder.dateDecodingStrategy = .secondsSince1970
-        guard let decodedData = try? decoder.decode(ScheduleNoticeModel.self, from: data)
+        decoder.dateDecodingStrategy = .iso8601
+        guard let decodedData = try? decoder.decode(PostTokenDataModel.self, from: data)
         else {return .pathErr}
     
         return .success(decodedData)

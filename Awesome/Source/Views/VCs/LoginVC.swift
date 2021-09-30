@@ -20,26 +20,7 @@ class LoginVC: UIViewController {
     let appdelegate = UIApplication.shared.delegate as! AppDelegate
     var appleName: String = ""
 
-//
-//    func setImage(){
-//        if UIDevice.current.hasNotch {
-//            //... 노치가 있을때....
-//            if UIScreen.main.bounds.width > 500 {
-//                loginImageView.image = UIImage(named: "iPadLogin")
-//            }
-//            else{
-//                loginImageView.image = UIImage(named: "loginBackground")
-//            }
-//        } else {
-//            //... 노치가 없을때...
-//            if UIScreen.main.bounds.width > 500{
-//                loginImageView.image = UIImage(named: "iPadLogin")
-//            }
-//            else{
-//                loginImageView.image = UIImage(named: "iPhone8Login")
-//            }
-//        }
-//    }
+
     
     
     //MARK: IBAction

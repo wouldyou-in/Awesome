@@ -35,6 +35,19 @@ class AskApnVC: UIViewController {
         backGroundView.clipsToBounds = true
         backGroundView.layer.cornerRadius = 15
     }
+    
+    func postDeviceToken(){
+        PostDevieceTokenDataService.shared.AutoLoginService(push_token: UserDefaults.standard.string(forKey: "deviceToken") ?? "none" ) { [self] result in
+                    switch result{
+                    case .success(let tokenData):
+                        print("성공")
+                    case .requestErr(let msg):
+                        print("requestErr")
+                    default :
+                        print("ERROR")
+                    }
+        }
+    }
 //MARK: IBAction
     @IBAction func accessButtonClicked(_ sender: Any) {
             UNUserNotificationCenter.current().requestAuthorization(options: [.alert,.sound,.badge], completionHandler: {didAllow,Error in
@@ -42,6 +55,7 @@ class AskApnVC: UIViewController {
             })
         UNUserNotificationCenter.current().delegate = self
         self.dismiss(animated: true, completion: nil)
+        postDeviceToken()
     }
     @IBAction func laterButtonClicked(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)

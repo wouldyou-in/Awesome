@@ -55,7 +55,7 @@ class KakaoLoginVC: UIViewController {
                 self.getAccessToken()
             case .requestErr(let message):
                 print("requestERR")
-            case .pathErr :
+            case .pathErr:
                 print("로그인 토큰 못받아옴")
                 print("pathERR")
             case .serverErr:
@@ -82,6 +82,8 @@ class KakaoLoginVC: UIViewController {
                 print("pathERR")
             case .serverErr:
                 print("serverERR")
+                self.makeAlert(title: "알림", message: "탈퇴시 14일이내에 재가입이 불가능합니다.", okAction: {_ in self.navigationController?.popViewController(animated: true)}, completion: nil)
+               
                 print(Constants.loginString)
             case .networkFail:
                 print("networkFail")
@@ -118,6 +120,8 @@ extension KakaoLoginVC: WKNavigationDelegate {
         setData()
 //        if UserDefaults.standard.bool(forKey: "kakaoLoginSucces") == true{
 //            pushHome()
+        
+      
 //        }
     }
     func webView(_ webView: WKWebView, didReceiveServerRedirectForProvisionalNavigation navigation: WKNavigation!) {
