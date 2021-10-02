@@ -30,7 +30,7 @@
 		<true/>
 	</dict>
 	<key>NSCalendarsUsageDescription</key>
-	<string>사용자의 캘린더에서 일정을 불러옵니다. 원하지 않을경우 거부하셔도 문제가 없습니다. </string>
+	<string>사용자의 캘린더에서 일정을 불러옵니다. 원하지 않을경우 거부하셔도 앱의 기능을 사용하는것에 대한 문제가 없습니다. </string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>BPtypewriteStrikethrough.ttf</string>

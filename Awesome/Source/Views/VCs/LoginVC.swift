@@ -75,6 +75,7 @@ extension LoginVC: ASAuthorizationControllerDelegate{
                         case .requestErr(let msg):
                             print("requestErr")
                         default :
+                            self.makeAlert(title: "오류", message: "탈퇴후 14일내에는 재가입이 불가능합니다.", okAction: nil, completion: nil)
                             print("ERROR")
                         }
                     }

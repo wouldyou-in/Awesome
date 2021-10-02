@@ -41,9 +41,9 @@ class HomeVC: UIViewController {
         initRefresh()
         isFirstLogin()
         postDeviceToken()
-        if UserDefaults.standard.bool(forKey: "beta") != true{
-            self.makeAlert(title: "알림", message: "초대장이 없으면 프로필이 보이지 않고 기능을 사용할 수 없어요😢 초대장을 받아 앱의 모든 기능을 이용해봐요!", okAction: nil, completion: nil)
-        }
+//        if UserDefaults.standard.bool(forKey: "beta") != true{
+//            self.makeAlert(title: "알림", message: "초대장이 없으면 프로필이 보이지 않고 기능을 사용할 수 없어요😢 초대장을 받아 앱의 모든 기능을 이용해봐요!", okAction: nil, completion: nil)
+//        }
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
