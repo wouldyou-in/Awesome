@@ -38,7 +38,7 @@ class SettingVC: UIViewController {
         super.viewDidLoad()
         setHeaderView()
         setButtonView()
-        getInviteCount()
+//        getInviteCount()
         isToggleOn()
         isNoti()
     }
@@ -55,10 +55,10 @@ class SettingVC: UIViewController {
         appdelegate.shouldSupportAllOrientation = false
         backGroundView.backgroundColor = UIColor.mainGray
         headerView.backgroundColor = UIColor.mainGray
-        leftInviteLabel.font = UIFont.gmarketSansMediumFont(ofSize: 12)
-        leftInviteView.clipsToBounds = true
-        leftInviteView.layer.cornerRadius = 15
-        leftInviteLabel.text = "남은 초대장 : \(leftInviteCountText)"
+//        leftInviteLabel.font = UIFont.gmarketSansMediumFont(ofSize: 12)
+//        leftInviteView.clipsToBounds = true
+//        leftInviteView.layer.cornerRadius = 15
+//        leftInviteLabel.text = "남은 초대장 : \(leftInviteCountText)"
     }
     func setButtonView(){
         linkshareView.clipsToBounds = true
@@ -84,47 +84,47 @@ class SettingVC: UIViewController {
     @IBAction func backButtonClicked(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
-    @IBAction func inviteButtonClicked(_ sender: Any) {
-        getInvite()
-        if intInviteCount == 0{
-            let alert = UIAlertController(title: "공유 불가", message: "사용가능한 초대장을 전부 사용하셨습니다.", preferredStyle: UIAlertController.Style.alert)
-            let okAction = UIAlertAction(title: "확인", style: .default)
-            {(action) in}
-            alert.addAction(okAction)
-            present(alert, animated: true, completion: nil)
-        }
-        
-        else{
-        let alert = UIAlertController(title: "초대장 공유", message: "초대장을 다른 사람들에게 공유하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
-        let okAction = UIAlertAction(title: "확인", style: .default) { (action) in
-            let activityVC = UIActivityViewController(activityItems: self.inviteLink, applicationActivities: nil)
-            activityVC.popoverPresentationController?.sourceView = self.view
-            
-            if let popoverController = activityVC.popoverPresentationController {
-                popoverController.sourceView = self.view //to set the source of your alert
-                popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0) // you can set this as per your requirement.
-                popoverController.permittedArrowDirections = [] //to hide the arrow of any particular direction
-            }
-            
-            self.present(activityVC, animated: true, completion: nil)
-            
-            activityVC.completionWithItemsHandler = { (activityType: UIActivity.ActivityType?, completed: Bool, arrayReturnedItems: [Any]?, error: Error?) in if completed {
-                self.getInviteCount()
-            }
-            else { self.deleteInvite() }
-                if let shareError = error { } }
-            
-        }
-        let cancelAction = UIAlertAction(title: "취소", style: .default)
-        {(action) in
-            self.deleteInvite()
-        }
-        alert.addAction(cancelAction)
-            alert.addAction(okAction)
-        present(alert, animated: true, completion: nil)
-        }
-    }
-    
+//    @IBAction func inviteButtonClicked(_ sender: Any) {
+//        getInvite()
+//        if intInviteCount == 0{
+//            let alert = UIAlertController(title: "공유 불가", message: "사용가능한 초대장을 전부 사용하셨습니다.", preferredStyle: UIAlertController.Style.alert)
+//            let okAction = UIAlertAction(title: "확인", style: .default)
+//            {(action) in}
+//            alert.addAction(okAction)
+//            present(alert, animated: true, completion: nil)
+//        }
+//
+//        else{
+//        let alert = UIAlertController(title: "초대장 공유", message: "초대장을 다른 사람들에게 공유하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
+//        let okAction = UIAlertAction(title: "확인", style: .default) { (action) in
+//            let activityVC = UIActivityViewController(activityItems: self.inviteLink, applicationActivities: nil)
+//            activityVC.popoverPresentationController?.sourceView = self.view
+//
+//            if let popoverController = activityVC.popoverPresentationController {
+//                popoverController.sourceView = self.view //to set the source of your alert
+//                popoverController.sourceRect = CGRect(x: self.view.bounds.midX, y: self.view.bounds.midY, width: 0, height: 0) // you can set this as per your requirement.
+//                popoverController.permittedArrowDirections = [] //to hide the arrow of any particular direction
+//            }
+//
+//            self.present(activityVC, animated: true, completion: nil)
+//
+//            activityVC.completionWithItemsHandler = { (activityType: UIActivity.ActivityType?, completed: Bool, arrayReturnedItems: [Any]?, error: Error?) in if completed {
+//                self.getInviteCount()
+//            }
+//            else { self.deleteInvite() }
+//                if let shareError = error { } }
+//
+//        }
+//        let cancelAction = UIAlertAction(title: "취소", style: .default)
+//        {(action) in
+//            self.deleteInvite()
+//        }
+//        alert.addAction(cancelAction)
+//            alert.addAction(okAction)
+//        present(alert, animated: true, completion: nil)
+//        }
+//    }
+//
     @IBAction func notificationToggleClicked(_ sender: Any) {
         UNUserNotificationCenter.current().delegate = self
         isNoti()
@@ -178,36 +178,36 @@ class SettingVC: UIViewController {
         let okAction = UIAlertAction(title: "확인", style: .default) { (action) in
             
             
-            if UserDefaults.standard.bool(forKey: "appleLoginSuccess") == true{
-                if #available(iOS 13.0, *) {
-                            let appleIDProvider = ASAuthorizationAppleIDProvider()
-                    appleIDProvider.getCredentialState(forUserID: UserDefaults.standard.string(forKey: "userID")!) { (credentialState, error) in
-                                switch credentialState {
-                                case .authorized:
-                                    print("인증성공상태")
-                                    DispatchQueue.main.async {
-                                        self.makeAlert(title: "로그아웃 실패", message: "내 설정에서 로그아웃을 해주세요.")
-                                    }
-//                                    if let appSetting = URL(string: UIApplication.openSettingsURLString){
-//                                        UIApplication.shared.open(appSetting, options: [:], completionHandler: nil)
+//            if UserDefaults.standard.bool(forKey: "appleLoginSuccess") == true{
+//                if #available(iOS 13.0, *) {
+//                            let appleIDProvider = ASAuthorizationAppleIDProvider()
+//                    appleIDProvider.getCredentialState(forUserID: UserDefaults.standard.string(forKey: "userID")!) { (credentialState, error) in
+//                                switch credentialState {
+//                                case .authorized:
+//                                    print("인증성공상태")
+//                                    DispatchQueue.main.async {
+//                                        self.makeAlert(title: "로그아웃 실패", message: "내 설정에서 로그아웃을 해주세요.")
 //                                    }
-                                    
-                                    //인증성공 상태
-                                case .revoked:
-                                    print("인증만료")
-                                    self.logOutFunction()
-                                    //인증만료 상태
-                                default:
-                                    print("에러")
-                                    //.notFound 등 이외 상태
-                                }
-                            }
-                    }
-                }
-            //애플로그인 아닐때
-            else{
+////                                    if let appSetting = URL(string: UIApplication.openSettingsURLString){
+////                                        UIApplication.shared.open(appSetting, options: [:], completionHandler: nil)
+////                                    }
+//
+//                                    //인증성공 상태
+//                                case .revoked:
+//                                    print("인증만료")
+//                                    self.logOutFunction()
+//                                    //인증만료 상태
+//                                default:
+//                                    print("에러")
+//                                    //.notFound 등 이외 상태
+//                                }
+//                            }
+//                    }
+//                }
+//            //애플로그인 아닐때
+//            else{
                 self.logOutFunction()
-            }
+//            }
 
 
 
@@ -222,7 +222,7 @@ class SettingVC: UIViewController {
     @IBAction func withdrawButtonClicked(_ sender: Any) {
         guard let resetVC = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(identifier: "LoginVC") as? LoginVC else {return}
         let defaults = UserDefaults.standard
-        makeRequestAlert(title: "탈퇴", message: "정말 탈퇴하시겠습니까?", okAction: {_ in
+        makeRequestAlert(title: "탈퇴", message: "탈퇴하시면 14일내에 재가입이 불가능 합니다. 정말 탈퇴하시겠습니까?", okAction: {_ in
             GetWithDrawDataService.withdraw.getRecommendInfo{ (response) in
                 switch(response)
                 {
@@ -243,7 +243,9 @@ class SettingVC: UIViewController {
                     defaults.removeObject(forKey: "kakaoLoginSucces")
                     defaults.removeObject(forKey: "appleLoginSuccess")
                     defaults.setValue(false, forKey: "loginBool")
-                    self.navigationController?.pushViewController(resetVC, animated: true)
+                    UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { exit(0)}
+//                    self.navigationController?.pushViewController(resetVC, animated: true)
                 case .requestErr(let message):
                     print("requestERR")
                 case .pathErr :
@@ -265,6 +267,7 @@ class SettingVC: UIViewController {
             switch result{
             case .success(let tokenData):
                 print("로그아웃 성공")
+                print(defaults.string(forKey: "accessToken"), "엑세스 토큰")
                 defaults.removeObject(forKey: "beta")
                 defaults.removeObject(forKey: "refreshToken")
                 defaults.removeObject(forKey: "accessToken")
@@ -280,8 +283,10 @@ class SettingVC: UIViewController {
                        //remove callback
                     }
                 })
-                
-                self.navigationController?.pushViewController(resetVC, animated: true)
+                UIApplication.shared.perform(#selector(NSXPCConnection.suspend))
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { exit(0)}
+              
+//                self.navigationController?.pushViewController(resetVC, animated: true)
             case .requestErr(let msg):
                 print("requestErr")
             default :
@@ -292,67 +297,67 @@ class SettingVC: UIViewController {
     
     
     
-    func append(){
-        inviteLink.append("📩 \(UserDefaults.standard.string(forKey: "name")!)님께서 '어떰'의 초대장을 보내셨습니다!\n\n '어떰'은 개인링크로 일정📅을 공유해 간편하게 약속을 잡을 수 있는 서비스입니다.\n\n ✉ 초대링크: \(invite) \n\n😝잉여 시간에 약속신청 받고 놀러가자😝")
-    }
-    func getInviteCount(){
-        GetInviteCountService.inviteCountData.getRecommendInfo{ (response) in
-            switch(response)
-            {
-            case .success(let inviteData):
-                if let response = inviteData as? InviteCountDataModel{
-                    let inviteCount = 3 - response.invitations.count
-                    self.intInviteCount = inviteCount
-                    self.leftInviteLabel.text = "남은 초대장 : \(inviteCount)"
-                }
-            case .requestErr(let message):
-                print("requestERR")
-            case .pathErr :
-                print("pathERR")
-            case .serverErr:
-                print("serverERR")
-            case .networkFail:
-                print("networkFail")
-            }
-        }
-    }
-    func getInvite(){
-        GetInviteService.inviteData.getRecommendInfo{ (response) in
-            switch(response)
-            {
-            case .success(let inviteData):
-                if let response = inviteData as? InviteDataModel{
-                    DispatchQueue.main.async {
-                        self.invite.append(response.link)
-                        self.append()
-                    }
-                }
-            case .requestErr(let message):
-                print("requestERR")
-            case .pathErr :
-                print("pathERR")
-            case .serverErr:
-                print("serverERR")
-            case .networkFail:
-                print("networkFail")
-            }
-        }
-    }
-    
-    func deleteInvite(){
-        let inviteToken = invite.components(separatedBy: "/")
-        print(inviteToken)
-        DeleteInviteData.shared.DeleteService(invitation_token: inviteToken[4]) { [self] result in
-                switch result{
-                case .success(let tokenData):
-                    print("삭제 성공")
-                case .requestErr(let msg):
-                    print("requestErr")
-                default :
-                    print("ERROR")
-                }
-            }
-    }
+//    func append(){
+//        inviteLink.append("📩 \(UserDefaults.standard.string(forKey: "name")!)님께서 '어떰'의 초대장을 보내셨습니다!\n\n '어떰'은 개인링크로 일정📅을 공유해 간편하게 약속을 잡을 수 있는 서비스입니다.\n\n ✉ 초대링크: \(invite) \n\n😝잉여 시간에 약속신청 받고 놀러가자😝")
+//    }
+//    func getInviteCount(){
+//        GetInviteCountService.inviteCountData.getRecommendInfo{ (response) in
+//            switch(response)
+//            {
+//            case .success(let inviteData):
+//                if let response = inviteData as? InviteCountDataModel{
+//                    let inviteCount = 3 - response.invitations.count
+//                    self.intInviteCount = inviteCount
+//                    self.leftInviteLabel.text = "남은 초대장 : \(inviteCount)"
+//                }
+//            case .requestErr(let message):
+//                print("requestERR")
+//            case .pathErr :
+//                print("pathERR")
+//            case .serverErr:
+//                print("serverERR")
+//            case .networkFail:
+//                print("networkFail")
+//            }
+//        }
+//    }
+//    func getInvite(){
+//        GetInviteService.inviteData.getRecommendInfo{ (response) in
+//            switch(response)
+//            {
+//            case .success(let inviteData):
+//                if let response = inviteData as? InviteDataModel{
+//                    DispatchQueue.main.async {
+//                        self.invite.append(response.link)
+//                        self.append()
+//                    }
+//                }
+//            case .requestErr(let message):
+//                print("requestERR")
+//            case .pathErr :
+//                print("pathERR")
+//            case .serverErr:
+//                print("serverERR")
+//            case .networkFail:
+//                print("networkFail")
+//            }
+//        }
+//    }
+////
+//    func deleteInvite(){
+//        let inviteToken = invite.components(separatedBy: "/")
+//        print(inviteToken)
+//        DeleteInviteData.shared.DeleteService(invitation_token: inviteToken[4]) { [self] result in
+//                switch result{
+//                case .success(let tokenData):
+//                    print("삭제 성공")
+//                case .requestErr(let msg):
+//                    print("requestErr")
+//                default :
+//                    print("ERROR")
+//                }
+//            }
+//    }
 
 }
 extension SettingVC: UNUserNotificationCenterDelegate{
