@@ -5,6 +5,7 @@
 > Manzi: 이민규 (기획)<br>
 > swikkft: 박익범 (iOS)<br>
 > mansuiki: 김경택 (서버)<br>
+> 
 ## Development Environment and Using Library
 - Development Environment
 <p align="left">
